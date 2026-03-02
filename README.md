@@ -200,4 +200,4 @@ Dokumentácia musí obsahovať minimálne tieto časti:
 
 **Každý študent musí vedieť vysvetliť ktorúkoľvek časť (kód) riešenia svojho tímu.**
 
-#### The README.md file's content was taken from wtech26/semestralny-projekt README.md for easier work on the project
+##### The README.md file's content was taken from wtech26/semestralny-projekt README.md for easier work on the project
