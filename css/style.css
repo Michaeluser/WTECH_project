@@ -159,39 +159,63 @@ body {
 /* Hero section start */
 .hero-section {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: 24px;
 }
 
 .hero-left {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 24px;
+  display: flex;
 }
 
-.big-banner {
-  background-color: #e7e7e7;
+.main-banner {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
   border: 1px solid #999;
   overflow: hidden;
+  background-color: #e7e7e7;
 }
 
-.big-banner img {
+.main-banner img {
   display: block;
   width: 100%;
-  height: 260px;
+  height: 100%;
+  min-height: 520px;
   object-fit: cover;
 }
 
-.banner-text {
-  padding: 18px;
-  text-align: center;
-  background-color: #efefef;
+.main-banner-content {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  max-width: 420px;
+  background-color: rgba(255, 255, 255, 0.88);
+  padding: 22px;
 }
 
-.banner-text h2 {
-  font-size: 28px;
+.main-banner-content h2 {
+  font-size: 34px;
+  font-weight: 500;
   color: #222;
-  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.main-banner-content p {
+  font-size: 17px;
+  color: #333;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.main-banner-button {
+  display: inline-block;
+  text-decoration: none;
+  color: #222;
+  border: 1px solid #777;
+  background-color: #f3f3f3;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
 .hero-right {
