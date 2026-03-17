@@ -532,11 +532,6 @@ body {
     align-self: flex-start;
   }
 
-  .promo-card {
-    grid-template-columns: 260px 1fr;
-    min-height: 200px;
-  }
-
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
