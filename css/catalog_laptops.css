@@ -1,4 +1,4 @@
-/* --- Catalog header --- */
+/* Catalog header  */
 .catalog-header {
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,7 @@
     text-decoration: none;
 }
 
-/* ===== BANNER SLIDER ===== */
+/*  BANNER SLIDER  */
 
 .banner-slider {
     position: relative;
@@ -26,35 +26,35 @@
     height: 500px;
 }
 
-/* --- Контейнер слайдов --- */
+/*  slider cont  */
 .slider-image {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-/* --- Каждый слайд скрыт по умолчанию --- */
+/* every slide is hidden by deafult */
 .slide {
     display: none;
     width: 100%;
     height: 100%;
 }
 
-/* --- Только активный слайд виден --- */
+/* only active is visible */
 .slide.active {
     display: block;
 }
 
-/* --- Картинка внутри слайда --- */
+/* image in slider */
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: contain;  /* ← было cover */
+    object-fit: contain;
     display: block;
-    background: #ffffff;     /* цвет полей по бокам */
+    background: #ffffff;
 }
 
-/* --- Подпись на слайдере --- */
+/* written on slider "Customer's choice" */
 .slider-caption {
     position: absolute;
     top: 16px;
@@ -69,12 +69,12 @@
     pointer-events: none; /* чтобы подпись не мешала кликать */
 }
 
-/* --- Кнопки (общие стили для обеих) --- */
+/* --- Buttons --- */
 .slider-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10; /* поверх картинки */
+    z-index: 10;
     background: rgba(255, 255, 255, 0.75);
     border: none;
     font-size: 2rem;
@@ -85,22 +85,21 @@
     transition: background 0.2s;
 }
 
-/* --- Ховер на кнопках --- */
+/* Hover */
 .slider-btn:hover {
-    background: rgba(255, 255, 255, 1);
+    background: rgba(128,128,128, 1);
 }
 
-/* --- Левая кнопка --- */
+
 .slider-btn--prev {
     left: 12px;
 }
 
-/* --- Правая кнопка --- */
 .slider-btn--next {
     right: 12px;
 }
 
-/* --- Сетка категорий --- */
+/* cat-grid */
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 колонки как в скетче */
@@ -138,7 +137,7 @@
     border-top: 1px solid #e0e0e0;
 }
 
-/* --- Advice block --- */
+/*  Advice block  */
 .advice-block {
     background: #f5f5f5;
     padding: 20px 24px;
