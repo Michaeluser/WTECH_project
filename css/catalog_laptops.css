@@ -1,0 +1,165 @@
+/* --- Catalog header --- */
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 24px 0;
+}
+
+.catalog-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.breadcrumb a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* ===== BANNER SLIDER ===== */
+
+.banner-slider {
+    position: relative;
+    margin: 16px 24px;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 500px;
+}
+
+/* --- Контейнер слайдов --- */
+.slider-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Каждый слайд скрыт по умолчанию --- */
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Только активный слайд виден --- */
+.slide.active {
+    display: block;
+}
+
+/* --- Картинка внутри слайда --- */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* ← было cover */
+    display: block;
+    background: #ffffff;     /* цвет полей по бокам */
+}
+
+/* --- Подпись на слайдере --- */
+.slider-caption {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.75);
+    padding: 6px 18px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none; /* чтобы подпись не мешала кликать */
+}
+
+/* --- Кнопки (общие стили для обеих) --- */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; /* поверх картинки */
+    background: rgba(255, 255, 255, 0.75);
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+/* --- Ховер на кнопках --- */
+.slider-btn:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* --- Левая кнопка --- */
+.slider-btn--prev {
+    left: 12px;
+}
+
+/* --- Правая кнопка --- */
+.slider-btn--next {
+    right: 12px;
+}
+
+/* --- Сетка категорий --- */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки как в скетче */
+    gap: 16px;
+    padding: 24px;
+}
+
+.category-card {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.category-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.category-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    background: #ddd; /* пока нет картинок */
+}
+
+.category-card__name {
+    display: block;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* --- Advice block --- */
+.advice-block {
+    background: #f5f5f5;
+    padding: 20px 24px;
+    margin-top: 16px;
+}
+
+.advice-block__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.advice-block__subtitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.advice-block__text {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.6;
+}
+
