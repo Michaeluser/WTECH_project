@@ -163,3 +163,150 @@
     line-height: 1.6;
 }
 
+@media (max-width: 1200px) {
+  .catalog-header {
+    padding: 16px 20px 0;
+  }
+
+  .banner-slider {
+    margin: 16px 20px;
+    height: 420px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 20px;
+    gap: 14px;
+  }
+
+  .advice-block {
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .catalog-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 16px 0;
+  }
+
+  .catalog-title {
+    font-size: 1.8rem;
+  }
+
+  .banner-slider {
+    margin: 16px;
+    height: 320px;
+  }
+
+  .slider-caption {
+    top: 12px;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+  }
+
+  .slider-btn {
+    font-size: 1.6rem;
+    padding: 6px 10px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .category-card__name {
+    font-size: 0.9rem;
+    padding: 9px 10px;
+  }
+
+  .advice-block {
+    padding: 16px;
+  }
+
+  .advice-block__title {
+    font-size: 0.95rem;
+  }
+
+  .advice-block__subtitle {
+    font-size: 0.88rem;
+  }
+
+  .advice-block__text {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 600px) {
+  .catalog-header {
+    padding: 14px 12px 0;
+  }
+
+  .catalog-title {
+    font-size: 1.5rem;
+  }
+
+  .banner-slider {
+    margin: 12px;
+    height: 240px;
+    border-radius: 6px;
+  }
+
+  .slider-caption {
+    top: 10px;
+    max-width: calc(100% - 24px);
+    text-align: center;
+    white-space: normal;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .slider-btn {
+    font-size: 1.3rem;
+    padding: 6px 8px;
+  }
+
+  .slider-btn--prev {
+    left: 8px;
+  }
+
+  .slider-btn--next {
+    right: 8px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .category-card img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .category-card__name {
+    font-size: 0.9rem;
+  }
+
+  .advice-block {
+    padding: 14px 12px;
+    margin-top: 12px;
+  }
+
+  .advice-block__title {
+    font-size: 0.92rem;
+  }
+
+  .advice-block__subtitle {
+    font-size: 0.84rem;
+  }
+
+  .advice-block__text {
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+}
