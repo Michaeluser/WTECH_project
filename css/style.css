@@ -6,7 +6,13 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #312d2d;
+  background: linear-gradient(
+    to top,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #ffffff
+  );
 }
 
 .page-container {
@@ -215,6 +221,8 @@ body {
   border: 1px solid #999;
   overflow: hidden;
   background-color: #e7e7e7;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .main-banner img {
@@ -302,6 +310,9 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  /* box-shadow: 0 6px 12px blue; */
 }
 
 .promo-card img {
@@ -374,6 +385,15 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+  /* box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08); */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
 .product-card img {
