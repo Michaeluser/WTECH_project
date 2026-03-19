@@ -657,10 +657,10 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .nav-item a {
+  /* .nav-item a {
     text-align: left;
     padding: 14px 16px;
-  }
+  } */
 
   .nav-item {
     border-right: none;
