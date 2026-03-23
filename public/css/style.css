@@ -30,7 +30,7 @@ body {
   border: 1px solid #999;
 }
 
-.header-top {
+.header-inner-elements {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -533,7 +533,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  .header-top {
+  .header-inner-elements {
     flex-wrap: wrap;
     gap: 16px;
   }
@@ -644,7 +644,7 @@ body {
     width: 100%;
   }
 
-  .header-top {
+  .site-header {
     padding: 14px 16px;
   }
 
