@@ -1,0 +1,138 @@
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: #333;
+}
+
+.product-top-nav h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-top: -20px;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #444;
+  font-size: 14px;
+}
+
+/* Grids */
+.product-main-row, .product-middle-row, .product-bottom-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+}
+
+/* Image Box */
+.image-placeholder {
+  background-color: #e0e0e0;
+  border: 1px solid #999;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gallery-nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #d0d0d0;
+  padding: 5px;
+}
+
+/* Purchase Sidebar */
+.purchase-card {
+  background: #d9d9d9;
+  padding: 20px;
+  border: 1px solid #999;
+}
+
+.stat-box {
+  background: #bcbcbc;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-box {
+  height: 60px;
+  font-weight: bold;
+}
+
+.btn-primary, .btn-secondary, .btn-submit {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+
+.btn-primary { background: #b0b0b0; }
+.btn-secondary { background: #c0c0c0; width: 60px; }
+
+/* Features & Options */
+.features-list ul {
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.options-grid select {
+  padding: 10px;
+  background: #bcbcbc;
+  border: none;
+}
+
+.insurance-options {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+/* Specs & Reviews */
+.section-title-bar {
+  background: #d0d0d0;
+  padding: 10px;
+  border: 1px solid #999;
+  margin-bottom: 15px;
+}
+
+.specs-list {
+  list-style: none;
+}
+
+.review-card {
+  background: #d0d0d0;
+  padding: 20px;
+}
+
+.review-card textarea {
+  width: 100%;
+  height: 100px;
+  margin: 15px 0;
+  padding: 10px;
+  border: none;
+  background: #bcbcbc;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .product-main-row, .product-middle-row, .product-bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
