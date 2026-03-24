@@ -36,6 +36,11 @@
   position: relative;
 }
 
+.image-placeholder img{
+  height: 300px;
+  width: auto;
+}
+
 .gallery-nav {
   position: absolute;
   bottom: 0;

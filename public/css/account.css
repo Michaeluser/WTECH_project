@@ -1,0 +1,269 @@
+.personal-info {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Two main columns: Info and Sidebar */
+    gap: 30px; /* Space between the main info and the links */
+    padding: 20px;
+}
+
+.location-contact-info{
+    background-color:#d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color:#333;
+
+    display: grid;
+    grid-template-areas:
+        "mailLabel mailData"
+        "numberLabel numberData"
+        "streetLabel streetData"
+        "countryLabel countryData"
+        "cityLabel cityData"
+        "postIndexLabel postIndexData";
+}
+
+.payment-info{
+    background-color:#d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color:#333;
+
+    display: grid;
+    grid-template-areas:
+        "ibanLabel ibanData"
+        "bicLabel bicData"
+        "acreditInfo acreditInfo";
+        
+    }
+    
+    
+.identity-items{
+    background-color:#333;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color:#ffffff;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-left: 20px;
+    opacity: 1;
+
+
+    display: grid;
+    grid-template-areas:
+    "birthdateLabel sexLabel"
+    "birthdateData sexData";
+}
+
+
+
+.account-state{
+    background-color:#d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color:#333;
+    
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+
+
+.account-part img {
+    display: block;
+    width: 70px;
+    height: auto;
+}
+
+.account-part{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.membership-part img{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.membership-part{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    gap: 5px;
+}
+
+.membership-label{
+    grid-column: span 2;
+    grid-row: 1;
+}
+
+.membership-status{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+.link-menu{
+    background-color:#d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+    color:#333;
+    list-style: none;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.menu-item{
+    padding: 10px;
+    padding-left: 20px;
+    color:#333;
+
+}
+
+.menu-item a{
+    text-decoration: none;   /* Removes the underline */
+    color: #333;
+    display: block;          /* Makes the whole box clickable, not just the text */
+    text-align: left;      /* Centers the text inside the grey box */
+}
+
+.account-state{
+    grid-column: span 2;
+    grid-row: 1;
+}
+
+.location-contact-info{
+    grid-column: span 2;
+    grid-row: 2;
+}
+
+.payment-info{
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.identity-info-layout{
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.link-layout{
+    grid-column: 3;
+    grid-row: span 2;
+}
+
+.account-state, 
+.location-contact-info, 
+.payment-info, 
+.identity-info-layout {
+    grid-column: 1; /* Keep all info blocks in the first column */
+    margin-bottom: 20px; /* Space between the stacked boxes */
+}
+
+/* Match the image text styling */
+.location-contact-info, .payment-info {
+    background-color: transparent; /* Image shows text on white background */
+    border: none; /* Removed border to match cleaner image look */
+    display: grid;
+    column-gap: 20px;
+    row-gap: 15px;
+    grid-template-columns: auto 1fr; /* Labels take only space needed, data fills rest */
+}
+
+
+/* Styling labels to be smaller/lighter like the mockup */
+h3[class$="-label"] {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+}
+
+h3[class$="-data"] {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* --- RIGHT SIDEBAR (Useful Links) --- */
+
+.link-layout {
+    grid-column: 2; /* Move links to the second column */
+    grid-row: 1 / span 4; /* Make sidebar span the full height of the page */
+}
+
+.link-menu {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 0px; /* Mockup shows a more rectangular sidebar */
+    min-height: 400px; /* Ensures sidebar looks substantial */
+}
+
+.menu-title {
+    text-align: center;
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+/* --- IDENTITY BOX (Small dark box at bottom) --- */
+
+.identity-items {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    color: #333;
+    width: fit-content; /* Make it a small box like the image */
+    display: grid;
+    grid-template-areas:
+        "birthdateLabel sexLabel"
+        "birthdateData sexData";
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+/* Labels inside the identity box should be smaller */
+.birthdate-label, .sex-label {
+    font-size: 12px !important;
+}
+
+/* Data inside boxes should have a slight background */
+.birthdate-data, .sex-data {
+    background-color: #bcbcbc;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+
+.mail-label{grid-area: mailLabel;}
+.number-label{grid-area: numberLabel;}
+.street-label{grid-area: streetLabel;}
+.country-label{grid-area: countryLabel;}
+.city-label{grid-area: cityLabel;}
+.post-index-label{grid-area: postIndexLabel;}
+.iban-label{grid-area: ibanLabel}
+.bic-label{grid-area: bicLabel}
+.birthdate-label{grid-area: birthdateLabel}
+.sex-label{grid-area: sexLabel}
+
+
+.mail-data{grid-area: mailData;}
+.number-data{grid-area: numberData;}
+.street-data{grid-area: streetData;}
+.country-data{grid-area: countryData;}
+.city-data{grid-area: cityData;}
+.post-index-data{grid-area: postIndexData;}
+.iban-data{grid-area: ibanData}
+.bic-data{grid-area: bicData}
+.birthdate-data{grid-area: birthdateData}
+.sex-data{grid-area: sexData}
+
+.acredit-info{grid-area: acreditInfo;}

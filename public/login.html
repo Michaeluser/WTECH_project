@@ -1,116 +1,56 @@
 <!DOCTYPE html>
 <html lang = "en">
-<head>
-  <meta charset = "UTF-8">
-  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-<title>Products | TechnoDom</title>
+  <head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <title>Login TechnoDom</title>
 
-<link rel = "stylesheet" href = "css/style.css">
-<link rel = "stylesheet" href = "css/login.css">
-</head>
+    <link rel = "stylesheet" href = "css/style.css">
+    <link rel = "stylesheet" href = "css/login.css">
+  </head>
 
-<body>
+  <body>
+    <div class = "page-container">
 
-<div class = "page-container">
+      <!-- MAIN CONTENT -->
+      <div class = "login-page-wrapper">
 
-<!-- HEADER -->
-<header class = "site-header">
-  <div class = "header-inner-elements">
+        <div class = "login-logo-header">
+          <div class = "logo-box">
+            <img src = "images/logo.png" alt = "Website logo">
+          </div>
+        </div>
 
-    <a href = "index.html" class = "logo">
-      <img src = "images/logo.png" alt = "TechnoDom logo">
-    </a>
+        <div class = "login-container">
+          <h2>Logging In</h2>
+          
+          <form class = "login-form">
+            
+            <div class = "input-group">
+              <label>Email</label>
+              <input type = "email">
+            </div>
+            
+              <div class="input-group">
+                <label>Password</label>
+                <input type="password">
+                <a href="#" class="form-link-small">Forgot password?</a>
+              </div>
 
-    <form class = "search-form">
-      <input type = "text" class = "search-input" placeholder = "Search products">
-    </form>
+            <button type = "submit" class = "btn-login">Log In</button>
+            
+            <div class = "login-footer-links">
+              <a href = "#" class = "form-link-small">Register Instead</a>
+            </div>
 
-    <div class = "header-actions">
+          </form>
 
-      <div class = "account-block">
-        <span class = "account-name">My account</span>
-        <a href = "#" class = "header-icon">
-          <img src = "images/user.png" alt = "User profile icon">
-        </a>
+        </div>
+        
       </div>
 
-      <div class = "shop-icons">
-
-        <a href = "#" class = "header-icon">
-          <img src = "images/heart.png" alt = "Wishlist icon">
-        </a>
-
-        <a href = "cart.html" class = "header-icon">
-          <img src = "images/cart.png" alt = "Shopping cart icon">
-        </a>
-
-      </div>
 
     </div>
 
-  </div>
-</header>
-
-<!-- NAVBAR -->
-<nav class = "main-nav">
-  <ul class = "nav-list">
-
-    <li class = "nav-item"><a href = "#">Laptops</a></li>
-    <li class = "nav-item"><a href = "#">Phones</a></li>
-    <li class = "nav-item"><a href = "#">PC components</a></li>
-    <li class = "nav-item"><a href = "#">Monitors</a></li>
-    <li class = "nav-item"><a href = "#">TV&Audio</a></li>
-    <li class = "nav-item"><a href = "#">Gaming</a></li>
-    <li class = "nav-item"><a href = "#">Accessories</a></li>
-    <li class = "nav-item"><a href = "#">Sale</a></li>
-
-  </ul>
-</nav>
-
-<!-- MAIN CONTENT -->
-<div class = "login-page-wrapper">
-  <div class = "login-logo-header">
-    <div class = "logo-box">Logo</div>
-  </div>
-
-  <div class = "login-container">
-    <h2>Logging In</h2>
-    
-    <form class = "login-form">
-      <div class = "input-group">
-        <label>Email</label>
-        <input type = "email">
-      </div>
-      
-      <div class = "input-group">
-        <label>Password</label>
-        <input type = "password">
-        <a href = "#" class = "form-link-small">Forgot password?</a>
-      </div>
-
-      <button type = "submit" class = "btn-login">Log In</button>
-      
-      <div class = "login-footer-links">
-        <a href = "#" class = "form-link-small">Register Instead</a>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class = "site-footer">
-  <ul class = "footer-list">
-
-    <li class = "footer-item"><a href = "#">About us</a></li>
-    <li class = "footer-item"><a href = "#">Contacts</a></li>
-    <li class = "footer-item"><a href = "#">Terms &amp; Conditions</a></li>
-    <li class = "footer-item"><a href = "#">FAQ</a></li>
-    <li class = "footer-item"><a href = "#">Support</a></li>
-
-  </ul>
-</footer>
-
-</div>
-
-</body>
+  </body>
 </html>
