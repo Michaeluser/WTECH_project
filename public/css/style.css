@@ -118,7 +118,7 @@ body {
 
 /* Navigation start */
 .main-nav {
-  background-color: #dddddd;
+  background: linear-gradient(180deg, #eeeeee 0%, #d7d7d7 100%);
   border-left: 1px solid #999;
   border-right: 1px solid #999;
   border-bottom: 1px solid #999;
@@ -187,6 +187,7 @@ body {
   text-decoration: none;
   color: #222;
   font-size: 16px;
+  font-weight: 600;
 }
 
 .nav-item a:hover {

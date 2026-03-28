@@ -88,6 +88,31 @@
   align-self: flex-end;
 }
 
+.login-footer-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.staff-login-text {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #b8b8b8;
+  text-align: center;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.staff-login-link {
+  color: #111;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.staff-login-link:hover {
+  text-decoration: underline;
+}
+
 .signup-text {
   text-align: center;
   margin-top: 25px;
