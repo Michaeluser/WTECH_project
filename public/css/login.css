@@ -1,3 +1,7 @@
+.page-container{
+  background: transparent;
+}
+
 .login-page-wrapper {
   max-width: 400px; /* Slimmer look to match the prototype */
   width: 100%;

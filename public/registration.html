@@ -11,130 +11,140 @@
 
   <body>
 
-    <div class = "page-container">
+  <div class = "page-container">
 
-      <!-- HEADER -->
-      <header class = "site-header">
-        <div class = "header-inner-elements">
+    <header class = "site-header">
+      <div class = "header-inner-elements">
 
-          <a href = "index.html" class = "logo">
-            <img src = "images/logo.png" alt = "TechnoDom logo">
-          </a>
+        <a href = "index.html" class = "logo">
+          <img src = "images/logo.png" alt = "TechnoDom logo">
+        </a>
 
-          <form class = "search-form">
-            <input type = "text" class = "search-input" placeholder = "Search products">
-          </form>
+    <form class="search-form" action="search-result.html" method="GET">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search products" 
+        name="q"
+      >
+    </form>
 
-          <div class = "header-actions">
+        <div class = "header-actions">
 
-            <div class = "account-block">
-              <span class = "account-name">My account</span>
-              <a href = "#" class = "header-icon">
-                <img src = "images/user.png" alt = "User profile icon">
-              </a>
-            </div>
+          <div class = "account-block">
+            <span class = "account-name">My account</span>
+            <a href = "account.html" class = "header-icon">
+              <img src = "images/user.png" alt = "User profile icon">
+            </a>
+          </div>
 
-            <div class = "shop-icons">
+          <div class = "shop-icons">
+            <a href = "#" class = "header-icon">
+              <img src = "images/heart.png" alt = "Wishlist icon">
+            </a>
 
-              <a href = "#" class = "header-icon">
-                <img src = "images/heart.png" alt = "Wishlist icon">
-              </a>
-
-              <a href = "cart.html" class = "header-icon">
-                <img src = "images/cart.png" alt = "Shopping cart icon">
-              </a>
-
-            </div>
-
+            <a href = "cart-step1.html" class = "header-icon">
+              <img src = "images/cart.png" alt = "Shopping cart icon">
+            </a>
           </div>
 
         </div>
-      </header>
 
-      <!-- NAVBAR -->
-      <nav class = "main-nav">
+      </div>
+    </header>
+
+    <nav class = "main-nav">
+        <div class = "nav-top">
+          <span class = "nav-mobile-title">Categories</span>
+          <button class = "nav-toggle" type = "button" aria-label = "Open categories" aria-expanded = "false">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+        </div>
+
         <ul class = "nav-list">
-
-          <li class = "nav-item"><a href = "#">Laptops</a></li>
-          <li class = "nav-item"><a href = "#">Phones</a></li>
-          <li class = "nav-item"><a href = "#">PC components</a></li>
-          <li class = "nav-item"><a href = "#">Monitors</a></li>
-          <li class = "nav-item"><a href = "#">TV&Audio</a></li>
-          <li class = "nav-item"><a href = "#">Gaming</a></li>
-          <li class = "nav-item"><a href = "#">Accessories</a></li>
-          <li class = "nav-item"><a href = "#">Sale</a></li>
-
-        </ul>
-      </nav>
+            <li class = "nav-item"><a href = "catalog.html">Laptops</a></li>
+            <li class = "nav-item"><a href = "#">Phones</a></li>
+            <li class = "nav-item"><a href = "#">PC components</a></li>
+            <li class = "nav-item"><a href = "#">Monitors</a></li>
+            <li class = "nav-item"><a href = "#">TV&amp;Audio</a></li>
+            <li class = "nav-item"><a href = "#">Gaming</a></li>
+            <li class = "nav-item"><a href = "#">Accessories</a></li>
+            <li class = "nav-item"><a href = "#">Sale</a></li>
+        </ul> 
+    </nav>
 
       <!-- MAIN CONTENT -->
-      <div class = "registration-container">
-        <h1 class = "page-title">Registration</h1>
+      <main class = "site-main">
+        <div class = "registration-container">
+          <h1 class = "page-title">Registration</h1>
 
-        <form class = "registration-form">
-          <div class = "registration-grid">
-            
-            <div class = "info-column">
-              <h3>Login Information</h3>
-              <div class = "input-group">
-                <label>Sign-In Email</label>
-                <input type = "email">
-              </div>
-              <div class = "input-group">
-                <label>Password</label>
-                <input type = "password">
-              </div>
-              <div class = "input-group">
-                <label>Password Confirmation</label>
-                <input type = "password">
-              </div>
-            </div>
-
-            <div class = "info-column">
-              <h3>Delivery Information</h3>
-              <div class = "input-group">
-                <label>Phone Number</label>
-                <input type = "tel">
-              </div>
-              <div class = "input-group">
-                <label>Country</label>
-                <input type = "text" class = "half-width">
-              </div>
-              <div class = "form-row">
+          <form class = "registration-form">
+            <div class = "registration-grid">
+              
+              <div class = "info-column">
+                <h3>Login Information</h3>
                 <div class = "input-group">
-                  <label>City</label>
+                  <label>Sign-In Email</label>
+                  <input type = "email">
+                </div>
+                <div class = "input-group">
+                  <label>Password</label>
+                  <input type = "password">
+                </div>
+                <div class = "input-group">
+                  <label>Password Confirmation</label>
+                  <input type = "password">
+                </div>
+              </div>
+
+              <div class = "info-column">
+                <h3>Delivery Information</h3>
+                <div class = "input-group">
+                  <label>Phone Number</label>
+                  <input type = "tel">
+                </div>
+                <div class = "input-group">
+                  <label>Country</label>
+                  <input type = "text" class = "half-width">
+                </div>
+                <div class = "form-row">
+                  <div class = "input-group">
+                    <label>City</label>
+                    <input type = "text">
+                  </div>
+                  <div class = "input-group">
+                    <label>Post Index</label>
+                    <input type = "text">
+                  </div>
+                </div>
+                <div class = "input-group">
+                  <label>Street name</label>
+                  <input type = "text">
+                </div>
+              </div>
+
+              <div class = "info-column">
+                <h3>Personal Information</h3>
+                <div class = "input-group">
+                  <label>First Name</label>
                   <input type = "text">
                 </div>
                 <div class = "input-group">
-                  <label>Post Index</label>
+                  <label>Last Name</label>
                   <input type = "text">
                 </div>
               </div>
-              <div class = "input-group">
-                <label>Street name</label>
-                <input type = "text">
-              </div>
+
             </div>
 
-            <div class = "info-column">
-              <h3>Personal Information</h3>
-              <div class = "input-group">
-                <label>First Name</label>
-                <input type = "text">
-              </div>
-              <div class = "input-group">
-                <label>Last Name</label>
-                <input type = "text">
-              </div>
+            <div class = "form-actions">
+              <button type = "submit" class = "btn-signup">Sign Up</button>
             </div>
-
-          </div>
-
-          <div class = "form-actions">
-            <button type = "submit" class = "btn-signup">Sign Up</button>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </main>
 
       <!-- FOOTER -->
       <footer class = "site-footer">
@@ -150,6 +160,6 @@
       </footer>
 
     </div>
-
+    <script src="js/hamurger-menu.js"></script>
   </body>
 </html>
