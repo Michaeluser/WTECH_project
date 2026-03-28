@@ -14,57 +14,68 @@
 <div class = "page-container">
 
     <!-- HEADER -->
-    <header class = "site-header">
-        <div class = "header-inner-elements">
+  <div class = "page-container">
 
-            <a href = "index.html" class = "logo">
-                <img src = "images/logo.png" alt = "TechnoDom logo">
+    <header class = "site-header">
+      <div class = "header-inner-elements">
+
+        <a href = "index.html" class = "logo">
+          <img src = "images/logo.png" alt = "TechnoDom logo">
+        </a>
+
+    <form class="search-form" action="search-result.html" method="GET">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Search products" 
+        name="q"
+      >
+    </form>
+
+        <div class = "header-actions">
+
+          <div class = "account-block">
+            <span class = "account-name">My account</span>
+            <a href = "account.html" class = "header-icon">
+              <img src = "images/user.png" alt = "User profile icon">
+            </a>
+          </div>
+
+          <div class = "shop-icons">
+            <a href = "#" class = "header-icon">
+              <img src = "images/heart.png" alt = "Wishlist icon">
             </a>
 
-            <form class = "search-form">
-                <input type = "text" class = "search-input" placeholder = "Search products">
-            </form>
-
-            <div class = "header-actions">
-
-                <div class = "account-block">
-                    <span class = "account-name">My account</span>
-                    <a href = "#" class = "header-icon">
-                        <img src = "images/user.png" alt = "User profile icon">
-                    </a>
-                </div>
-
-                <div class = "shop-icons">
-
-                    <a href = "#" class = "header-icon">
-                        <img src = "images/heart.png" alt = "Wishlist icon">
-                    </a>
-
-                    <a href = "cart-step1.html" class = "header-icon">
-                        <img src = "images/cart.png" alt = "Shopping cart icon">
-                    </a>
-
-                </div>
-
-            </div>
+            <a href = "cart-step1.html" class = "header-icon">
+              <img src = "images/cart.png" alt = "Shopping cart icon">
+            </a>
+          </div>
 
         </div>
+
+      </div>
     </header>
 
-    <!-- NAVBAR -->
     <nav class = "main-nav">
-        <ul class = "nav-list">
+        <div class = "nav-top">
+          <span class = "nav-mobile-title">Categories</span>
+          <button class = "nav-toggle" type = "button" aria-label = "Open categories" aria-expanded = "false">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+        </div>
 
-            <li class = "nav-item"><a href = "#">Laptops</a></li>
+        <ul class = "nav-list">
+            <li class = "nav-item"><a href = "catalog.html">Laptops</a></li>
             <li class = "nav-item"><a href = "#">Phones</a></li>
             <li class = "nav-item"><a href = "#">PC components</a></li>
             <li class = "nav-item"><a href = "#">Monitors</a></li>
-            <li class = "nav-item"><a href = "#">TV&Audio</a></li>
+            <li class = "nav-item"><a href = "#">TV&amp;Audio</a></li>
             <li class = "nav-item"><a href = "#">Gaming</a></li>
             <li class = "nav-item"><a href = "#">Accessories</a></li>
             <li class = "nav-item"><a href = "#">Sale</a></li>
-
-        </ul>
+        </ul> 
     </nav>
 
     <!-- MAIN CONTENT -->
@@ -166,5 +177,6 @@
 
 </div>
 <script src = "js/catalog.js"></script>
+<script src = "js/hamurger-menu.js"></script>
 </body>
 </html>
