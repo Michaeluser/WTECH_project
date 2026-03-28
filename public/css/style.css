@@ -34,7 +34,7 @@ body {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 16px 32px 16px 20px;
+  padding: 10px 32px 10px 20px;
 }
 
 .logo {
@@ -46,7 +46,7 @@ body {
 
 .logo img {
   display: block;
-  width: 110px;
+  width: 80px;
   height: auto;
 }
 
@@ -111,7 +111,7 @@ body {
 .header-icon img {
   display: block;
   width: 22px;
-  height: 22px;
+  height: auto;
 }
 /* Header end */
 
@@ -645,7 +645,7 @@ body {
   }
 
   .site-header {
-    padding: 14px 16px;
+    padding: 10px 16px;
   }
 
   .logo img {

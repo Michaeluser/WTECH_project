@@ -211,7 +211,7 @@ h3[class$="-data"] {
 }
 
 .acredit-info{
-    font-size: 13px;               /* FIXED: was invalid "font: 20x" */
+    font-size: 13px;
     font-weight: normal;
     color: #444;
 }
@@ -222,8 +222,6 @@ h3[class$="-data"] {
 .sex-data        { grid-area: sexData; }
 .acredit-info    { grid-area: acreditInfo; }
 
-
-/* ===== ADDITIONS TO MATCH MOCKUP ===== */
 
 
 /* --- ACCOUNT STATE BOX --- */
