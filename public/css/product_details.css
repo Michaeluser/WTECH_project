@@ -1,143 +1,307 @@
-.product-detail-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  color: #333;
+/* --- GENERAL PAGE CONTAINER --- */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* --- MAIN GRID LAYOUT --- */
+.site-main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px 30px; 
+    padding: 20px;
+}
+
+.product-top-nav {
+    grid-column: span 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-top-nav h1 {
-  text-align: center;
-  font-size: 24px;
-  margin-top: -20px;
+    text-align: center;
+    font-size: 24px;
+    margin: 10px 0 0 0;
 }
 
 .back-link {
-  text-decoration: none;
-  color: #444;
-  font-size: 14px;
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
 }
 
-/* Grids */
-.product-main-row, .product-middle-row, .product-bottom-row {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
+/* Map sections to Grid Areas */
+.image-section    { grid-column: 1; grid-row: 2; }
+.purchase-section { grid-column: 2; grid-row: 2; }
+.features-section { grid-column: 1; grid-row: 3; }
+.options-section  { grid-column: 2; grid-row: 3; }
+.specs-section    { grid-column: 1; grid-row: 4; }
+.reviews-section  { grid-column: 2; grid-row: 4; }
+
+
+/* --- COMMON COMPONENT STYLES --- */
+.image-section,
+.purchase-section,
+.features-section,
+.options-section,
+.specs-section,
+.reviews-section {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color: #333;
 }
 
-/* Image Box */
-.image-placeholder {
-  background-color: #e0e0e0;
-  border: 1px solid #999;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.image-placeholder img{
-  height: 300px;
-  width: auto;
-}
-
-.gallery-nav {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  background: #d0d0d0;
-  padding: 5px;
-}
-
-/* Purchase Sidebar */
-.purchase-card {
-  background: #d9d9d9;
-  padding: 20px;
-  border: 1px solid #999;
-}
-
-.stat-box {
-  background: #bcbcbc;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.price-box {
-  height: 60px;
-  font-weight: bold;
-}
-
-.btn-primary, .btn-secondary, .btn-submit {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #999;
-  cursor: pointer;
-}
-
-.btn-primary { background: #b0b0b0; }
-.btn-secondary { background: #c0c0c0; width: 60px; }
-
-/* Features & Options */
-.features-list ul {
-  padding-left: 20px;
-  line-height: 1.6;
-}
-
-.options-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.options-grid select {
-  padding: 10px;
-  background: #bcbcbc;
-  border: none;
-}
-
-.insurance-options {
-  grid-column: span 2;
+.purchase-section{
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 14px;
 }
 
-/* Specs & Reviews */
-.section-title-bar {
-  background: #d0d0d0;
-  padding: 10px;
-  border: 1px solid #999;
-  margin-bottom: 15px;
+h2, h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* --- BUTTONS --- */
+button {
+    background-color: #bcbcbc;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+button:hover {
+    background-color: #a8a8a8;
+}
+
+/* --- FORM CONTROLS (Selects & Textareas) --- */
+select, 
+textarea {
+    background-color: #d9d9d9;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+select:focus, 
+textarea:focus {
+    border-color: #888;
+    background-color: #cfcfcf;
+}
+
+/* --- SPECIFIC SECTION TWEAKS --- */
+
+/* Image Section */
+.image-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 50px; /* Room for nav */
+}
+
+.image-section img {
+    height: 300px;
+    width: auto;
+    margin-top: 15px;
+    transition: height 0.3s ease; /* Smooth scaling */
+}
+
+.gallery-nav {
+    position: absolute;
+    bottom: 10px;
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Purchase Section */
+.stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: #bcbcbc;
+    border-radius: 6px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-buttons .btn-primary {
+    flex: 1;
+}
+
+.vendor-info {
+    font-size: 13px;
+    color: #555;
+}
+
+/* Options Section */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.condition-toggle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.insurance-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+}
+
+/* Reviews Section */
+.reviews-section textarea {
+    height: 100px;
+    margin: 15px 0;
+    resize: vertical;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Lists */
+.features-section ul, 
+.specs-list {
+    padding-left: 20px;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .specs-list {
-  list-style: none;
+    list-style: none;
+    padding-left: 0;
 }
 
-.review-card {
-  background: #d0d0d0;
-  padding: 20px;
+.specs-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #bbb;
 }
 
-.review-card textarea {
-  width: 100%;
-  height: 100px;
-  margin: 15px 0;
-  padding: 10px;
-  border: none;
-  background: #bcbcbc;
+.specs-list li:last-child {
+    border-bottom: none;
 }
 
-/* Responsive */
+.rating-mini{
+    margin-left: auto;
+}
+
+.reviews-link{
+    margin-left: auto;
+}
+
+/* --- RESPONSIVENESS (900px to 600px limits) --- */
+
+/* Tablets and small desktops */
 @media (max-width: 900px) {
-  .product-main-row, .product-middle-row, .product-bottom-row {
-    grid-template-columns: 1fr;
-  }
+    .site-main {
+        grid-template-columns: 1fr; /* Stack to single column */
+        gap: 15px;
+    }
+
+    .image-section, .purchase-section, .features-section, .options-section, .specs-section, .reviews-section {
+        grid-column: 1;
+        grid-row: auto;
+        padding: 15px; /* Slightly reduced padding */
+    }
+
+    /* Scale down text */
+    .product-top-nav h1 { font-size: 22px; }
+    h2, h3 { font-size: 17px; }
+    .product-desc-short, .features-section ul, .specs-list li { font-size: 15px; }
+    
+    button { font-size: 14px; padding: 10px 20px; }
+    select, textarea { font-size: 13.5px; }
+
+    /* Scale down image */
+    .image-section img {
+        height: 250px;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+    .site-main {
+        padding: 10px;
+    }
+
+    .image-section, .purchase-section, .features-section, .options-section, .specs-section, .reviews-section {
+        padding: 12px;
+    }
+
+    /* Further scale down text for mobile */
+    .product-top-nav h1 { font-size: 20px; }
+    h2, h3 { font-size: 16px; }
+    .product-desc-short, .features-section ul, .specs-list li { font-size: 14px; }
+    
+    button { font-size: 13px; padding: 8px 16px; }
+    select, textarea { font-size: 13px; }
+    .vendor-info, .stat-box { font-size: 13px; }
+
+    /* Further scale down image */
+    .image-section img {
+        height: 200px;
+    }
+
+    /* Adjust internal grids for narrow screens */
+    .options-grid {
+        grid-template-columns: 1fr; /* Stack select dropdowns */
+        gap: 10px;
+    }
+    
+    .condition-toggle {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+    }
+    
+    .action-buttons {
+        flex-direction: column; /* Stack "Like" and "Add to Cart" */
+    }
+    
+    .action-buttons .btn-secondary {
+        width: 100%;
+    }
 }

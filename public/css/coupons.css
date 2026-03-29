@@ -1,0 +1,445 @@
+/* ================================================
+   coupons.css — consistent with account.css style
+   ================================================ */
+
+/* --- PAGE CONTAINER --- */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+
+/* --- BREADCRUMB --- */
+.breadcrumb {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #333;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+
+/* --- MAIN GRID LAYOUT --- */
+.site-main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 20px 30px;
+    padding: 20px;
+}
+
+/* Account state spans cols 1–2, row 1 */
+.account-state {
+    grid-column: span 2;
+    grid-row: 1;
+    align-self: start;
+}
+
+/* Coupons section spans cols 1–2, rows 2–3 */
+.coupons-section {
+    grid-column: span 2;
+    grid-row: 2;
+}
+
+/* Sidebar spans col 3, rows 1–2 */
+.link-layout {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+}
+
+
+/* --- ACCOUNT STATE BOX --- */
+.account-state {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-part {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-part img {
+    display: block;
+    width: 50px;
+    height: auto;
+}
+
+.status-container img {
+    width: 20px;
+    height: auto;
+}
+
+/* Name + email stacked */
+.account-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.account-part h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #222;
+}
+
+.account-email {
+    margin: 0;
+    font-size: 13px;
+    color: #555;
+}
+
+
+/* --- MEMBERSHIP SECTION --- */
+.membership-part {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.membership-label {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-container input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    cursor: default;
+    accent-color: #888;
+}
+
+.membership-status {
+    font-size: 14px;
+    color: #333;
+    cursor: default;
+}
+
+
+/* --- COUPONS SECTION --- */
+.coupons-heading {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+/* Scrollable container — fixed height shows ~3.5 cards */
+.coupons-list {
+    border: 1px solid #999;
+    border-radius: 10px;
+    background-color: #e7e7e7;
+    height: 380px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* --- COUPON CARD --- */
+.coupon-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding: 16px 18px;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #ccc;
+}
+
+.coupon-card:last-child {
+    border-bottom: none;
+}
+
+/* Left: title + description */
+.coupon-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.coupon-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 6px 0;
+}
+
+.coupon-desc {
+    font-size: 12px;
+    color: #444;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Right: expiry date + redeem button stacked */
+.coupon-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.coupon-expiry {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.expiry-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+}
+
+.expiry-date {
+    font-size: 11px;
+    color: #333;
+    white-space: nowrap;
+}
+
+/* Redeem button */
+.redeem-button {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #222;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
+}
+
+.redeem-button:hover {
+    background-color: #c4c4c4;
+}
+
+
+/* --- USEFUL LINKS SIDEBAR --- */
+.link-layout h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 18px 20px 10px;
+    border-bottom: 1px solid #bbb;
+}
+
+.link-menu {
+    background-color: #d9d9d9;
+    padding: 10px 25px 20px;
+    color: #333;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.menu-item {
+    padding: 7px 0;
+    text-align: left;
+    width: 100%;
+    font-size: 15px;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.menu-item a:hover {
+    text-decoration: underline;
+    color: #111;
+}
+
+
+/* --- FOOTER --- */
+.site-footer {
+    border-top: 1px solid #bbb;
+    padding: 0 16px;
+    background-color: #e8e8e8;
+}
+
+.footer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    border-right: 1px solid #8f8f8f;
+}
+
+.footer-item:last-child {
+    border-right: none;
+}
+
+.footer-item a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #222;
+    font-size: 15px;
+}
+
+.footer-item a:hover {
+    background-color: #d8d8d8;
+}
+
+
+/* =====================================================
+   RESPONSIVE BREAKPOINTS
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .site-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 18px;
+        padding: 16px;
+    }
+
+    .account-state {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        padding: 14px;
+    }
+
+    .coupons-section {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .link-layout {
+        grid-column: 1 / -1;
+        grid-row: 3;
+    }
+
+    .account-part img { width: 36px; }
+    .account-part h2 { font-size: 15px; }
+    .account-email { font-size: 12px; }
+    .membership-label { font-size: 13px; }
+    .membership-status { font-size: 13px; }
+    .coupon-title { font-size: 14px; }
+    .coupon-desc { font-size: 11px; }
+    .menu-item { font-size: 14px; }
+}
+
+
+@media (max-width: 600px) {
+
+    .site-main {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .account-state {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .coupons-section {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .link-layout {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .coupons-list {
+        height: 320px;
+    }
+
+    .coupon-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .coupon-actions {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .coupon-expiry {
+        align-items: flex-start;
+    }
+
+    .account-part img { width: 28px; }
+    .account-part h2 { font-size: 14px; }
+    .membership-label { font-size: 12px; }
+    .membership-status { font-size: 12px; }
+    .menu-item { font-size: 13px; }
+    .link-layout h4 { padding: 12px 16px 8px; }
+    .link-menu { padding: 8px 18px 14px; }
+
+    .footer-list {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .footer-item {
+        border-right: none;
+        border-bottom: 1px solid #8f8f8f;
+    }
+
+    .footer-item:last-child {
+        border-bottom: none;
+    }
+
+    .footer-item a {
+        text-align: center;
+    }
+}

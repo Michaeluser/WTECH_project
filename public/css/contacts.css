@@ -1,0 +1,70 @@
+.site-main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.contact-content h1 {
+    font-size: 32px;
+    color: #222;
+    margin-bottom: 8px;
+}
+.intro-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+.info-box {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 26px;
+    color: #333;
+}
+.info-box h3 {
+    margin: 0 0 18px 0;
+    font-size: 22px;
+    color: #222;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 12px;
+}
+.info-box p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+.support-box {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 30px;
+    color: #333;
+}
+.support-box h2 {
+    font-size: 24px;
+    margin: 0 0 16px 0;
+    color: #222;
+}
+.support-box ul {
+    padding-left: 24px;
+    margin: 12px 0 20px 0;
+}
+.support-box li {
+    margin-bottom: 8px;
+}
+@media (max-width: 900px) {
+    .site-main { padding: 30px 16px; }
+    .info-box, .support-box { padding: 22px; }
+}
+@media (max-width: 600px) {
+    .site-main { padding: 20px 14px; }
+    .contact-content h1 { font-size: 28px; }
+}
