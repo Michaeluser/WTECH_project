@@ -16,7 +16,6 @@
           <img src = "images/logo.png" alt = "TechnoDom logo">
           <div class = "admin-brand-copy">
             <h1>TechnoDom Admin</h1>
-            <p>Catalog administration and product management interface.</p>
           </div>
         </div>
 
@@ -31,19 +30,20 @@
         <h2>Admin Panel Login</h2>
         <p>Use your administrator account to manage products, images, and catalog content.</p>
 
-        <form class = "admin-form">
+        <form class = "admin-form" action = "admin-dashboard.html">
           <div class = "form-field">
             <label for = "admin-email">Admin Email</label>
-            <input id = "admin-email" type = "email" placeholder = "admin@technodom.sk">
+            <input id = "admin-email" type = "email" placeholder = "admin@technodom.sk" required>
           </div>
 
           <div class = "form-field">
             <label for = "admin-password">Password</label>
-            <input id = "admin-password" type = "password" placeholder = "Enter password">
+            <input id = "admin-password" type = "password" placeholder = "Enter password" required>
           </div>
 
           <button type = "submit" class = "admin-button">Sign In to Admin</button>
         </form>
+
       </section>
     </main>
 
