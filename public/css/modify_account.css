@@ -333,8 +333,6 @@ h3[class$="-data"] {
 
 }
 
-<<<<<<< HEAD
-=======
 .link-menu {
     align-items: flex-start;
     padding: 10px 25px 20px;
@@ -351,4 +349,64 @@ h3[class$="-data"] {
     color: #111;
 }
 
->>>>>>> 7632b13f488acda3a8f6e3097ebccf9c1be34c09
+
+@media (max-width: 1024px) {
+    .site-main {
+        grid-template-columns: 1fr 1fr; 
+    }
+
+    .link-layout {
+        grid-column: 1 / span 2; 
+        grid-row: auto;
+        max-height: none;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .site-main {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .account-state, 
+    .fields-section, 
+    .identity-info-layout, 
+    .link-layout,
+    .payment-info {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
+    .fields-section {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-info {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "ibanSection"
+            "bicSection"
+            "acreditInfo";
+    }
+
+    .account-state {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .submit-button {
+        width: 100%;
+    }
+
+    .submit-button button {
+        width: 100%;
+    }
+
+    .identity-items {
+        margin-left: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

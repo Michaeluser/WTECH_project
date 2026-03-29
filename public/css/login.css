@@ -129,3 +129,22 @@
 .signup-text a:hover {
   text-decoration: underline;
 }
+
+
+@media (max-width: 480px) {
+    .login-page-wrapper {
+        width: 95%;
+        padding: 10px;
+
+        position: absolute; 
+    }
+
+    .login-container {
+        padding: 25px 20px;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}

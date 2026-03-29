@@ -185,7 +185,7 @@ main {
     background-color: #d8d8d8;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
 
     .reviews-navbar {
         flex-wrap: wrap;
@@ -226,7 +226,7 @@ main {
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     .review-card {
         grid-template-columns: 1fr;
