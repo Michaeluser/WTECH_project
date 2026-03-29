@@ -1,4 +1,3 @@
-/* --- LAYOUT --- */
 .page-container {
     display: flex;
     flex-direction: column;
@@ -15,7 +14,6 @@ main {
     padding: 20px;
 }
 
-/* --- TYPOGRAPHY & BLOCKS --- */
 .header-section {
     text-align: left;
     margin-bottom: 30px;
@@ -51,7 +49,6 @@ main {
     margin: 20px 0 30px;
 }
 
-/* --- DETAILS GRID --- */
 .details-grid {
     display: flex;
     flex-direction: column;
@@ -64,8 +61,6 @@ main {
     font-weight: 600;
     color: #222;
 }
-
-/* --- RESPONSIVENESS (900px to 600px) --- */
 
 @media (max-width: 900px) {
     .site-main {

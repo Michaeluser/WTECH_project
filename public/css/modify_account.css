@@ -1,4 +1,3 @@
-/* --- GENERAL PAGE CONTAINER --- */
 .page-container {
     display: flex;
     flex-direction: column;
@@ -12,15 +11,15 @@ main {
 .site-main {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    column-gap: 30px;   /* keep horizontal spacing between main columns and sidebar */
-    row-gap: 10px;      /* tighten vertical spacing so fields-section sits close under account-state */
+    column-gap: 30px;  
+    row-gap: 10px;     
     padding: 20px;
 }    
 
 .account-state{
     grid-column: span 2;
     grid-row: 1;
-    align-self: start;  /* prevents the box stretching to fill row height */
+    align-self: start;
 }
 
 .identity-info-layout{
@@ -30,7 +29,7 @@ main {
 
 .link-layout {
     grid-column: 3;
-    grid-row: 1 / span 4;          /* FIXED: was span 2, now spans all 4 rows to fill sidebar */
+    grid-row: 1 / span 4;
 
     background-color: #d9d9d9;
     border: 1px solid #999;
@@ -56,7 +55,7 @@ main {
     color:#333;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;         /* FIXED: two equal columns for IBAN | BIC side-by-side */
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
         "ibanSection  bicSection"
         "acreditInfo  acreditInfo";
@@ -86,9 +85,9 @@ main {
 
 .fields-section{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);   /* FIXED: 3 columns to match layout */
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px 20px;
-    grid-column: span 2;                      /* span under account-state */
+    grid-column: span 2;
     grid-row: 2;
 }
 
@@ -223,31 +222,24 @@ h3[class$="-data"] {
 .acredit-info    { grid-area: acreditInfo; }
 
 
-
-/* --- ACCOUNT STATE BOX --- */
-
-/* Name + email stacked vertically */
 .account-part h2 {
     margin: 0;
     font-size: 18px;
     line-height: 1.2;
 }
 
-/* Email line below name */
 .account-part .account-email {
     font-size: 13px;
     color: #555;
     margin: 0;
 }
 
-/* Stack name and email in a column */
 .account-part .account-text {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-/* Submit Changes button */
 .submit-button button {
     background-color: #bcbcbc;
     border: none;
@@ -264,16 +256,11 @@ h3[class$="-data"] {
     background-color: #a8a8a8;
 }
 
-/* Vertically centre the button within the flex row */
 .submit-button {
     display: flex;
     align-items: center;
 }
 
-
-/* --- FORM FIELD INPUTS --- */
-
-/* All field sections: label on top, input below */
 .fields-section > div,
 .payment-info .iban-section,
 .payment-info .bic-section {
@@ -282,7 +269,6 @@ h3[class$="-data"] {
     gap: 4px;
 }
 
-/* h3 labels inside field sections — smaller than default */
 .fields-section h3,
 .payment-info .iban-section h3,
 .payment-info .bic-section h3 {
@@ -292,7 +278,6 @@ h3[class$="-data"] {
     color: #333;
 }
 
-/* All text inputs styled as grey rounded boxes matching mockup */
 .fields-section input[type="text"],
 .payment-info input[type="text"] {
     background-color: #d9d9d9;
@@ -313,20 +298,13 @@ h3[class$="-data"] {
 }
 
 
-/* --- PAYMENT INFO GRID AREAS --- */
-/* Map the two child divs to their grid areas */
 .iban-section { grid-area: ibanSection; }
 .bic-section  { grid-area: bicSection; }
 
-
-/* --- HIDE the duplicate unlabelled Phone Number div --- */
-/* The div with no class (between mail-section and street-section) */
 .fields-section > div:not([class]) {
     display: none;
 }
 
-
-/* --- IDENTITY ITEMS: label font size --- */
 .identity-items h3 {
     margin: 0;
     font-size: 13px;
@@ -334,15 +312,12 @@ h3[class$="-data"] {
     color: #555;
 }
 
-/* Slightly larger data badge text */
 .birthdate-data,
 .sex-data {
     font-size: 13px;
     padding: 3px 10px;
 }
 
-
-/* --- USEFUL LINKS sidebar heading --- */
 .link-layout {
     display: flex;
     flex-direction: column;
@@ -360,7 +335,6 @@ h3[class$="-data"] {
 
 }
 
-/* Links left-aligned, not centred, to match mockup */
 .link-menu {
     align-items: flex-start;
     padding: 10px 25px 20px;

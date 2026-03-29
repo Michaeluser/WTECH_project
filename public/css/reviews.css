@@ -1,8 +1,3 @@
-/* ================================================
-   product_reviews.css
-   ================================================ */
-
-/* --- PAGE CONTAINER — purple outline border --- */
 .page-container {
     display: flex;
     flex-direction: column;
@@ -14,10 +9,6 @@ main {
     flex: 1;
 }
 
-
-/* --- REVIEWS NAV BAR --- */
-/* The bar directly below the header:
-   [<< Back]  [stars  4.2/5]          [Reviews on iPad Pro (M5, 2025)]  [↑] */
 .reviews-navbar {
     display: flex;
     align-items: center;
@@ -40,7 +31,6 @@ main {
     text-decoration: underline;
 }
 
-/* Overall star + score cluster */
 .overall-rating {
     display: flex;
     align-items: center;
@@ -48,7 +38,6 @@ main {
     flex-shrink: 0;
 }
 
-/* Product title pushed to the right */
 .product-title {
     margin-left: auto;
     font-size: 15px;
@@ -58,9 +47,6 @@ main {
 }
 
 
-
-/* --- STAR RENDERING --- */
-/* All stars in the navbar and review cards share this base */
 .stars,
 .review-stars {
     display: inline-flex;
@@ -69,52 +55,42 @@ main {
 
 .star {
     font-size: 18px;
-    color: #bbb;            /* default: empty/outline grey */
+    color: #bbb;       
     line-height: 1;
 }
 
-/* Filled stars */
 .star.filled {
-    color: #bbb;            /* in the mockup review stars appear grey/outline */
+    color: #bbb;     
 }
 
-/* Half stars — slightly lighter to hint at half-value */
 .star.half {
     color: #ccc;
 }
 
-/* Overall rating score text */
 .rating-score {
     font-size: 15px;
     font-weight: 500;
     color: #222;
 }
 
-
-/* --- REVIEWS LIST --- */
 .reviews-list {
     display: flex;
     flex-direction: column;
-    background-color: #e0e0e0;   /* light grey page background between cards */
+    background-color: #e0e0e0; 
     padding: 0;
 }
 
-/* White gap between cards, matching the mockup */
 .review-gap {
     height: 16px;
     background-color: #fff;
 }
 
-
-/* --- REVIEW CARD --- */
-/* Two-panel layout: left (avatar+rating) | right (review text) */
 .review-card {
     display: grid;
     grid-template-columns: 200px 1fr;
     min-height: 140px;
 }
 
-/* LEFT PANEL — lighter grey, centred content */
 .review-left {
     background-color: #d4d4d4;
     display: flex;
@@ -125,7 +101,6 @@ main {
     padding: 20px 16px;
 }
 
-/* Avatar circle */
 .reviewer-avatar {
     width: 52px;
     height: 52px;
@@ -141,11 +116,10 @@ main {
 .reviewer-avatar img {
     width: 36px;
     height: 36px;
-    filter: invert(1) brightness(2);   /* makes dark icon white on dark circle */
+    filter: invert(1) brightness(2);
     display: block;
 }
 
-/* Per-review stars */
 .review-stars {
     display: flex;
     gap: 3px;
@@ -156,14 +130,12 @@ main {
     color: #aaa;
 }
 
-/* Score text */
 .review-score {
     font-size: 14px;
     font-weight: 600;
     color: #333;
 }
 
-/* RIGHT PANEL — slightly darker grey, review text */
 .review-right {
     background-color: #c8c8c8;
     display: flex;
@@ -178,8 +150,6 @@ main {
     line-height: 1.55;
 }
 
-
-/* --- FOOTER --- */
 .site-footer {
     border-top: 1px solid #bbb;
     padding: 0 16px;
@@ -214,11 +184,6 @@ main {
 .footer-item a:hover {
     background-color: #d8d8d8;
 }
-
-
-/* =====================================================
-   RESPONSIVE BREAKPOINTS
-   ===================================================== */
 
 @media (max-width: 700px) {
 
