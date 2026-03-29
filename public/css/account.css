@@ -1,4 +1,3 @@
-
 .page-container {
     display: flex;
     flex-direction: column;
@@ -9,8 +8,6 @@ main {
     flex: 1;
 }
 
-
-/* --- MAIN GRID LAYOUT --- */
 .site-main {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
@@ -48,8 +45,6 @@ main {
     border-radius: 10px;
 }
 
-
-/* --- ACCOUNT STATE BOX --- */
 .account-state {
     background-color: #d9d9d9;
     border: 1px solid #999;
@@ -82,7 +77,6 @@ main {
 
 
 
-/* --- MEMBERSHIP SECTION --- */
 .membership-part {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -120,7 +114,6 @@ main {
 }
 
 
-/* --- LOCATION & CONTACT INFO --- */
 .location-contact-info {
     background-color: #d9d9d9;
     border: 1px solid #999;
@@ -161,8 +154,6 @@ main {
 }
 
 
-/* --- SHARED LABEL/DATA --- */
-
 h3[class$="-label"] {
     font-size: 17px;
     font-weight: 600;
@@ -188,8 +179,6 @@ h3[class$="-data"] {
 }
 
 
-
-/* --- IDENTITY ITEMS BOX --- */
 .identity-info-layout {
     grid-column: 1;
     grid-row: 4;
@@ -222,8 +211,6 @@ h3[class$="-data"] {
     color: #555;
 }
 
-
-/* --- USEFUL LINKS SIDEBAR --- */
 .link-layout h4 {
     margin: 0;
     font-size: 18px;
@@ -463,7 +450,6 @@ h3[class$="-data"] {
 }
  
 
-/* --- GRID AREA ASSIGNMENTS --- */
 .mail-label        { grid-area: mailLabel; }
 .number-label      { grid-area: numberLabel; }
 .street-label      { grid-area: streetLabel; }
@@ -478,14 +464,12 @@ h3[class$="-data"] {
 .city-data         { grid-area: cityData; }
 .post-index-data   { grid-area: postIndexData; }
 
-/* --- GRID AREA ASSIGNMENTS --- */
 .iban-label        { grid-area: ibanLabel; }
 .bic-label         { grid-area: bicLabel; }
 .iban-data         { grid-area: ibanData; }
 .bic-data          { grid-area: bicData; }
 .acredit-info      { grid-area: acreditInfo; }
 
-/* --- IDENTITY AREA ASSIGNMENTS */
 .birthdate-label { grid-area: birthdateLabel;}
 .sex-label       { grid-area: sexLabel;}
 .birthdate-data  { grid-area: birthdateData; }

@@ -1,38 +1,40 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
-  <meta charset = "UTF-8">
-  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
   <title>Admin Dashboard | TechnoDom</title>
 
-  <link rel = "stylesheet" href = "css/style.css">
-  <link rel = "stylesheet" href = "css/admin.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
-  <div class = "admin-page-shell">
-    <header class = "admin-header">
-      <div class = "admin-header-inner">
-        <div class = "admin-brand">
-          <img src = "images/logo.png" alt = "TechnoDom logo">
-          <div class = "admin-brand-copy">
+  <div class="admin-page-shell">
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <div class="admin-brand">
+          <img src="images/logo.png" alt="TechnoDom logo">
+          <div class="admin-brand-copy">
             <h1>TechnoDom Admin</h1>
           </div>
         </div>
 
-        <div class = "admin-header-actions">
-          <a href = "admin-login.html" class = "admin-link admin-link-danger">Log Out</a>
+        <div class="admin-header-actions">
+          <a href="admin-login.html" class="admin-link admin-link-danger">Log Out</a>
         </div>
       </div>
     </header>
 
-    <main class = "admin-main admin-dashboard-main">
-      <div class = "admin-dashboard-layout">
-        <section class = "admin-panel-card">
+    <main class="admin-main admin-dashboard-main">
+      <div class="admin-dashboard-layout">
+        <section class="admin-panel-card">
           <h2>Existing Products</h2>
-          <div class = "admin-products-list">
-            <article class = "admin-product-row">
-              <div class = "admin-product-summary">
-                <img src = "images/product-laptop1.jpg" alt = "Lenovo ThinkBook 14 G6">
+          <div class="admin-products-list">
+            <article class="admin-product-row">
+              <div class="admin-product-summary">
+                <img src="images/product-laptop1.jpg" alt="Lenovo ThinkBook 14 G6">
                 <div>
                   <h3>Lenovo ThinkBook 14 G6</h3>
                   <p>Intel Core i5, 16 GB RAM, 512 GB SSD, 14&quot; Full HD</p>
@@ -40,15 +42,15 @@
                 </div>
               </div>
 
-              <div class = "admin-product-actions">
-                <a href = "#edit-product" class = "admin-link">Edit</a>
-                <button type = "button" class = "admin-link admin-link-danger">Delete product</button>
+              <div class="admin-product-actions">
+                <a href="#edit-product" class="admin-link">Edit</a>
+                <button type="button" class="admin-link admin-link-danger">Delete product</button>
               </div>
             </article>
 
-            <article class = "admin-product-row">
-              <div class = "admin-product-summary">
-                <img src = "images/product-laptop2.jpg" alt = "HP ProBook 450">
+            <article class="admin-product-row">
+              <div class="admin-product-summary">
+                <img src="images/product-laptop2.jpg" alt="HP ProBook 450">
                 <div>
                   <h3>HP ProBook 450</h3>
                   <p>Intel Core i7, 16 GB RAM, 512 GB SSD, 15.6&quot; IPS</p>
@@ -56,15 +58,15 @@
                 </div>
               </div>
 
-              <div class = "admin-product-actions">
-                <a href = "#edit-product" class = "admin-link">Edit</a>
-                <button type = "button" class = "admin-link admin-link-danger">Delete product</button>
+              <div class="admin-product-actions">
+                <a href="#edit-product" class="admin-link">Edit</a>
+                <button type="button" class="admin-link admin-link-danger">Delete product</button>
               </div>
             </article>
 
-            <article class = "admin-product-row">
-              <div class = "admin-product-summary">
-                <img src = "images/product-laptop3.jpg" alt = "Dell Latitude 5450">
+            <article class="admin-product-row">
+              <div class="admin-product-summary">
+                <img src="images/product-laptop3.jpg" alt="Dell Latitude 5450">
                 <div>
                   <h3>Dell Latitude 5450</h3>
                   <p>Intel Core Ultra 5, 16 GB RAM, 512 GB SSD, 14&quot;</p>
@@ -72,39 +74,39 @@
                 </div>
               </div>
 
-              <div class = "admin-product-actions">
-                <a href = "#edit-product" class = "admin-link">Edit</a>
-                <button type = "button" class = "admin-link admin-link-danger">Delete product</button>
+              <div class="admin-product-actions">
+                <a href="#edit-product" class="admin-link">Edit</a>
+                <button type="button" class="admin-link admin-link-danger">Delete product</button>
               </div>
             </article>
           </div>
         </section>
 
-        <section class = "admin-panel-card" id = "create-product">
+        <section class="admin-panel-card" id="create-product">
           <h2>Create New Product</h2>
-          <p class = "admin-panel-text">Use this form to add a new product to the catalog.</p>
+          <p class="admin-panel-text">Use this form to add a new product to the catalog.</p>
 
-          <form class = "admin-form admin-product-form">
-            <div class = "admin-form-grid">
-              <div class = "form-field">
-                <label for = "new-product-name">Name of the product</label>
-                <input id = "new-product-name" type = "text" placeholder = "For example Lenovo IdeaPad Slim 5" required>
+          <form class="admin-form admin-product-form">
+            <div class="admin-form-grid">
+              <div class="form-field">
+                <label for="new-product-name">Name of the product</label>
+                <input id="new-product-name" type="text" placeholder="For example Lenovo IdeaPad Slim 5" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-price">Price</label>
-                <input id = "new-product-price" type = "number" min = "0" placeholder = "899" required>
+              <div class="form-field">
+                <label for="new-product-price">Price</label>
+                <input id="new-product-price" type="number" min="0" placeholder="899" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-amount">Amount</label>
-                <input id = "new-product-amount" type = "number" min = "0" placeholder = "7" required>
+              <div class="form-field">
+                <label for="new-product-amount">Amount</label>
+                <input id="new-product-amount" type="number" min="0" placeholder="7" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-category">Category</label>
-                <select id = "new-product-category" required>
-                  <option value = "">Select category</option>
+              <div class="form-field">
+                <label for="new-product-category">Category</label>
+                <select id="new-product-category" required>
+                  <option value="">Select category</option>
                   <option>Laptops</option>
                   <option>Phones</option>
                   <option>PC components</option>
@@ -116,10 +118,10 @@
                 </select>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-ram">RAM</label>
-                <select id = "new-product-ram" required>
-                  <option value = "">Select RAM</option>
+              <div class="form-field">
+                <label for="new-product-ram">RAM</label>
+                <select id="new-product-ram" required>
+                  <option value="">Select RAM</option>
                   <option>8 GB</option>
                   <option>16 GB</option>
                   <option>32 GB</option>
@@ -127,10 +129,10 @@
                 </select>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-color">Color</label>
-                <select id = "new-product-color" required>
-                  <option value = "">Select color</option>
+              <div class="form-field">
+                <label for="new-product-color">Color</label>
+                <select id="new-product-color" required>
+                  <option value="">Select color</option>
                   <option>Gray</option>
                   <option>Black</option>
                   <option>Silver</option>
@@ -139,10 +141,10 @@
                 </select>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-brand">Brand</label>
-                <select id = "new-product-brand" required>
-                  <option value = "">Select brand</option>
+              <div class="form-field">
+                <label for="new-product-brand">Brand</label>
+                <select id="new-product-brand" required>
+                  <option value="">Select brand</option>
                   <option>Lenovo</option>
                   <option>HP</option>
                   <option>Dell</option>
@@ -153,53 +155,54 @@
               </div>
             </div>
 
-            <div class = "form-field">
-              <label for = "new-product-description">Short description</label>
-              <textarea id = "new-product-description" rows = "4" placeholder = "Write a short product description." required></textarea>
+            <div class="form-field">
+              <label for="new-product-description">Short description</label>
+              <textarea id="new-product-description" rows="4" placeholder="Write a short product description."
+                required></textarea>
             </div>
 
-            <div class = "admin-form-grid">
-              <div class = "form-field">
-                <label for = "new-product-image-1">Photo 1</label>
-                <input id = "new-product-image-1" type = "file" accept = "image/*" required>
+            <div class="admin-form-grid">
+              <div class="form-field">
+                <label for="new-product-image-1">Photo 1</label>
+                <input id="new-product-image-1" type="file" accept="image/*" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "new-product-image-2">Photo 2</label>
-                <input id = "new-product-image-2" type = "file" accept = "image/*" required>
+              <div class="form-field">
+                <label for="new-product-image-2">Photo 2</label>
+                <input id="new-product-image-2" type="file" accept="image/*" required>
               </div>
             </div>
 
-            <div class = "admin-form-actions">
-              <button type = "submit" class = "admin-button">Save product</button>
+            <div class="admin-form-actions">
+              <button type="submit" class="admin-button">Save product</button>
             </div>
           </form>
         </section>
 
-        <section class = "admin-panel-card" id = "edit-product">
+        <section class="admin-panel-card" id="edit-product">
           <h2>Edit Existing Product</h2>
-          <p class = "admin-panel-text">Update the selected product information using the form below.</p>
+          <p class="admin-panel-text">Update the selected product information using the form below.</p>
 
-          <form class = "admin-form admin-product-form">
-            <div class = "admin-form-grid">
-              <div class = "form-field">
-                <label for = "edit-product-name">Name of the product</label>
-                <input id = "edit-product-name" type = "text" value = "Lenovo ThinkBook 14 G6" required>
+          <form class="admin-form admin-product-form">
+            <div class="admin-form-grid">
+              <div class="form-field">
+                <label for="edit-product-name">Name of the product</label>
+                <input id="edit-product-name" type="text" value="Lenovo ThinkBook 14 G6" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "edit-product-price">Price</label>
-                <input id = "edit-product-price" type = "number" min = "0" value = "749" required>
+              <div class="form-field">
+                <label for="edit-product-price">Price</label>
+                <input id="edit-product-price" type="number" min="0" value="749" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "edit-product-amount">Amount</label>
-                <input id = "edit-product-amount" type = "number" min = "0" value = "7" required>
+              <div class="form-field">
+                <label for="edit-product-amount">Amount</label>
+                <input id="edit-product-amount" type="number" min="0" value="7" required>
               </div>
 
-              <div class = "form-field">
-                <label for = "edit-product-category">Category</label>
-                <select id = "edit-product-category" required>
+              <div class="form-field">
+                <label for="edit-product-category">Category</label>
+                <select id="edit-product-category" required>
                   <option selected>Laptops</option>
                   <option>Phones</option>
                   <option>PC components</option>
@@ -211,9 +214,9 @@
                 </select>
               </div>
 
-              <div class = "form-field">
-                <label for = "edit-product-ram">RAM</label>
-                <select id = "edit-product-ram" required>
+              <div class="form-field">
+                <label for="edit-product-ram">RAM</label>
+                <select id="edit-product-ram" required>
                   <option>8 GB</option>
                   <option selected>16 GB</option>
                   <option>32 GB</option>
@@ -221,9 +224,9 @@
                 </select>
               </div>
 
-              <div class = "form-field">
-                <label for = "edit-product-color">Color</label>
-                <select id = "edit-product-color" required>
+              <div class="form-field">
+                <label for="edit-product-color">Color</label>
+                <select id="edit-product-color" required>
                   <option selected>Gray</option>
                   <option>Black</option>
                   <option>Silver</option>
@@ -232,9 +235,9 @@
                 </select>
               </div>
 
-              <div class = "form-field">
-                <label for = "edit-product-brand">Brand</label>
-                <select id = "edit-product-brand" required>
+              <div class="form-field">
+                <label for="edit-product-brand">Brand</label>
+                <select id="edit-product-brand" required>
                   <option selected>Lenovo</option>
                   <option>HP</option>
                   <option>Dell</option>
@@ -245,49 +248,51 @@
               </div>
             </div>
 
-            <div class = "form-field">
-              <label for = "edit-product-description">Short description</label>
-              <textarea id = "edit-product-description" rows = "4" required>Reliable office laptop for study, work, meetings, and everyday productivity.</textarea>
+            <div class="form-field">
+              <label for="edit-product-description">Short description</label>
+              <textarea id="edit-product-description" rows="4"
+                required>Reliable office laptop for study, work, meetings, and everyday productivity.</textarea>
             </div>
 
-            <div class = "admin-current-images">
+            <div class="admin-current-images">
               <h3>Current Photos</h3>
 
-              <div class = "admin-image-grid">
-                <article class = "admin-image-card">
-                  <img src = "images/product-laptop1.jpg" alt = "Current product photo 1">
+              <div class="admin-image-grid">
+                <article class="admin-image-card">
+                  <img src="images/product-laptop1.jpg" alt="Current product photo 1">
                 </article>
 
-                <article class = "admin-image-card">
-                  <img src = "images/product-laptop2.jpg" alt = "Current product photo 2">
+                <article class="admin-image-card">
+                  <img src="images/product-laptop2.jpg" alt="Current product photo 2">
                 </article>
               </div>
             </div>
 
-            <div class = "admin-form-grid">
-              <div class = "form-field">
-                <label for = "replace-image-1">Replace photo 1</label>
-                <input id = "replace-image-1" type = "file" accept = "image/*">
+            <div class="admin-form-grid">
+              <div class="form-field">
+                <label for="replace-image-1">Replace photo 1</label>
+                <input id="replace-image-1" type="file" accept="image/*">
               </div>
 
-              <div class = "form-field">
-                <label for = "replace-image-2">Replace photo 2</label>
-                <input id = "replace-image-2" type = "file" accept = "image/*">
+              <div class="form-field">
+                <label for="replace-image-2">Replace photo 2</label>
+                <input id="replace-image-2" type="file" accept="image/*">
               </div>
             </div>
 
-            <div class = "admin-form-actions">
-              <button type = "submit" class = "admin-button">Update product</button>
-              <button type = "button" class = "admin-link admin-link-danger">Delete this product</button>
+            <div class="admin-form-actions">
+              <button type="submit" class="admin-button">Update product</button>
+              <button type="button" class="admin-link admin-link-danger">Delete this product</button>
             </div>
           </form>
         </section>
       </div>
     </main>
 
-    <footer class = "admin-footer">
+    <footer class="admin-footer">
       <p>Authorized staff only.</p>
     </footer>
   </div>
 </body>
+
 </html>
