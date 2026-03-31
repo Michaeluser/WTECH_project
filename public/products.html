@@ -100,6 +100,7 @@
           <label for = "sort-products">Sort by</label>
           <select id = "sort-products" name = "sort-products">
             <option>Most popular</option>
+
             <option>Price: low to high</option>
             <option>Price: high to low</option>
             <option>Newest first</option>
@@ -113,12 +114,14 @@
             <h2 class = "filters-title">Filters</h2>
 
             <div class = "filter-group">
-              <h3>Price</h3>
-              <label class = "filter-option"><input type = "checkbox"> Up to 699 EUR</label>
-              <label class = "filter-option"><input type = "checkbox"> 700 - 799 EUR</label>
-              <label class = "filter-option"><input type = "checkbox"> 800 - 999 EUR</label>
-              <label class = "filter-option"><input type = "checkbox"> 1 000 EUR and more</label>
+              <p class = "filter-title">Cena</p>
+              <div class = "price-row">
+                <span class = "price-label">0 €</span>
+                <input type = "range" min = "0" max = "10000" value = "10000" class = "range-input">
+                <span class = "price-label">10000 €</span>
+              </div>
             </div>
+
 
             <div class = "filter-group">
               <h3>Brand</h3>
