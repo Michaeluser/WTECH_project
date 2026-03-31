@@ -113,12 +113,12 @@
           <div class = "filters-card">
             <h2 class = "filters-title">Filters</h2>
 
-            <div class = "filter-group">
-              <p class = "filter-title">Cena</p>
-              <div class = "price-row">
-                <span class = "price-label">0 €</span>
-                <input type = "range" min = "0" max = "10000" value = "10000" class = "range-input">
-                <span class = "price-label">10000 €</span>
+            <div class="filter-group">
+              <p class="filter-title">Cena</p>
+              <div class="price-row">
+                <span class="price-label">0 €</span>
+                <input type="range" min="0" max="10000" value="10000" class="range-input" id="priceRange">
+                <span class="price-label" id="priceValue">10000 €</span>
               </div>
             </div>
 
@@ -260,6 +260,14 @@
 </div>
 
 <script src = "js/hamurger-menu.js"></script>
+<script>
+  const range = document.getElementById('priceRange');
+  const output = document.getElementById('priceValue');
+
+  range.addEventListener('input', function() {
+    output.textContent = this.value + ' €';
+  });
+</script>
 </body>
 </html>
 
