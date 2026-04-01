@@ -1,7 +1,7 @@
-# 1. Start with a PHP + Apache base image
-FROM php:8.2-apache
+# Use the newer PHP version required by your dependencies
+FROM php:8.4-apache
 
-# 2. Install system dependencies and PHP extensions for Laravel
+# Install system dependencies (the rest remains the same)
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl
 
+# Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # 3. Install Composer [cite: 1]
