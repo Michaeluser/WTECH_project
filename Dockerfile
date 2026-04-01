@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl
 
+# Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # 3. Install Composer [cite: 1]
