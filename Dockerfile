@@ -26,13 +26,13 @@ WORKDIR /var/www/html
 # 6. Copy project [cite: 1]
 COPY . .
 
-# 7. Install PHP dependencies 
+# 7. Set permissions to write into cache and storage folders
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# 8. Install PHP dependencies 
 RUN composer install --no-dev --optimize-autoloader
 
-# 8. Set Apache to public folder 
+# 9. Set Apache to public folder 
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
-
-# 9. Set permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 80
