@@ -1,0 +1,267 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    outline-offset: -3px;
+}
+
+main {
+    flex: 1;
+}
+
+.reviews-navbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 18px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #222;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.overall-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.product-title {
+    margin-left: auto;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+    white-space: nowrap;
+}
+
+
+.stars,
+.review-stars {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.star {
+    font-size: 18px;
+    color: #bbb;       
+    line-height: 1;
+}
+
+.star.filled {
+    color: #bbb;     
+}
+
+.star.half {
+    color: #ccc;
+}
+
+.rating-score {
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #e0e0e0; 
+    padding: 0;
+}
+
+.review-gap {
+    height: 16px;
+    background-color: #fff;
+}
+
+.review-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 140px;
+}
+
+.review-left {
+    background-color: #d4d4d4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 16px;
+}
+
+.reviewer-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.reviewer-avatar img {
+    width: 36px;
+    height: 36px;
+    filter: invert(1) brightness(2);
+    display: block;
+}
+
+.review-stars {
+    display: flex;
+    gap: 3px;
+}
+
+.review-stars .star {
+    font-size: 16px;
+    color: #aaa;
+}
+
+.review-score {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.review-right {
+    background-color: #c8c8c8;
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+}
+
+.review-right p {
+    margin: 0;
+    font-size: 15px;
+    color: #222;
+    line-height: 1.55;
+}
+
+.site-footer {
+    border-top: 1px solid #bbb;
+    padding: 0 16px;
+    background-color: #e8e8e8;
+}
+
+.footer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    border-right: 1px solid #8f8f8f;
+}
+
+.footer-item:last-child {
+    border-right: none;
+}
+
+.footer-item a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #222;
+    font-size: 15px;
+}
+
+.footer-item a:hover {
+    background-color: #d8d8d8;
+}
+
+@media (max-width: 900px) {
+
+    .reviews-navbar {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 14px;
+    }
+
+    .product-title {
+        margin-left: 0;
+        font-size: 13px;
+        white-space: normal;
+        order: 3;
+        flex-basis: 100%;
+    }
+
+
+    .review-card {
+        grid-template-columns: 150px 1fr;
+    }
+
+    .reviewer-avatar {
+        width: 42px;
+        height: 42px;
+    }
+
+    .reviewer-avatar img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .review-right {
+        padding: 16px 16px;
+    }
+
+    .review-right p {
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .review-card {
+        grid-template-columns: 1fr;
+    }
+
+    .review-left {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .review-right {
+        padding: 12px 16px;
+    }
+
+    .review-right p {
+        font-size: 13px;
+    }
+
+    .footer-list {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .footer-item {
+        border-right: none;
+        border-bottom: 1px solid #8f8f8f;
+    }
+
+    .footer-item:last-child {
+        border-bottom: none;
+    }
+
+    .footer-item a {
+        text-align: center;
+    }
+}

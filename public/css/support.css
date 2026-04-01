@@ -1,0 +1,119 @@
+.site-main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.support-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.contact-header {
+    background-color: #fff;
+    padding: 14px 24px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #999;
+}
+.info-box {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 22px;
+    color: #333;
+}
+.info-box h3 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    color: #222;
+}
+.assistance-note {
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 22px;
+    color: #333;
+    line-height: 1.6;
+    font-size: 15px;
+}
+.assistance-note ul {
+    padding-left: 22px;
+    margin: 12px 0;
+}
+.right-panel {
+    background-color: #e8e8e8;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 30px;
+}
+.right-panel h2 {
+    font-size: 26px;
+    color: #222;
+    margin: 0 0 8px 0;
+}
+.form-intro {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 24px;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+.contact-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 6px;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+}
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+.submit-btn {
+    background-color: #a8a8a8;
+    color: #fff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+.submit-btn:hover {
+    background-color: #888;
+}
+@media (max-width: 900px) {
+    .support-content {
+        grid-template-columns: 1fr;
+    }
+    .site-main { padding: 30px 16px; }
+}
+@media (max-width: 600px) {
+    .site-main { padding: 20px 14px; }
+}
