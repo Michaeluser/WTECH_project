@@ -26,8 +26,10 @@ WORKDIR /var/www/html
 # 6. Copy project [cite: 1]
 COPY . .
 
-# 7. Set permissions to write into cache and storage folders
+# 7. Set permissions to write into cache and storage folders as well as read public
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/public
+RUN chmod -R 755 /var/www/html/public
 
 # 8. Install PHP dependencies 
 RUN composer install --no-dev --optimize-autoloader
