@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <meta charset = "UTF-8">
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+  <title>Office Laptops | TechnoDom</title>
+
+  <link rel = "stylesheet" href = "css/style.css">
+  <link rel = "stylesheet" href = "css/products.css">
+</head>
+
+<body>
+
+<div class = "page-container">
+
+  <header class = "site-header">
+    <div class = "header-inner-elements">
+
+      <a href = "index.html" class = "logo">
+        <img src = "images/logo.png" alt = "TechnoDom logo">
+      </a>
+
+      <form class = "search-form">
+        <input type = "text" class = "search-input" placeholder = "Search products">
+      </form>
+
+      <div class = "header-actions">
+
+        <div class = "account-block">
+          <span class = "account-name">My account</span>
+          <a href = "account.html" class = "header-icon">
+            <img src = "images/user.png" alt = "User profile icon">
+          </a>
+        </div>
+
+        <div class = "shop-icons">
+
+          <a href="#" class = "header-icon">
+            <img src = "images/heart.png" alt = "Wishlist icon">
+          </a>
+
+          <a href = "cart-step1.html" class = "header-icon">
+            <img src = "images/cart.png" alt = "Shopping cart icon">
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <nav class = "main-nav">
+    <div class = "nav-top">
+      <span class = "nav-mobile-title">Categories</span>
+      <button class = "nav-toggle" type = "button" aria-label = "Open categories" aria-expanded = "false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <ul class = "nav-list">
+      <li class = "nav-item"><a href = "catalog.html">Laptops</a></li>
+      <li class = "nav-item"><a href = "#">Phones</a></li>
+      <li class = "nav-item"><a href = "#">PC components</a></li>
+      <li class = "nav-item"><a href = "#">Monitors</a></li>
+      <li class = "nav-item"><a href = "#">TV&amp;Audio</a></li>
+      <li class = "nav-item"><a href = "#">Gaming</a></li>
+      <li class = "nav-item"><a href = "#">Accessories</a></li>
+      <li class = "nav-item"><a href = "#">Sale</a></li>
+    </ul>
+  </nav>
+
+  <main class = "site-main">
+    <div class = "products-page">
+
+      <div class = "catalog-header products-header">
+        <div class = "products-heading">
+          <div class = "breadcrumb">
+            <a href = "index.html">Home</a>
+            <span>/</span>
+            <a href = "catalog.html">Laptops</a>
+            <span>/</span>
+            <span>Office laptops</span>
+          </div>
+          <h1 class = "catalog-title">Office laptops</h1>
+          <p class = "products-subtitle">
+            Practical laptops for study, office work, remote meetings, and everyday productivity.
+          </p>
+        </div>
+      </div>
+
+      <section class = "products-toolbar">
+        <div class = "toolbar-text">
+          <p>Selected category: Office laptops</p>
+        </div>
+
+        <form class = "sort-form">
+          <label for = "sort-products">Sort by</label>
+          <select id = "sort-products" name = "sort-products">
+            <option>Most popular</option>
+            <option>Price: low to high</option>
+            <option>Price: high to low</option>
+            <option>Newest first</option>
+          </select>
+        </form>
+      </section>
+
+      <section class = "products-layout">
+        <aside class = "filters-sidebar">
+          <div class = "filters-card">
+            <h2 class = "filters-title">Filters</h2>
+
+            <div class = "filter-group">
+              <h3>Price</h3>
+              <label class = "filter-option"><input type = "checkbox"> Up to 699 EUR</label>
+              <label class = "filter-option"><input type = "checkbox"> 700 - 799 EUR</label>
+              <label class = "filter-option"><input type = "checkbox"> 800 - 999 EUR</label>
+              <label class = "filter-option"><input type = "checkbox"> 1 000 EUR and more</label>
+            </div>
+
+            <div class = "filter-group">
+              <h3>Brand</h3>
+              <label class = "filter-option"><input type = "checkbox"> Lenovo</label>
+              <label class = "filter-option"><input type = "checkbox"> HP</label>
+              <label class = "filter-option"><input type = "checkbox"> Dell</label>
+              <label class = "filter-option"><input type = "checkbox"> ASUS</label>
+            </div>
+
+            <div class = "filter-group">
+              <h3>RAM</h3>
+              <label class = "filter-option"><input type = "checkbox"> 8 GB</label>
+              <label class = "filter-option"><input type = "checkbox"> 16 GB</label>
+              <label class = "filter-option"><input type = "checkbox"> 32 GB</label>
+            </div>
+
+            <div class = "filter-group">
+              <h3>Color</h3>
+              <label class = "filter-option"><input type = "checkbox"> Gray</label>
+              <label class = "filter-option"><input type = "checkbox"> Black</label>
+              <label class = "filter-option"><input type = "checkbox"> Silver</label>
+              <label class = "filter-option"><input type = "checkbox"> Blue</label>
+            </div>
+
+            <div class = "filter-actions">
+              <a href = "products.html" class = "filter-reset">Reset filters</a>
+            </div>
+          </div>
+        </aside>
+
+        <div class = "products-content">
+          <div class = "products-grid products-grid-page">
+
+            <article class = "product-card product-card-page">
+              <img src = "images/product-laptop1.jpg" alt = "Lenovo ThinkBook 14 office laptop">
+              <div class = "product-card-content">
+                <h3>Lenovo ThinkBook 14 G6</h3>
+                <p class = "product-specs">Intel Core i5, 16 GB RAM, 512 GB SSD, 14&quot; Full HD</p>
+                <p class = "product-price">749 EUR</p>
+              </div>
+              <div class = "product-card-actions">
+                <a href = "product_details.html" class = "product-link">View details</a>
+                <a href = "cart-step1.html" class = "product-button">Add to cart</a>
+              </div>
+            </article>
+
+            <article class = "product-card product-card-page">
+              <img src = "images/product-laptop2.jpg" alt = "HP ProBook 450 office laptop">
+              <div class = "product-card-content">
+                <h3>HP ProBook 450</h3>
+                <p class = "product-specs">Intel Core i7, 16 GB RAM, 512 GB SSD, 15.6&quot; IPS</p>
+                <p class = "product-price">899 EUR</p>
+              </div>
+              <div class = "product-card-actions">
+                <a href = "product_details.html" class = "product-link">View details</a>
+                <a href = "cart-step1.html" class = "product-button">Add to cart</a>
+              </div>
+            </article>
+
+            <article class = "product-card product-card-page">
+              <img src = "images/product-laptop3.jpg" alt = "Dell Latitude 5450 office laptop">
+              <div class = "product-card-content">
+                <h3>Dell Latitude 5450</h3>
+                <p class = "product-specs">Intel Core Ultra 5, 16 GB RAM, 512 GB SSD, 14&quot;</p>
+                <p class = "product-price">1 049 EUR</p>
+              </div>
+              <div class = "product-card-actions">
+                <a href = "product_details.html" class = "product-link">View details</a>
+                <a href = "cart-step1.html" class = "product-button">Add to cart</a>
+              </div>
+            </article>
+
+            <article class = "product-card product-card-page">
+              <img src = "images/product-laptop4.jpg" alt = "ASUS ExpertBook B1 office laptop">
+              <div class = "product-card-content">
+                <h3>ASUS ExpertBook B1</h3>
+                <p class = "product-specs">Intel Core i5, 8 GB RAM, 512 GB SSD, 15.6&quot; Full HD</p>
+                <p class = "product-price">639 EUR</p>
+              </div>
+              <div class = "product-card-actions">
+                <a href = "product_details.html" class = "product-link">View details</a>
+                <a href = "cart-step1.html" class = "product-button">Add to cart</a>
+              </div>
+            </article>
+
+            <article class = "product-card product-card-page">
+              <img src = "images/product-laptop5.jpg" alt = "Acer TravelMate P2 office laptop">
+              <div class = "product-card-content">
+                <h3>Acer TravelMate P2</h3>
+                <p class = "product-specs">Intel Core i5, 16 GB RAM, 512 GB SSD, 14&quot; anti-glare</p>
+                <p class = "product-price">699 EUR</p>
+              </div>
+              <div class = "product-card-actions">
+                <a href = "product_details.html" class = "product-link">View details</a>
+                <a href = "cart-step1.html" class = "product-button">Add to cart</a>
+              </div>
+            </article>
+
+            <article class = "product-card product-card-page">
+              <img src = "images/product-laptop6.jpg" alt = "Lenovo V15 office laptop">
+              <div class = "product-card-content">
+                <h3>Lenovo V15 G4</h3>
+                <p class = "product-specs">AMD Ryzen 5, 16 GB RAM, 512 GB SSD, 15.6&quot; Full HD</p>
+                <p class = "product-price">719 EUR</p>
+              </div>
+              <div class = "product-card-actions">
+                <a href = "product_details.html" class = "product-link">View details</a>
+                <a href = "cart-step1.html" class = "product-button">Add to cart</a>
+              </div>
+            </article>
+
+          </div>
+
+          <nav class = "pagination" aria-label = "Products pagination">
+            <a href = "products.html" class = "pagination-link pagination-link-active">1</a>
+            <a href = "search-result.html" class = "pagination-link">2</a>
+            <a href = "search-result.html" class = "pagination-link">3</a>
+            <a href = "search-result.html" class = "pagination-link">Next</a>
+          </nav>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class = "site-footer">
+    <ul class = "footer-list">
+      <li class = "footer-item"><a href = "about.html">About us</a></li>
+      <li class = "footer-item"><a href = "contacts.html">Contacts</a></li>
+      <li class = "footer-item"><a href = "tac.txt">Terms &amp; Conditions</a></li>
+      <li class = "footer-item"><a href = "faq.html">FAQ</a></li>
+      <li class = "footer-item"><a href = "support.html">Support</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+<script src = "js/hamurger-menu.js"></script>
+</body>
+</html>
+
