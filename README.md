@@ -199,3 +199,43 @@ Dokumentácia musí obsahovať minimálne tieto časti:
 **Každý študent musí vedieť vysvetliť ktorúkoľvek časť (kód) riešenia svojho tímu.**
 
 ##### The README.md file's content was taken from wtech26/semestralny-projekt README.md for easier work on the project
+
+---
+
+## Spustenie projektu
+
+### Požiadavky
+
+- PHP 8.4+
+- Composer
+- Node.js + npm
+- SQLite (alebo PostgreSQL)
+
+### Kroky
+
+```bash
+# 1. Nainštalovať PHP závislosti
+composer install
+
+# 2. Vytvoriť .env súbor a vygenerovať kľúč
+cp .env.example .env
+php artisan key:generate
+
+# 3. Vytvoriť SQLite databázu a spustiť migrácie
+touch database/database.sqlite
+php artisan migrate
+
+# 4. Nainštalovať Node závislosti a spustiť Vite (v samostatnom okne)
+npm install
+npm run dev
+
+# 5. Spustiť vývojový server Laravel (v samostatnom okne)
+php artisan serve
+```
+
+Aplikácia bude dostupná na `http://localhost:8000`
+
+### Poznámky
+
+- Pred spustením `composer install` skontroluj, že máš v `php.ini` povolené rozšírenie `extension=fileinfo`
+- `npm run dev` a `php artisan serve` musia bežať súčasne v dvoch samostatných termináloch
