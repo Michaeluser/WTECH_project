@@ -391,8 +391,7 @@ body {
     align-items: center;
     text-align: center;
     border-radius: 10px;
-    overflow: hidden;
-    /* box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08); */
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 

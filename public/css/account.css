@@ -127,6 +127,7 @@ main {
         "mailLabel       mailData"
         "numberLabel     numberData"
         "streetLabel     streetData"
+        "street2Label    street2Data"
         "countryLabel    countryData"
         "cityLabel       cityData"
         "postIndexLabel  postIndexData";
@@ -453,6 +454,7 @@ h3[class$="-data"] {
 .mail-label        { grid-area: mailLabel; }
 .number-label      { grid-area: numberLabel; }
 .street-label      { grid-area: streetLabel; }
+.street2-label     { grid-area: street2Label; }
 .country-label     { grid-area: countryLabel; }
 .city-label        { grid-area: cityLabel; }
 .post-index-label  { grid-area: postIndexLabel; }
@@ -460,6 +462,7 @@ h3[class$="-data"] {
 .mail-data         { grid-area: mailData; }
 .number-data       { grid-area: numberData; }
 .street-data       { grid-area: streetData; }
+.street2-data      { grid-area: street2Data; }
 .country-data      { grid-area: countryData; }
 .city-data         { grid-area: cityData; }
 .post-index-data   { grid-area: postIndexData; }
