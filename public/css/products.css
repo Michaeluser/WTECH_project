@@ -177,6 +177,12 @@
   align-items: stretch;
   text-align: left;
   padding: 18px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card-page:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
 .product-card-page img {
