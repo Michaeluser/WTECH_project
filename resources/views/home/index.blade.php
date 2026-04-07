@@ -25,8 +25,14 @@
         <div class = "header-actions">
 
           <div class = "account-block">
-            <span class = "account-name">My account</span>
-            <a href = "#" class = "header-icon">
+            <span class = "account-name">
+              @auth
+                {{ auth()->user()->name }}
+              @else
+                My account
+              @endauth
+            </span>
+            <a href = "{{ auth()->check() ? route('account') : route('login') }}" class = "header-icon">
               <img src = "{{ asset('images/user.png') }}" alt = "User profile icon">
             </a>
           </div>
