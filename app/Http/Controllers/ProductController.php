@@ -114,4 +114,14 @@ class ProductController extends Controller
             ],
         ]);
     }
+
+    public function show(Product $product): View
+    {
+        $product->load(['brand', 'category']);
+
+        return view('shop.product', [
+            'product' => $product,
+            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+        ]);
+    }
 }
