@@ -10,30 +10,26 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    /**
-     * Add a product to the cart
-     */
     public function add(Request $request): RedirectResponse
     {
-        // Validate input
+
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
             'quantity' => ['required', 'numeric', 'min:1'],
         ]);
 
-        // Get the product to check stock
+        // check stock
         $product = Product::find($validated['product_id']);
 
-        // Ensure quantity doesn't exceed stock
         if ($validated['quantity'] > $product->stock) {
             return back()->withErrors([
                 'quantity' => "Only {$product->stock} items available in stock.",
             ]);
         }
 
-        // Determine if user is authenticated or guest
+        // auth or guest
         if (auth()->check()) {
-            // Authenticated user
+            // auth user
             $cartItem = CartItem::firstOrCreate(
                 [
                     'product_id' => $validated['product_id'],
@@ -42,7 +38,7 @@ class CartController extends Controller
                 ['quantity' => 0]
             );
         } else {
-            // Guest user (using session)
+            // guest
             $cartItem = CartItem::firstOrCreate(
                 [
                     'product_id' => $validated['product_id'],
@@ -52,19 +48,16 @@ class CartController extends Controller
             );
         }
 
-        // Update quantity
+        // quantity
         $cartItem->quantity += (int) $validated['quantity'];
         $cartItem->save();
 
         return back()->with('success', "{$product->name} added to cart!");
     }
 
-    /**
-     * Display the shopping cart
-     */
     public function show(Request $request): View
     {
-        // Retrieve cart items
+        // cart items
         if (auth()->check()) {
             $cartItems = CartItem::with(['product', 'product.category', 'product.brand'])
                 ->where('user_id', auth()->id())
@@ -75,7 +68,7 @@ class CartController extends Controller
                 ->get();
         }
 
-        // Calculate totals
+        // calculate
         $subtotal = $cartItems->sum(function ($item) {
             return $item->product->price * $item->quantity;
         });
@@ -83,45 +76,37 @@ class CartController extends Controller
         return view('shop.cart', [
             'cartItems' => $cartItems,
             'subtotal' => $subtotal,
-            'total' => $subtotal, // Can add shipping, taxes, etc. later
+            'total' => $subtotal,
         ]);
     }
 
-    /**
-     * Update the quantity of a cart item
-     */
     public function updateQuantity(Request $request, CartItem $cartItem): RedirectResponse
     {
-        // Check authorization
-        if (!$this->authorizeCartItem($cartItem)) {
+
+        if (! $this->authorizeCartItem($cartItem)) {
             abort(403, 'Unauthorized');
         }
 
-        // Validate new quantity
         $validated = $request->validate([
             'quantity' => ['required', 'numeric', 'min:1'],
         ]);
 
-        // Check stock
         if ($validated['quantity'] > $cartItem->product->stock) {
             return back()->withErrors([
                 'quantity' => "Only {$cartItem->product->stock} items available in stock.",
             ]);
         }
 
-        // Update quantity
+        // update quantity
         $cartItem->update(['quantity' => (int) $validated['quantity']]);
 
         return back()->with('success', 'Cart updated!');
     }
 
-    /**
-     * Remove an item from the cart
-     */
     public function removeItem(CartItem $cartItem): RedirectResponse
     {
-        // Check authorization
-        if (!$this->authorizeCartItem($cartItem)) {
+
+        if (! $this->authorizeCartItem($cartItem)) {
             abort(403, 'Unauthorized');
         }
 
@@ -131,9 +116,6 @@ class CartController extends Controller
         return back()->with('success', "{$productName} removed from cart!");
     }
 
-    /**
-     * Check if current user/session owns the cart item
-     */
     private function authorizeCartItem(CartItem $cartItem): bool
     {
         if (auth()->check()) {
