@@ -21,13 +21,13 @@ class ProductController extends Controller
             $result = Product::query()
                 ->with(['brand', 'category'])
                 ->where(function ($q) use ($query) {
-                    $q->where('name', 'like', '%'.$query.'%')
-                        ->orWhere('description', 'like', '%'.$query.'%')
-                        ->orWhereHas('brand', fn ($b) => $b->where('name', 'like', '%'.$query.'%'));
+                    $q->where('name', 'ilike', '%'.$query.'%')
+                        ->orWhere('description', 'ilike', '%'.$query.'%')
+                        ->orWhereHas('brand', fn ($b) => $b->where('name', 'ilike', '%'.$query.'%'));
                 })
                 ->orderByDesc('is_featured')
                 ->orderBy('name')
-                ->paginate(12)
+                ->paginate(3)
                 ->withQueryString();
 
             $products = $result;
