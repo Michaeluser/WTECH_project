@@ -19,6 +19,9 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+Route::get('/search', [ProductController::class, 'search'])
+    ->name('search');
+
 Route::get('/catalog/{category:slug}', [ProductController::class, 'catalog'])
     ->name('catalog.show');
 

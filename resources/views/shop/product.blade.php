@@ -254,7 +254,7 @@
           <img src="{{ asset('images/logo.png') }}" alt="TechnoDom logo">
         </a>
 
-        <form class="search-form" action="#" method="GET">
+        <form class="search-form" action="{{ route('search') }}" method="GET">
           <input type="text" class="search-input" placeholder="Search products" name="q">
         </form>
 

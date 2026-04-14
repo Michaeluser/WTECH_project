@@ -10,6 +10,38 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    public function search(Request $request): View
+    {
+        $query = trim($request->input('q', ''));
+
+        $products = collect();
+        $total    = 0;
+
+        if ($query !== '') {
+            $result = Product::query()
+                ->with(['brand', 'category'])
+                ->where(function ($q) use ($query) {
+                    $q->where('name', 'like', '%' . $query . '%')
+                      ->orWhere('description', 'like', '%' . $query . '%')
+                      ->orWhereHas('brand', fn ($b) => $b->where('name', 'like', '%' . $query . '%'));
+                })
+                ->orderByDesc('is_featured')
+                ->orderBy('name')
+                ->paginate(12)
+                ->withQueryString();
+
+            $products = $result;
+            $total    = $result->total();
+        }
+
+        return view('shop.search', [
+            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'query'      => $query,
+            'products'   => $products,
+            'total'      => $total,
+        ]);
+    }
+
     public function catalog(Category $category): View|RedirectResponse
     {
         if ($category->catalog_mode !== 'landing') {
