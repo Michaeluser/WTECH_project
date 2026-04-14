@@ -116,10 +116,12 @@
                     <div class="products-grid products-grid-page">
                         @foreach ($products as $product)
                             <article class="product-card product-card-page">
-                                <img
-                                    src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}"
-                                    alt="{{ $product->name }}"
-                                >
+                                <a href="{{ route('products.show', $product) }}" class="product-image-link">
+                                    <img
+                                        src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}"
+                                        alt="{{ $product->name }}"
+                                    >
+                                </a>
                                 <div class="product-card-content">
                                     <h3>{{ $product->name }}</h3>
                                     <p class="product-specs">

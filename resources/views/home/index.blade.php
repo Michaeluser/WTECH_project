@@ -42,7 +42,7 @@
               <img src="{{ asset('images/heart.png') }}" alt="Wishlist icon">
             </a>
 
-            <a href="#" class="header-icon">
+            <a href="{{ route('cart.show') }}" class="header-icon">
               <img src="{{ asset('images/cart.png') }}" alt="Shopping cart icon">
             </a>
           </div>
@@ -133,10 +133,12 @@
         <div class="products-grid">
           @foreach ($featuredProducts as $product)
             <article class="product-card">
-              <img src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $product->name }}">
+              <a href="{{ route('products.show', $product) }}" class="product-image-link">
+                <img src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $product->name }}">
+              </a>
               <h3>{{ $product->name }}</h3>
               <p class="product-price">{{ number_format((float) $product->price, 2, '.', ' ') }} EUR</p>
-              <a href="{{ route('categories.show', $product->category) }}" class="product-button">Browse category</a>
+              <a href="{{ route('products.show', $product) }}" class="product-button">View product</a>
             </article>
           @endforeach
         </div>

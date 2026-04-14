@@ -39,7 +39,7 @@
                         <img src="{{ asset('images/heart.png') }}" alt="Wishlist icon">
                     </a>
 
-                    <a href="#" class="header-icon">
+                    <a href="{{ route('cart.show') }}" class="header-icon">
                         <img src="{{ asset('images/cart.png') }}" alt="Shopping cart icon">
                     </a>
                 </div>

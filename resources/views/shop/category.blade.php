@@ -38,7 +38,7 @@
                         <img src="{{ asset('images/heart.png') }}" alt="Wishlist icon">
                     </a>
 
-                    <a href="#" class="header-icon">
+                    <a href="{{ route('cart.show') }}" class="header-icon">
                         <img src="{{ asset('images/cart.png') }}" alt="Shopping cart icon">
                     </a>
                 </div>
@@ -173,7 +173,9 @@
                         <div class="products-grid products-grid-page">
                             @foreach ($products as $product)
                                 <article class="product-card product-card-page">
-                                    <img src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $product->name }}">
+                                    <a href="{{ route('products.show', $product) }}" class="product-image-link">
+                                        <img src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $product->name }}">
+                                    </a>
                                     <div class="product-card-content">
                                         <h3>{{ $product->name }}</h3>
                                         <p class="product-specs">
@@ -182,8 +184,18 @@
                                         <p class="product-price">{{ number_format((float) $product->price, 2, '.', ' ') }} EUR</p>
                                     </div>
                                     <div class="product-card-actions">
-                                        <span class="product-link">Product detail comes next</span>
-                                        <a href="#" class="product-button">Add to cart</a>
+                                        <a href="{{ route('products.show', $product) }}" class="product-link">View product</a>
+
+                                        @if ($product->stock > 0)
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit" class="product-button">Add to cart</button>
+                                            </form>
+                                        @else
+                                            <span class="product-button product-button-disabled">Out of stock</span>
+                                        @endif
                                     </div>
                                 </article>
                             @endforeach
