@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p D:/WTECH_project/preview/css D:/WTECH_project/preview/images)",
+      "Bash(cp D:/WTECH_project/public/css/* D:/WTECH_project/preview/css/)",
+      "Bash(cp -r D:/WTECH_project/public/images/* D:/WTECH_project/preview/images/)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Bash(sed -i 's|<a href=\"\"#\"\" class=\"\"header-icon\"\">\\\\s*\\\\n\\\\s*<img src=\"\"images/heart|<a href=\"\"favourites.html\"\" class=\"\"header-icon\"\">\\\\n              <img src=\"\"images/heart|g' \"$f\")",
+      "Bash(done)",
+      "Bash(python3 -c \":*)",
+      "Read(//d/WTECH_project/**)",
+      "Bash(\"$f.tmp\")",
+      "Bash(mv \"$f.tmp\" \"$f\")",
+      "Bash(node -e \":*)",
+      "Bash(git restore *)",
+      "Bash(php artisan *)",
+      "Bash(sed -n '356,378p' D:/WTECH_project/public/css/index.css)",
+      "Bash(sed -n '520,540p' D:/WTECH_project/public/css/index.css)",
+      "Bash(sed -n '625,645p' D:/WTECH_project/public/css/index.css)",
+      "Bash(sed -n '760,780p' D:/WTECH_project/public/css/index.css)",
+      "Bash(sed -n '140,160p' D:/WTECH_project/resources/views/shop/search.blade.php)",
+      "Bash(sed -n '187,200p' D:/WTECH_project/resources/views/shop/category.blade.php)",
+      "Bash(grep -n 'timestamps\\\\|public $timestamps' D:/WTECH_project/app/Models/DeliveryMethod.php D:/WTECH_project/app/Models/PaymentMethod.php)"
+    ]
+  }
+}

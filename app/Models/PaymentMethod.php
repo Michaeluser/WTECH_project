@@ -2,24 +2,22 @@
 
 namespace App\Models;
 
-use Database\Factories\BrandFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Brand extends Model
+class PaymentMethod extends Model
 {
-    /** @use HasFactory<BrandFactory> */
+    
     use HasFactory;
     public $timestamps = false;
 
     protected $fillable = [
         'name',
-        'slug',
     ];
 
-    public function products(): HasMany
+    public function order(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Order::class, 'payment_method_id', 'id');
     }
 }

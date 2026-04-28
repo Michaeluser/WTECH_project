@@ -1,0 +1,412 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.site-main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    column-gap: 30px;  
+    row-gap: 10px;     
+    padding: 20px;
+}    
+
+.account-state{
+    grid-column: span 2;
+    grid-row: 1;
+    align-self: start;
+}
+
+.identity-info-layout{
+    grid-column: 1;
+    grid-row: 4;
+}
+
+.link-layout {
+    grid-column: 3;
+    grid-row: 1 / span 4;
+
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    border-radius: 10px;
+}
+
+.account-state{
+    background-color:#d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color:#333;
+    
+    display: flex;
+    justify-content: space-between;
+}    
+
+.payment-info{
+    background-color:#d9d9d9;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    color:#333;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "ibanSection  bicSection"
+        "acreditInfo  acreditInfo";
+    column-gap: 20px;
+    row-gap: 10px;
+}    
+    
+.identity-items{
+    background-color: #d9d9d9;
+    border: 1px solid #999;
+    column-gap: 15px;
+    row-gap: 10px;
+    color: #333;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 10px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+
+    display: grid;
+    grid-template-areas:
+        "birthdateLabel sexLabel"
+        "birthdateData  sexData";
+}        
+
+.fields-section{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 20px;
+    grid-column: span 2;
+    grid-row: 2;
+}
+
+.firstn-section{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.lastn-section{
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.mail-section{
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.phone-section{
+    grid-row: 4;
+    grid-column: 1;
+}
+
+.country-section{
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.city-section{
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.street-section{
+    grid-row: 2;
+    grid-column: 2 / span 2;
+}
+
+.payment-info{
+    grid-row: 4;
+    grid-column: 2 / span 2;
+}
+
+.post-index-section{
+    grid-row: 3;
+    grid-column: 2;
+}
+
+.account-part img {
+    display: block;
+    width: 50px;
+    height: auto;
+}
+
+.account-part{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.link-layout h4{
+    align-self: center;
+    justify-self: center;
+    font-size: 25px;
+    padding-top: 15px;
+}
+
+.link-menu {
+    background-color: #d9d9d9;
+    padding: 10px 25px 20px;
+    color: #333;
+    margin: 0;
+    list-style: none;
+    font-size: large;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.menu-item {
+    padding: 7px 0;
+    text-align: left;
+    width: 100%;
+    font-size: 15px;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.menu-item a:hover {
+    text-decoration: underline;
+    color: #111;
+}
+
+.birthdate-data, .sex-data {
+    background-color: #bcbcbc;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+h3[class$="-label"] {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+h3[class$="-data"] {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.acredit-info{
+    font-size: 13px;
+    font-weight: normal;
+    color: #444;
+}
+
+.birthdate-label { grid-area: birthdateLabel; }
+.sex-label       { grid-area: sexLabel; }
+.birthdate-data  { grid-area: birthdateData; }
+.sex-data        { grid-area: sexData; }
+.acredit-info    { grid-area: acreditInfo; }
+
+
+.account-part h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.account-part .account-email {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.account-part .account-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.submit-button button {
+    background-color: #bcbcbc;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.submit-button button:hover {
+    background-color: #a8a8a8;
+}
+
+.submit-button {
+    display: flex;
+    align-items: center;
+}
+
+.fields-section > div,
+.payment-info .iban-section,
+.payment-info .bic-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fields-section h3,
+.payment-info .iban-section h3,
+.payment-info .bic-section h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.fields-section input[type="text"],
+.payment-info input[type="text"] {
+    background-color: #d9d9d9;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.fields-section input[type="text"]:focus,
+.payment-info input[type="text"]:focus {
+    border-color: #888;
+    background-color: #cfcfcf;
+}
+
+
+.iban-section { grid-area: ibanSection; }
+.bic-section  { grid-area: bicSection; }
+
+.fields-section > div:not([class]) {
+    display: none;
+}
+
+.identity-items h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.birthdate-data,
+.sex-data {
+    font-size: 13px;
+    padding: 3px 10px;
+}
+
+.link-layout {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+
+}
+
+.link-layout h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 18px 20px 10px;
+
+}
+
+.link-menu {
+    align-items: flex-start;
+    padding: 10px 25px 20px;
+    gap: 0;
+}
+
+.menu-item {
+    padding: 7px 0;
+    border-bottom: none;
+}
+
+.menu-item a:hover {
+    text-decoration: underline;
+    color: #111;
+}
+
+
+@media (max-width: 1024px) {
+    .site-main {
+        grid-template-columns: 1fr 1fr; 
+    }
+
+    .link-layout {
+        grid-column: 1 / span 2; 
+        grid-row: auto;
+        max-height: none;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .site-main {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .account-state, 
+    .fields-section, 
+    .identity-info-layout, 
+    .link-layout,
+    .payment-info {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
+    .fields-section {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-info {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "ibanSection"
+            "bicSection"
+            "acreditInfo";
+    }
+
+    .account-state {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .submit-button {
+        width: 100%;
+    }
+
+    .submit-button button {
+        width: 100%;
+    }
+
+    .identity-items {
+        margin-left: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
