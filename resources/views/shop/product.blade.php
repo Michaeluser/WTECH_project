@@ -96,7 +96,7 @@
                         <h2>Product details</h2>
                         <p><strong>Color:</strong> {{ $product->color ?: 'Not specified' }}</p>
                         <p><strong>RAM:</strong> {{ $product->ram_gb ? $product->ram_gb . ' GB' : 'Not specified' }}</p>
-                        <p><strong>Stock:</strong> {{ $product->stock }}</p>
+                        <p><strong>Stock:</strong> {{ $product->amount }}</p>
                     </div>
 
                     <div class="product-detail-description">
@@ -104,7 +104,7 @@
                         <p>{{ $product->description ?: 'Description will be added later.' }}</p>
                     </div>
 
-                    @if ($product->stock > 0)
+                    @if ($product->amount > 0)
                         <form action="{{ route('cart.add') }}" method="POST" class="product-detail-form">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
