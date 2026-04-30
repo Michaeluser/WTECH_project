@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
 use App\Models\Product;
@@ -45,7 +46,13 @@ Route::middleware('auth')->group(function () {
     })->name('account');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 });
+
+// Избранное — доступно всем (и залогиненным и гостям)
+Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites');
+Route::post('/favourites/{product}', [FavouriteController::class, 'store'])->name('favourites.store');
+Route::delete('/favourites/{product}', [FavouriteController::class, 'destroy'])->name('favourites.destroy');
 
 // Cart routes (accessible to both authenticated and guest users)
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');

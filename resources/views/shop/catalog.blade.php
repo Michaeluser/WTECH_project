@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="shop-icons">
-                    <a href="#" class="header-icon">
+                    <a href="{{ route('favourites') }}" class="header-icon">
                         <img src="{{ asset('images/heart.png') }}" alt="Wishlist icon">
                     </a>
 
