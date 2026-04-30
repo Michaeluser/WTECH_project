@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('favourites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();    // чей список
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete(); // какой товар
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete(); // null если гость
+            $table->string('session_id')->nullable()->index();                          // id сессии гостя; null если залогинен
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();          // какой товар
             $table->timestamps();
         });
     }
