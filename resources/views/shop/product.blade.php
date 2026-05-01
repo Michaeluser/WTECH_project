@@ -129,6 +129,19 @@
                         <p class="detail-message detail-message-error">This product is currently out of stock.</p>
                     @endif
 
+                    @if (in_array($product->id, $favouriteIds))
+                        <form action="{{ route('favourites.destroy', $product) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="product-button-heart active">♥</button>
+                        </form>
+                    @else
+                        <form action="{{ route('favourites.store', $product) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="product-button-heart">♡</button>
+                        </form>
+                    @endif
+
                     <a href="{{ route('categories.show', $product->category) }}" class="product-link">
                         Back to {{ $product->category->name }}
                     </a>

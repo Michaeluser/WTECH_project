@@ -5,18 +5,20 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
+use App\Models\Favourite;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home.index', [
-        'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+        'categories'       => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
         'featuredProducts' => Product::query()
             ->with('category')
             ->where('is_featured', true)
             ->latest('id')
             ->take(5)
             ->get(),
+        'favouriteIds'     => Favourite::getIds(), // id товаров в избранном текущего юзера/гостя
     ]);
 })->name('home');
 

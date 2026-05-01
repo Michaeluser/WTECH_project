@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Favourite;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,10 +36,11 @@ class ProductController extends Controller
         }
 
         return view('shop.search', [
-            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
-            'query' => $query,
-            'products' => $products,
-            'total' => $total,
+            'categories'   => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'query'        => $query,
+            'products'     => $products,
+            'total'        => $total,
+            'favouriteIds' => Favourite::getIds(),
         ]);
     }
 
@@ -130,12 +132,13 @@ class ProductController extends Controller
         $availableRam = $allCategoryProducts->pluck('ram_gb')->filter()->unique()->sort()->values();
 
         return view('shop.category', [
-            'category' => $category,
-            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
-            'products' => $products,
+            'category'        => $category,
+            'categories'      => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'products'        => $products,
             'availableBrands' => $availableBrands,
             'availableColors' => $availableColors,
-            'availableRam' => $availableRam,
+            'availableRam'    => $availableRam,
+            'favouriteIds'    => Favourite::getIds(),
             'filters' => [
                 'price_from' => $request->input('price_from'),
                 'price_to' => $request->input('price_to'),
@@ -152,8 +155,9 @@ class ProductController extends Controller
         $product->load(['brand', 'category']);
 
         return view('shop.product', [
-            'product' => $product,
-            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'product'      => $product,
+            'categories'   => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'favouriteIds' => Favourite::getIds(),
         ]);
     }
 }

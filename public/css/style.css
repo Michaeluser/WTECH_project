@@ -382,6 +382,39 @@ body {
     gap: 20px;
 }
 
+.product-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.product-button-heart {
+    width: 48px;
+    height: 48px;
+    font-size: 30px;
+    border: 1px solid #e63946;
+    border-radius: 8px;
+    background: white;
+    color: #e63946;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Товар уже в избранном — закрашенное сердце */
+.product-button-heart.active {
+    background: #e63946;
+    color: white;
+}
+
+.product-button {
+    height: 48px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
 .product-card {
     background-color: #ececec;
     border: 1px solid #999;
@@ -806,7 +839,7 @@ body {
     }
 
     .header-inner-elements {
-        padding: 10px 10px; 
+        padding: 10px 10px;
     }
 }
 
@@ -814,19 +847,19 @@ body {
     .logo img {
         width: 40px;
     }
-    
+
     .header-icon img {
         width: 10px;
     }
-    
+
     .account-name {
         font-size: 10px;
     }
-    
+
     .header-inner-elements {
         padding: 10px 3px;
     }
-    
+
     .footer-item a {
         font-size: 9px;
     }
