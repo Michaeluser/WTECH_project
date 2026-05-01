@@ -138,7 +138,25 @@
               </a>
               <h3>{{ $product->name }}</h3>
               <p class="product-price">{{ number_format((float) $product->price, 2, '.', ' ') }} EUR</p>
-              <a href="{{ route('products.show', $product) }}" class="product-button">View product</a>
+                <div class="product-actions">
+                    @if (in_array($product->id, $favouriteIds))
+                        <form action="{{ route('favourites.destroy', $product) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="product-button-heart active">♥</button>
+                        </form>
+                    @else
+                        <form action="{{ route('favourites.store', $product) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="product-button-heart">♡</button>
+                        </form>
+                    @endif
+
+                    <a href="{{ route('products.show', $product) }}" class="product-button">
+                        View product
+                    </a>
+                </div>
+
             </article>
           @endforeach
         </div>

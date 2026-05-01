@@ -196,6 +196,18 @@
                                         @else
                                             <span class="product-button product-button-disabled">Out of stock</span>
                                         @endif
+                                        @if (in_array($product->id, $favouriteIds))
+                                            <form action="{{ route('favourites.destroy', $product) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="product-button-heart active">♥</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('favourites.store', $product) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="product-button-heart">♡</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 </article>
                             @endforeach
