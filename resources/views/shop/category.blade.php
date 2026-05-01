@@ -179,14 +179,14 @@
                                     <div class="product-card-content">
                                         <h3>{{ $product->name }}</h3>
                                         <p class="product-specs">
-                                            {{ $product->brand->name }} | {{ $product->color }} | {{ $product->ram_gb }} GB RAM | Stock: {{ $product->amount }}
+                                            {{ $product->brand->name }} | {{ $product->color }} | {{ $product->ram_gb }} GB RAM | Stock: {{ $product->stock }}
                                         </p>
                                         <p class="product-price">{{ number_format((float) $product->price, 2, '.', ' ') }} EUR</p>
                                     </div>
                                     <div class="product-card-actions">
                                         <a href="{{ route('products.show', $product) }}" class="product-link">View product</a>
 
-                                        @if ($product->amount > 0)
+                                        @if ($product->stock > 0)
                                             <form action="{{ route('cart.add') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">

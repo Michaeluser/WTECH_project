@@ -140,7 +140,7 @@
                                     <a href="{{ route('products.show', $product) }}" class="product-link">
                                         View product
                                     </a>
-                                    @if ($product->amount > 0)
+                                    @if ($product->stock > 0)
                                         <form action="{{ route('cart.add') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
