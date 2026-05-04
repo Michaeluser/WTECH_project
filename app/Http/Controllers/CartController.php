@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -57,23 +59,29 @@ class CartController extends Controller
 
     public function show(Request $request): View
     {
-        // cart items
-        if (auth()->check()) {
-            $cartItems = CartItem::with(['product', 'product.category', 'product.brand'])
-                ->where('user_id', auth()->id())
-                ->get();
-        } else {
-            $cartItems = CartItem::with(['product', 'product.category', 'product.brand'])
-                ->where('session_id', session()->getId())
-                ->get();
-        }
-
-        // calculate
-        $subtotal = $cartItems->sum(function ($item) {
-            return $item->product->price * $item->quantity;
-        });
+        $cartItems = $this->getCurrentCartItems();
+        $subtotal = $this->calculateSubtotal($cartItems);
 
         return view('shop.cart', [
+            'cartItems' => $cartItems,
+            'subtotal' => $subtotal,
+            'total' => $subtotal,
+        ]);
+    }
+
+    public function checkout(Request $request): View|RedirectResponse
+    {
+        $cartItems = $this->getCurrentCartItems();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.show')
+                ->withErrors(['cart' => 'Your cart is empty. Add a product before checkout.']);
+        }
+
+        $subtotal = $this->calculateSubtotal($cartItems);
+
+        return view('payment.checkout', [
+            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
             'cartItems' => $cartItems,
             'subtotal' => $subtotal,
             'total' => $subtotal,
@@ -123,5 +131,25 @@ class CartController extends Controller
         }
 
         return $cartItem->session_id === session()->getId();
+    }
+
+    private function getCurrentCartItems(): Collection
+    {
+        if (auth()->check()) {
+            return CartItem::with(['product', 'product.category', 'product.brand'])
+                ->where('user_id', auth()->id())
+                ->get();
+        }
+
+        return CartItem::with(['product', 'product.category', 'product.brand'])
+            ->where('session_id', session()->getId())
+            ->get();
+    }
+
+    private function calculateSubtotal(Collection $cartItems): float
+    {
+        return (float) $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
     }
 }

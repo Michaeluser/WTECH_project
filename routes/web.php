@@ -59,5 +59,6 @@ Route::delete('/favourites/{product}', [FavouriteController::class, 'destroy'])-
 // Cart routes (accessible to both authenticated and guest users)
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
 Route::put('/cart/item/{cartItem}', [CartController::class, 'updateQuantity'])->name('cart.update');
 Route::delete('/cart/item/{cartItem}', [CartController::class, 'removeItem'])->name('cart.remove');
