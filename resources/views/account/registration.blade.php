@@ -49,8 +49,13 @@
                             <h3>Account Information</h3>
 
                             <div class="input-group">
-                                <label for="name">Full Name</label>
-                                <input id="name" name="name" type="text" value="{{ old('name') }}" required>
+                                <label for="first_name">First Name</label>
+                                <input id="first_name" name="first_name" type="text" value="{{ old('first_name') }}" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="last_name">Last Name</label>
+                                <input id="last_name" name="last_name" type="text" value="{{ old('last_name') }}" required>
                             </div>
 
                             <div class="input-group">
