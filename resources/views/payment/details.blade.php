@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping and Payment | TechnoDom</title>
+    <title>Location Details | TechnoDom</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
@@ -68,46 +68,75 @@
 
     <main class="site-main">
         <section class="cart-page">
-            <h1 class="cart-title">Shipping and Payment</h1>
+            <h1 class="cart-title">Location Details</h1>
 
             <div class="checkout-steps">
                 <ul class="checkout-steps-list">
                     <li>Shopping cart</li>
-                    <li class="active">Shipping and Payment</li>
-                    <li>Location Details</li>
+                    <li>Shipping and Payment</li>
+                    <li class="active">Location Details</li>
                 </ul>
             </div>
 
-            <form action="{{ route('checkout.details') }}" method="GET">
-            <div class="checkout-step2-layout">
+            <div class="checkout-step3-layout">
 
-                <div class="shipping-payment-content">
+                <div class="checkout-block">
+                    <h2>Delivery Information</h2>
 
-                    <div class="checkout-block">
-                        <h2>Delivery Method</h2>
+                    <form class="details-form" action="{{ route('checkout.confirmation') }}" method="GET">
+                        <input type="hidden" name="delivery_method" value="{{ $deliveryMethod }}">
+                        <input type="hidden" name="payment_method" value="{{ $paymentMethod }}">
 
-                        @foreach ($deliveryMethods as $value => $label)
-                            <label class="checkout-option">
-                                <input type="radio" name="delivery_method" value="{{ $value }}" @checked($selectedDelivery === $value)>
-                                <span>{{ $label }}</span>
-                            </label>
-                        @endforeach
-                    </div>
+                        <div class="details-form-grid">
+                            <div class="form-field">
+                                <label for="first_name">First Name</label>
+                                <input id="first_name" name="first_name" type="text" placeholder="Enter your first name">
+                            </div>
 
-                    <div class="checkout-block">
-                        <h2>Payment Method</h2>
+                            <div class="form-field">
+                                <label for="last_name">Last Name</label>
+                                <input id="last_name" name="last_name" type="text" placeholder="Enter your last name">
+                            </div>
 
-                        @foreach ($paymentMethods as $value => $label)
-                            <label class="checkout-option">
-                                <input type="radio" name="payment_method" value="{{ $value }}" @checked($selectedPayment === $value)>
-                                <span>{{ $label }}</span>
-                            </label>
-                        @endforeach
-                    </div>
+                            <div class="form-field">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" placeholder="Enter your email address">
+                            </div>
 
+                            <div class="form-field">
+                                <label for="phone_number">Phone Number</label>
+                                <input id="phone_number" name="phone_number" type="text" placeholder="Enter your phone number">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="city">City</label>
+                                <input id="city" name="city" type="text" placeholder="Enter your city">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="postal_code">Postal Code</label>
+                                <input id="postal_code" name="postal_code" type="text" placeholder="Enter your postal code">
+                            </div>
+
+                            <div class="form-field form-field-full">
+                                <label for="street_address">Street Address</label>
+                                <input id="street_address" name="street_address" type="text" placeholder="Enter your street address">
+                            </div>
+
+                            <div class="form-field form-field-full">
+                                <label for="notes">Order Notes</label>
+                                <textarea id="notes" name="notes" rows="4" placeholder="Add delivery instructions or extra information here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="cart-actions cart-actions-between checkout-details-actions">
+                            <a href="{{ route('checkout.show') }}" class="cart-back-button">Back</a>
+                            <button type="submit" class="cart-next-button">Place Order</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="checkout-summary">
+                <aside class="checkout-summary">
                     <h2>Order Summary</h2>
 
                     @foreach ($cartItems as $item)
@@ -116,29 +145,27 @@
                                 <img src="{{ asset($item->product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $item->product->name }}">
                                 <span>{{ $item->product->name }} x{{ $item->quantity }}</span>
                             </div>
-
                             <span>{{ number_format((float) ($item->product->price * $item->quantity), 2, '.', ' ') }} EUR</span>
                         </div>
                     @endforeach
 
                     <div class="summary-item">
                         <span>Delivery</span>
-                        <span>Free</span>
+                        <span>{{ $deliveryMethodLabel }}</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Payment</span>
+                        <span>{{ $paymentMethodLabel }}</span>
                     </div>
 
                     <div class="summary-total">
                         <span>Total</span>
                         <span class="cart-total-price">{{ number_format($total, 2, '.', ' ') }} EUR</span>
                     </div>
-                </div>
+                </aside>
 
             </div>
-
-            <div class="cart-actions cart-actions-between">
-                <a href="{{ route('cart.show') }}" class="cart-back-button">Back</a>
-                <button type="submit" class="cart-next-button">Next</button>
-            </div>
-            </form>
         </section>
     </main>
 

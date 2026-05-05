@@ -109,6 +109,16 @@
   text-align: center;
 }
 
+.admin-auth-error {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border: 1px solid #b98989;
+  border-radius: 10px;
+  background-color: #f6dfdf;
+  color: #6a1f1f;
+  font-size: 14px;
+}
+
 .admin-dashboard-layout {
   display: flex;
   flex-direction: column;

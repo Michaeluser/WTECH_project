@@ -12,6 +12,16 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
+    private const DELIVERY_METHODS = [
+        'courier' => 'Courier Delivery',
+        'express' => 'Express Delivery',
+    ];
+
+    private const PAYMENT_METHODS = [
+        'card' => 'Credit Card',
+        'bank' => 'Bank Transfer',
+    ];
+
     public function add(Request $request): RedirectResponse
     {
 
@@ -85,6 +95,86 @@ class CartController extends Controller
             'cartItems' => $cartItems,
             'subtotal' => $subtotal,
             'total' => $subtotal,
+            'deliveryMethods' => self::DELIVERY_METHODS,
+            'paymentMethods' => self::PAYMENT_METHODS,
+            'selectedDelivery' => 'courier',
+            'selectedPayment' => 'card',
+        ]);
+    }
+
+    public function details(Request $request): View|RedirectResponse
+    {
+        $cartItems = $this->getCurrentCartItems();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.show')
+                ->withErrors(['cart' => 'Your cart is empty. Add a product before checkout.']);
+        }
+
+        $deliveryMethod = $request->input('delivery_method', 'courier');
+        $paymentMethod = $request->input('payment_method', 'card');
+
+        if (! array_key_exists($deliveryMethod, self::DELIVERY_METHODS)) {
+            $deliveryMethod = 'courier';
+        }
+
+        if (! array_key_exists($paymentMethod, self::PAYMENT_METHODS)) {
+            $paymentMethod = 'card';
+        }
+
+        $subtotal = $this->calculateSubtotal($cartItems);
+
+        return view('payment.details', [
+            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'cartItems' => $cartItems,
+            'subtotal' => $subtotal,
+            'total' => $subtotal,
+            'deliveryMethod' => $deliveryMethod,
+            'paymentMethod' => $paymentMethod,
+            'deliveryMethodLabel' => self::DELIVERY_METHODS[$deliveryMethod],
+            'paymentMethodLabel' => self::PAYMENT_METHODS[$paymentMethod],
+        ]);
+    }
+
+    public function confirmation(Request $request): View|RedirectResponse
+    {
+        $cartItems = $this->getCurrentCartItems();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.show')
+                ->withErrors(['cart' => 'Your cart is empty. Add a product before checkout.']);
+        }
+
+        $deliveryMethod = $request->input('delivery_method', 'courier');
+        $paymentMethod = $request->input('payment_method', 'card');
+
+        if (! array_key_exists($deliveryMethod, self::DELIVERY_METHODS)) {
+            $deliveryMethod = 'courier';
+        }
+
+        if (! array_key_exists($paymentMethod, self::PAYMENT_METHODS)) {
+            $paymentMethod = 'card';
+        }
+
+        $subtotal = $this->calculateSubtotal($cartItems);
+
+        return view('payment.confirmation', [
+            'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
+            'cartItems' => $cartItems,
+            'total' => $subtotal,
+            'deliveryMethodLabel' => self::DELIVERY_METHODS[$deliveryMethod],
+            'paymentMethodLabel' => self::PAYMENT_METHODS[$paymentMethod],
+            'orderNumber' => 'TD-' . strtoupper(substr(session()->getId(), 0, 8)),
+            'customer' => [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'phone_number' => $request->input('phone_number'),
+                'city' => $request->input('city'),
+                'postal_code' => $request->input('postal_code'),
+                'street_address' => $request->input('street_address'),
+                'notes' => $request->input('notes'),
+            ],
         ]);
     }
 

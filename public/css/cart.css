@@ -666,6 +666,10 @@ padding: 0px;
   border-color: #111;
 }
 
+.checkout-details-actions {
+  margin-top: 22px;
+}
+
 @media (max-width: 900px) {
   .checkout-step3-layout {
     grid-template-columns: 1fr;

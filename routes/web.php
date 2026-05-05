@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\ProductController;
@@ -40,6 +41,9 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
+    Route::post('/admin/login', [AdminController::class, 'login']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -48,6 +52,8 @@ Route::middleware('auth')->group(function () {
     })->name('account');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 });
 
@@ -60,5 +66,7 @@ Route::delete('/favourites/{product}', [FavouriteController::class, 'destroy'])-
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
+Route::get('/checkout/details', [CartController::class, 'details'])->name('checkout.details');
+Route::get('/checkout/confirmation', [CartController::class, 'confirmation'])->name('checkout.confirmation');
 Route::put('/cart/item/{cartItem}', [CartController::class, 'updateQuantity'])->name('cart.update');
 Route::delete('/cart/item/{cartItem}', [CartController::class, 'removeItem'])->name('cart.remove');

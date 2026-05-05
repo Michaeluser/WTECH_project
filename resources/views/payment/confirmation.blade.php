@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping and Payment | TechnoDom</title>
+    <title>Order Confirmed | TechnoDom</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
@@ -47,64 +47,17 @@
         </div>
     </header>
 
-    <nav class="main-nav">
-        <div class="nav-top">
-            <span class="nav-mobile-title">Categories</span>
-            <button class="nav-toggle" type="button" aria-label="Open categories" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-
-        <ul class="nav-list">
-            @foreach ($categories as $category)
-                <li class="nav-item">
-                    <a href="{{ $category->navUrl() }}">{{ $category->name }}</a>
-                </li>
-            @endforeach
-        </ul>
-    </nav>
-
     <main class="site-main">
         <section class="cart-page">
-            <h1 class="cart-title">Shipping and Payment</h1>
+            <h1 class="cart-title">Order Confirmed</h1>
 
-            <div class="checkout-steps">
-                <ul class="checkout-steps-list">
-                    <li>Shopping cart</li>
-                    <li class="active">Shipping and Payment</li>
-                    <li>Location Details</li>
-                </ul>
-            </div>
-
-            <form action="{{ route('checkout.details') }}" method="GET">
-            <div class="checkout-step2-layout">
-
-                <div class="shipping-payment-content">
-
-                    <div class="checkout-block">
-                        <h2>Delivery Method</h2>
-
-                        @foreach ($deliveryMethods as $value => $label)
-                            <label class="checkout-option">
-                                <input type="radio" name="delivery_method" value="{{ $value }}" @checked($selectedDelivery === $value)>
-                                <span>{{ $label }}</span>
-                            </label>
-                        @endforeach
+            <div class="order-confirmation-layout">
+                <div class="checkout-block order-confirmation-message">
+                    <h2>Thank you for your purchase!</h2>
+                    <p>Your order has been successfully placed.</p>
+                    <div class="order-number">
+                        Order number: <strong>#{{ $orderNumber }}</strong>
                     </div>
-
-                    <div class="checkout-block">
-                        <h2>Payment Method</h2>
-
-                        @foreach ($paymentMethods as $value => $label)
-                            <label class="checkout-option">
-                                <input type="radio" name="payment_method" value="{{ $value }}" @checked($selectedPayment === $value)>
-                                <span>{{ $label }}</span>
-                            </label>
-                        @endforeach
-                    </div>
-
                 </div>
 
                 <div class="checkout-summary">
@@ -116,14 +69,18 @@
                                 <img src="{{ asset($item->product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $item->product->name }}">
                                 <span>{{ $item->product->name }} x{{ $item->quantity }}</span>
                             </div>
-
                             <span>{{ number_format((float) ($item->product->price * $item->quantity), 2, '.', ' ') }} EUR</span>
                         </div>
                     @endforeach
 
                     <div class="summary-item">
                         <span>Delivery</span>
-                        <span>Free</span>
+                        <span>{{ $deliveryMethodLabel }}</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Payment</span>
+                        <span>{{ $paymentMethodLabel }}</span>
                     </div>
 
                     <div class="summary-total">
@@ -131,14 +88,11 @@
                         <span class="cart-total-price">{{ number_format($total, 2, '.', ' ') }} EUR</span>
                     </div>
                 </div>
-
             </div>
 
-            <div class="cart-actions cart-actions-between">
-                <a href="{{ route('cart.show') }}" class="cart-back-button">Back</a>
-                <button type="submit" class="cart-next-button">Next</button>
+            <div class="cart-actions">
+                <a href="{{ route('home') }}" class="cart-next-button">Back to homepage</a>
             </div>
-            </form>
         </section>
     </main>
 
@@ -154,6 +108,5 @@
 
 </div>
 
-<script src="{{ asset('js/hamurger-menu.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | TechnoDom</title>
+
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+</head>
+<body>
+  <div class="admin-page-shell">
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <div class="admin-brand">
+          <img src="{{ asset('images/logo.png') }}" alt="TechnoDom logo">
+          <div class="admin-brand-copy">
+            <h1>TechnoDom Admin</h1>
+          </div>
+        </div>
+
+        <div class="admin-header-actions">
+          <a href="{{ route('home') }}" class="admin-link">Back to Store</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main admin-login-main">
+      <section class="admin-login-card">
+        <h2>Admin Panel Login</h2>
+        <p>Use your administrator account to manage products, images, and catalog content.</p>
+
+        @if ($errors->any())
+          <p class="admin-auth-error">{{ $errors->first() }}</p>
+        @endif
+
+        <form class="admin-form" method="POST" action="{{ route('admin.login') }}">
+          @csrf
+
+          <div class="form-field">
+            <label for="admin-email">Admin Email</label>
+            <input id="admin-email" name="email" type="email" value="{{ old('email') }}" placeholder="admin@technodom.sk" required>
+          </div>
+
+          <div class="form-field">
+            <label for="admin-password">Password</label>
+            <input id="admin-password" name="password" type="password" placeholder="Enter password" required>
+          </div>
+
+          <button type="submit" class="admin-button">Sign In to Admin</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="admin-footer">
+      <p>Authorized staff only.</p>
+    </footer>
+  </div>
+</body>
+</html>
