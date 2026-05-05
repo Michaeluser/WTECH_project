@@ -53,7 +53,6 @@
 
                     <div class="login-footer-links">
                         <a href="{{ route('register') }}" class="form-link-small">Register Instead</a>
-                        <a href="{{ route('admin.login') }}" class="form-link-small">Log in as staff</a>
                     </div>
                 </form>
             </div>

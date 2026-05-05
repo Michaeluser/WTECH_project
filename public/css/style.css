@@ -72,6 +72,27 @@ body {
     background-color: #f6f6f6;
 }
 
+.staff-dashboard-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 18px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    background-color: #e7e7e7;
+    color: #111;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.staff-dashboard-link:hover {
+    background-color: #d8d8d8;
+    transform: translateY(-1px);
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -597,6 +618,10 @@ body {
         order: 3;
         flex-basis: 100%;
         margin-left: 0;
+    }
+
+    .staff-dashboard-link {
+        order: 4;
     }
 
     .search-input {

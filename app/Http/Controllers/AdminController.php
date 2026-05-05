@@ -12,11 +12,6 @@ use Illuminate\View\View;
 
 class AdminController extends Controller
 {
-    private const STAFF_EMAILS = [
-        'admin@technodom.sk',
-        'test@example.com',
-    ];
-
     public function showLogin(): View
     {
         return view('admin.login');
@@ -57,7 +52,8 @@ class AdminController extends Controller
         $products = Product::query()
             ->with(['category', 'brand'])
             ->latest('id')
-            ->get();
+            ->paginate(6)
+            ->withQueryString();
 
         $selectedProduct = $products->first();
 
@@ -83,6 +79,6 @@ class AdminController extends Controller
 
     private function isStaff(): bool
     {
-        return auth()->check() && in_array(auth()->user()->email, self::STAFF_EMAILS, true);
+        return auth()->check() && auth()->user()->is_staff;
     }
 }

@@ -30,6 +30,12 @@
                 >
             </form>
 
+            @auth
+                @if (auth()->user()->is_staff)
+                    <a href="{{ route('admin.dashboard') }}" class="staff-dashboard-link">Back to Admin Dashboard</a>
+                @endif
+            @endauth
+
             <div class="header-actions">
                 <div class="account-block">
                     <span class="account-name">

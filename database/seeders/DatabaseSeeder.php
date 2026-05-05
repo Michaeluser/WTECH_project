@@ -20,17 +20,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::query()->updateOrCreate(['email' => 'admin@technodom.sk'], User::factory()->make([
+        User::query()->updateOrCreate(['email' => 'admin@technodom.sk'], User::factory()->raw([
             'first_name' => 'Admin',
             'last_name'  => 'Staff',
             'email'      => 'admin@technodom.sk',
-        ])->toArray());
+            'is_staff'   => true,
+        ]));
 
-        User::query()->updateOrCreate(['email' => 'test@example.com'], User::factory()->make([
+        User::query()->updateOrCreate(['email' => 'test@example.com'], User::factory()->raw([
             'first_name' => 'Test',
             'last_name'  => 'User',
             'email'      => 'test@example.com',
-        ])->toArray());
+            'is_staff'   => false,
+        ]));
 
         $categories = $this->createCategories();
         $brands = $this->createBrands();

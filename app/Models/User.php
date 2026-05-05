@@ -26,6 +26,7 @@ class User extends Authenticatable
         'birthday',
         'bic_card',
         'swift_card',
+        'is_staff',
     ];
 
     // Аксессор: $user->name возвращает "Имя Фамилия"
@@ -43,6 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_staff' => 'boolean',
     ];
 
     public function cart(): HasOne

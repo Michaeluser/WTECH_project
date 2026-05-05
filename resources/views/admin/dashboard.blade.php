@@ -56,6 +56,30 @@
               <p>No products in the catalog yet.</p>
             @endforelse
           </div>
+
+          @if ($products->hasPages())
+            <nav class="pagination" aria-label="Admin products pagination">
+              @if ($products->onFirstPage())
+                <span class="pagination-link">Prev</span>
+              @else
+                <a href="{{ $products->previousPageUrl() }}" class="pagination-link">Prev</a>
+              @endif
+
+              @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                @if ($page === $products->currentPage())
+                  <span class="pagination-link pagination-link-active">{{ $page }}</span>
+                @else
+                  <a href="{{ $url }}" class="pagination-link">{{ $page }}</a>
+                @endif
+              @endforeach
+
+              @if ($products->hasMorePages())
+                <a href="{{ $products->nextPageUrl() }}" class="pagination-link">Next</a>
+              @else
+                <span class="pagination-link">Next</span>
+              @endif
+            </nav>
+          @endif
         </section>
 
         <section class="admin-panel-card" id="create-product">

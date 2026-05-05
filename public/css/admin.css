@@ -154,6 +154,10 @@
   gap: 14px;
 }
 
+.admin-products-list + .pagination {
+  margin-top: 20px;
+}
+
 .admin-product-form {
   gap: 20px;
 }
@@ -334,6 +338,33 @@
   border-radius: 10px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pagination-link {
+  display: inline-block;
+  min-width: 44px;
+  text-align: center;
+  text-decoration: none;
+  color: #222;
+  background-color: #efefef;
+  border: 1px solid #999;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+.pagination-link-active {
+  background-color: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
+
 @media (max-width: 900px) {
   .admin-header-inner,
   .admin-footer,
@@ -349,6 +380,14 @@
   .admin-form-grid,
   .admin-image-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pagination {
+    justify-content: stretch;
+  }
+
+  .pagination-link {
+    flex: 1 1 70px;
   }
 }
 
