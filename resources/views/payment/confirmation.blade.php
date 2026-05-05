@@ -57,6 +57,10 @@
         <section class="cart-page">
             <h1 class="cart-title">Order Confirmed</h1>
 
+            @if (session('success'))
+                <div class="cart-message cart-message-success">{{ session('success') }}</div>
+            @endif
+
             <div class="order-confirmation-layout">
                 <div class="checkout-block order-confirmation-message">
                     <h2>Thank you for your purchase!</h2>
@@ -81,7 +85,14 @@
 
                     <div class="summary-item">
                         <span>Delivery</span>
-                        <span>{{ $deliveryMethodLabel }}</span>
+                        <span>
+                            {{ $deliveryMethodLabel }}
+                            @if ($deliveryPrice == 0)
+                                (Free)
+                            @else
+                                ({{ number_format((float) $deliveryPrice, 2, '.', ' ') }} EUR)
+                            @endif
+                        </span>
                     </div>
 
                     <div class="summary-item">

@@ -76,6 +76,10 @@
         <section class="cart-page">
             <h1 class="cart-title">Shipping and Payment</h1>
 
+            @if (session('success'))
+                <div class="cart-message cart-message-success">{{ session('success') }}</div>
+            @endif
+
             <div class="checkout-steps">
                 <ul class="checkout-steps-list">
                     <li>Shopping cart</li>
@@ -95,7 +99,14 @@
                         @foreach ($deliveryMethods as $value => $label)
                             <label class="checkout-option">
                                 <input type="radio" name="delivery_method" value="{{ $value }}" @checked($selectedDelivery === $value)>
-                                <span>{{ $label }}</span>
+                                <span>
+                                    {{ $label['label'] }}
+                                    @if ($label['price'] == 0)
+                                        (Free)
+                                    @else
+                                        ({{ number_format((float) $label['price'], 2, '.', ' ') }} EUR)
+                                    @endif
+                                </span>
                             </label>
                         @endforeach
                     </div>
@@ -129,12 +140,19 @@
 
                     <div class="summary-item">
                         <span>Delivery</span>
-                        <span>Free</span>
+                        <span id="delivery-summary-text">
+                            {{ $deliveryMethodLabel }}
+                            @if ($deliveryPrice == 0)
+                                (Free)
+                            @else
+                                ({{ number_format((float) $deliveryPrice, 2, '.', ' ') }} EUR)
+                            @endif
+                        </span>
                     </div>
 
                     <div class="summary-total">
                         <span>Total</span>
-                        <span class="cart-total-price">{{ number_format($total, 2, '.', ' ') }} EUR</span>
+                        <span class="cart-total-price" id="checkout-total" data-subtotal="{{ $subtotal }}">{{ number_format($total, 2, '.', ' ') }} EUR</span>
                     </div>
                 </div>
 
@@ -161,5 +179,38 @@
 </div>
 
 <script src="{{ asset('js/hamurger-menu.js') }}"></script>
+<script>
+    const deliveryMethods = @json($deliveryMethods);
+    const deliverySummaryText = document.getElementById('delivery-summary-text');
+    const checkoutTotal = document.getElementById('checkout-total');
+
+    function formatMoney(value) {
+        return Number(value).toFixed(2) + ' EUR';
+    }
+
+    function updateDeliverySummary() {
+        const selectedDelivery = document.querySelector('input[name="delivery_method"]:checked');
+
+        if (!selectedDelivery) {
+            return;
+        }
+
+        const selectedMethod = deliveryMethods[selectedDelivery.value];
+        const subtotal = Number(checkoutTotal.dataset.subtotal);
+        const total = subtotal + Number(selectedMethod.price);
+
+        if (Number(selectedMethod.price) === 0) {
+            deliverySummaryText.textContent = selectedMethod.label + ' (Free)';
+        } else {
+            deliverySummaryText.textContent = selectedMethod.label + ' (' + formatMoney(selectedMethod.price) + ')';
+        }
+
+        checkoutTotal.textContent = formatMoney(total);
+    }
+
+    document.querySelectorAll('input[name="delivery_method"]').forEach(function (radio) {
+        radio.addEventListener('change', updateDeliverySummary);
+    });
+</script>
 </body>
 </html>

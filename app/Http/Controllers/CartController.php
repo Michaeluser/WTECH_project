@@ -13,8 +13,14 @@ use Illuminate\View\View;
 class CartController extends Controller
 {
     private const DELIVERY_METHODS = [
-        'courier' => 'Courier Delivery',
-        'express' => 'Express Delivery',
+        'courier' => [
+            'label' => 'Courier Delivery',
+            'price' => 0.0,
+        ],
+        'express' => [
+            'label' => 'Express Delivery',
+            'price' => 15.0,
+        ],
     ];
 
     private const PAYMENT_METHODS = [
@@ -89,16 +95,21 @@ class CartController extends Controller
         }
 
         $subtotal = $this->calculateSubtotal($cartItems);
+        $selectedDelivery = 'courier';
+        $selectedPayment = 'card';
+        $deliveryPrice = $this->getDeliveryPrice($selectedDelivery);
 
         return view('payment.checkout', [
             'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
             'cartItems' => $cartItems,
             'subtotal' => $subtotal,
-            'total' => $subtotal,
+            'total' => $this->calculateTotal($subtotal, $deliveryPrice),
             'deliveryMethods' => self::DELIVERY_METHODS,
             'paymentMethods' => self::PAYMENT_METHODS,
-            'selectedDelivery' => 'courier',
-            'selectedPayment' => 'card',
+            'selectedDelivery' => $selectedDelivery,
+            'selectedPayment' => $selectedPayment,
+            'deliveryPrice' => $deliveryPrice,
+            'deliveryMethodLabel' => $this->getDeliveryLabel($selectedDelivery),
         ]);
     }
 
@@ -123,15 +134,17 @@ class CartController extends Controller
         }
 
         $subtotal = $this->calculateSubtotal($cartItems);
+        $deliveryPrice = $this->getDeliveryPrice($deliveryMethod);
 
         return view('payment.details', [
             'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
             'cartItems' => $cartItems,
             'subtotal' => $subtotal,
-            'total' => $subtotal,
+            'total' => $this->calculateTotal($subtotal, $deliveryPrice),
             'deliveryMethod' => $deliveryMethod,
             'paymentMethod' => $paymentMethod,
-            'deliveryMethodLabel' => self::DELIVERY_METHODS[$deliveryMethod],
+            'deliveryMethodLabel' => $this->getDeliveryLabel($deliveryMethod),
+            'deliveryPrice' => $deliveryPrice,
             'paymentMethodLabel' => self::PAYMENT_METHODS[$paymentMethod],
         ]);
     }
@@ -157,12 +170,15 @@ class CartController extends Controller
         }
 
         $subtotal = $this->calculateSubtotal($cartItems);
+        $deliveryPrice = $this->getDeliveryPrice($deliveryMethod);
 
         return view('payment.confirmation', [
             'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
             'cartItems' => $cartItems,
-            'total' => $subtotal,
-            'deliveryMethodLabel' => self::DELIVERY_METHODS[$deliveryMethod],
+            'subtotal' => $subtotal,
+            'total' => $this->calculateTotal($subtotal, $deliveryPrice),
+            'deliveryMethodLabel' => $this->getDeliveryLabel($deliveryMethod),
+            'deliveryPrice' => $deliveryPrice,
             'paymentMethodLabel' => self::PAYMENT_METHODS[$paymentMethod],
             'orderNumber' => 'TD-' . strtoupper(substr(session()->getId(), 0, 8)),
             'customer' => [
@@ -241,5 +257,20 @@ class CartController extends Controller
         return (float) $cartItems->sum(function ($item) {
             return $item->product->price * $item->quantity;
         });
+    }
+
+    private function getDeliveryLabel(string $deliveryMethod): string
+    {
+        return self::DELIVERY_METHODS[$deliveryMethod]['label'];
+    }
+
+    private function getDeliveryPrice(string $deliveryMethod): float
+    {
+        return (float) self::DELIVERY_METHODS[$deliveryMethod]['price'];
+    }
+
+    private function calculateTotal(float $subtotal, float $deliveryPrice): float
+    {
+        return $subtotal + $deliveryPrice;
     }
 }

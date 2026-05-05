@@ -80,6 +80,11 @@
 
     <main class="site-main">
         <div class="products-page">
+            @if (session('success'))
+                <div class="detail-message detail-message-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <div class="catalog-header products-header">
                 <div class="products-heading">

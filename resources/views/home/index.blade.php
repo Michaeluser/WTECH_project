@@ -113,9 +113,9 @@
           <article class="promo-card">
             <img src="{{ asset('images/promo-tablet.jpg') }}" alt="Tablet promo">
             <div class="promo-text">
-              <h3>Tablets up to -25%</h3>
-              <p>Limited offer</p>
-              <a href="{{ route('categories.show', $categories->firstWhere('slug', 'sale')) }}" class="promo-button">Shop now</a>
+              <h3>Business laptops up to -25%</h3>
+              <p>Everyday performance</p>
+              <a href="{{ route('categories.show', $categories->firstWhere('slug', 'laptops')) }}" class="promo-button">Shop now</a>
             </div>
           </article>
 
