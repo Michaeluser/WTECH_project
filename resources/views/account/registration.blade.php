@@ -64,6 +64,11 @@
                             </div>
 
                             <div class="input-group">
+                                <label for="phone_number">Phone Number</label>
+                                <input id="phone_number" name="phone_number" type="text" value="{{ old('phone_number') }}" required>
+                            </div>
+
+                            <div class="input-group">
                                 <label for="password">Password</label>
                                 <input id="password" name="password" type="password" required>
                             </div>
@@ -77,7 +82,7 @@
                         <div class="info-column">
                             <h3>What happens next?</h3>
                             <p>After registration we will sign you in automatically and redirect you to your account page.</p>
-                            <p>You can extend this form later with delivery address, phone number, and profile details once those database fields exist.</p>
+                            <p>Your first name, last name, email, and phone number will already be used later in checkout to prefill delivery details.</p>
                         </div>
 
                         <div class="info-column">

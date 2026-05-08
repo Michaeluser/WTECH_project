@@ -81,7 +81,22 @@
             <button class="slider-btn slider-btn--prev" type="button">&#8249;</button>
             <div class="slider-image">
                 @foreach ($slides as $index => $slide)
-                    <a href="{{ $slide->targetCategory ? route('categories.show', $slide->targetCategory) : route('categories.show', $category) }}" class="slide" data-index="{{ $index }}">
+                    @php
+                        $slideUrl = $slide->targetCategory ? route('categories.show', $slide->targetCategory) : route('categories.show', $category);
+
+                        if ($category->slug === 'laptops') {
+                            $slideUrl = match ($slide->alt_text) {
+                                'Office laptops' => route('categories.show', ['category' => $category, 'line' => 'office']),
+                                'Gaming laptops' => route('categories.show', ['category' => $category, 'line' => 'gaming']),
+                                'ARM laptops' => route('categories.show', ['category' => $category, 'line' => 'arm']),
+                                'MacBook' => route('categories.show', ['category' => $category, 'line' => 'macbook']),
+                                'MacBook style laptops' => route('categories.show', ['category' => $category, 'line' => 'macbook']),
+                                default => $slideUrl,
+                            };
+                        }
+                    @endphp
+
+                    <a href="{{ $slideUrl }}" class="slide" data-index="{{ $index }}">
                         <img src="{{ asset($slide->image_path) }}" alt="{{ $slide->alt_text }}">
                     </a>
                 @endforeach
@@ -93,7 +108,44 @@
 
         <section class="categories-grid">
             @foreach ($cards as $card)
-                <a href="{{ $card->targetCategory ? route('categories.show', $card->targetCategory) : route('categories.show', $category) }}" class="category-card">
+                @php
+                    $cardUrl = $card->targetCategory ? route('categories.show', $card->targetCategory) : route('categories.show', $category);
+
+                    if ($category->slug === 'laptops') {
+                        $cardUrl = match ($card->title) {
+                            'Office laptops' => route('categories.show', ['category' => $category, 'line' => 'office']),
+                            'Gaming laptops' => route('categories.show', ['category' => $category, 'line' => 'gaming']),
+                            'ARM laptops' => route('categories.show', ['category' => $category, 'line' => 'arm']),
+                            'MacBook' => route('categories.show', ['category' => $category, 'line' => 'macbook']),
+                            default => $cardUrl,
+                        };
+                    } elseif ($category->slug === 'pc-components') {
+                        $cardUrl = match ($card->title) {
+                            'Graphics cards' => route('categories.show', ['category' => $category, 'line' => 'graphics']),
+                            'Processors and boards' => route('categories.show', ['category' => $category, 'line' => 'processors-boards']),
+                            'Storage and memory' => route('categories.show', ['category' => $category, 'line' => 'storage-memory']),
+                            'Gaming upgrades' => route('categories.show', ['category' => $category, 'line' => 'gaming-upgrades']),
+                            default => $cardUrl,
+                        };
+                    } elseif ($category->slug === 'gaming') {
+                        $cardUrl = match ($card->title) {
+                            'Gaming laptops' => route('categories.show', ['category' => $category, 'line' => 'gaming-laptops']),
+                            'Graphics power' => route('categories.show', ['category' => $category, 'line' => 'graphics-power']),
+                            'High refresh displays' => route('categories.show', ['category' => $category, 'line' => 'high-refresh-displays']),
+                            'Portable performance' => route('categories.show', ['category' => $category, 'line' => 'portable-performance']),
+                            default => $cardUrl,
+                        };
+                    } elseif ($category->slug === 'monitors') {
+                        $cardUrl = match ($card->title) {
+                            'Office monitors' => route('categories.show', ['category' => $category, 'line' => 'office-monitors']),
+                            'Gaming monitors' => route('categories.show', ['category' => $category, 'line' => 'gaming-monitors']),
+                            'Creative displays' => route('categories.show', ['category' => $category, 'line' => 'creative-displays']),
+                            default => $cardUrl,
+                        };
+                    }
+                @endphp
+
+                <a href="{{ $cardUrl }}" class="category-card">
                     <img src="{{ asset($card->image_path) }}" alt="{{ $card->alt_text }}">
                     <span class="category-card__name">{{ $card->title }}</span>
                 </a>

@@ -169,6 +169,17 @@ class CartController extends Controller
             $paymentMethod = 'card';
         }
 
+        $validated = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:50'],
+            'city' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:50'],
+            'street_address' => ['required', 'string', 'max:255'],
+            'notes' => ['nullable', 'string', 'max:1000'],
+        ]);
+
         $subtotal = $this->calculateSubtotal($cartItems);
         $deliveryPrice = $this->getDeliveryPrice($deliveryMethod);
 
@@ -181,16 +192,7 @@ class CartController extends Controller
             'deliveryPrice' => $deliveryPrice,
             'paymentMethodLabel' => self::PAYMENT_METHODS[$paymentMethod],
             'orderNumber' => 'TD-' . strtoupper(substr(session()->getId(), 0, 8)),
-            'customer' => [
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
-                'email' => $request->input('email'),
-                'phone_number' => $request->input('phone_number'),
-                'city' => $request->input('city'),
-                'postal_code' => $request->input('postal_code'),
-                'street_address' => $request->input('street_address'),
-                'notes' => $request->input('notes'),
-            ],
+            'customer' => $validated,
         ]);
     }
 

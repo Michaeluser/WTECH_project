@@ -82,7 +82,7 @@
 
         <div class="hero-left">
           <article class="main-banner">
-            <img src="{{ asset('images/banner-main.jpg') }}" alt="Main homepage banner">
+            <img src="{{ asset('images/promo_vr_headset.png') }}" alt="Main homepage banner">
             <div class="main-banner-content">
               <h2>Check out our new VR headset!</h2>
               <p>Discover the latest technology at a great price.</p>
@@ -93,7 +93,7 @@
 
         <div class="hero-right">
           <article class="promo-card">
-            <img src="{{ asset('images/promo-monitor.jpg') }}" alt="Monitor promo">
+            <img src="{{ asset('images/promo_monitors.png') }}" alt="Monitor promo">
             <div class="promo-text">
               <h3>Monitors up to -60%</h3>
               <p>Mega offer</p>
@@ -102,7 +102,7 @@
           </article>
 
           <article class="promo-card">
-            <img src="{{ asset('images/promo-laptop.jpg') }}" alt="Laptop promo">
+            <img src="{{ asset('images/promo_gaming_laptops.png') }}" alt="Laptop promo">
             <div class="promo-text">
               <h3>Gaming laptops up to -20%</h3>
               <p>Limited offer</p>
@@ -111,7 +111,7 @@
           </article>
 
           <article class="promo-card">
-            <img src="{{ asset('images/promo-tablet.jpg') }}" alt="Tablet promo">
+            <img src="{{ asset('images/promo_business_laptops.png') }}" alt="Tablet promo">
             <div class="promo-text">
               <h3>Business laptops up to -25%</h3>
               <p>Everyday performance</p>
@@ -120,7 +120,7 @@
           </article>
 
           <article class="promo-card">
-            <img src="{{ asset('images/promo-gpu.jpg') }}" alt="Graphics card promo">
+            <img src="{{ asset('images/promo_graphic_cards.png') }}" alt="Graphics card promo">
             <div class="promo-text">
               <h3>Graphics cards up to -40%</h3>
               <p>Superb offer</p>

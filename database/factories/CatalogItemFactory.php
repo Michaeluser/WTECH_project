@@ -25,7 +25,7 @@ class CatalogItemFactory extends Factory
             'target_category_id' => Category::factory(),
             'kind' => fake()->randomElement(['slide', 'card']),
             'title' => fake()->words(2, true),
-            'image_path' => 'images/banner-main.jpg',
+            'image_path' => 'images/promo_vr_headset.png',
             'alt_text' => fake()->sentence(3),
             'sort_order' => fake()->numberBetween(1, 8),
         ];

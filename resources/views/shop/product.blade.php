@@ -89,7 +89,38 @@
 
             <div class="product-detail-card">
                 <div class="product-detail-image">
-                    <img src="{{ asset($product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $product->name }}">
+                    <div class="product-gallery" data-product-gallery>
+                        <div class="product-gallery-main">
+                            <button type="button" class="product-gallery-nav product-gallery-nav-prev" aria-label="Previous image">
+                                &#8249;
+                            </button>
+
+                            <img
+                                src="{{ asset($galleryImages[0] ?? ($product->image_path ?? 'images/default_laptop.png')) }}"
+                                alt="{{ $product->name }}"
+                                class="product-gallery-main-image"
+                                data-gallery-main
+                            >
+
+                            <button type="button" class="product-gallery-nav product-gallery-nav-next" aria-label="Next image">
+                                &#8250;
+                            </button>
+                        </div>
+
+                        <div class="product-gallery-thumbs">
+                            @foreach ($galleryImages as $index => $imagePath)
+                                <button
+                                    type="button"
+                                    class="product-gallery-thumb @if ($index === 0) product-gallery-thumb-active @endif"
+                                    data-gallery-thumb
+                                    data-image="{{ asset($imagePath) }}"
+                                    aria-label="Show image {{ $index + 1 }}"
+                                >
+                                    <img src="{{ asset($imagePath) }}" alt="{{ $product->name }} image {{ $index + 1 }}">
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
 
                 <div class="product-detail-info">
@@ -168,5 +199,6 @@
 </div>
 
 <script src="{{ asset('js/hamurger-menu.js') }}"></script>
+<script src="{{ asset('js/product-gallery.js') }}"></script>
 </body>
 </html>

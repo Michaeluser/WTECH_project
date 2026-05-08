@@ -109,13 +109,12 @@
                   </div>
 
                   <div class="cart-item-quantity">
-                    <form action="{{ route('cart.update', $item) }}" method="POST" class="cart-quantity-form">
+                    <form action="{{ route('cart.update', $item) }}" method="POST" class="cart-quantity-form" data-auto-update-cart>
                       @csrf
                       @method('PUT')
                       <label for="quantity-{{ $item->id }}" class="cart-quantity-label">Qty</label>
                       <div class="cart-quantity-controls">
                         <input id="quantity-{{ $item->id }}" type="number" name="quantity" value="{{ $item->quantity }}" min="1" max="{{ $item->product->stock }}">
-                        <button type="submit">Update</button>
                       </div>
                       @error('quantity')
                         <p class="cart-field-error">{{ $message }}</p>
@@ -160,6 +159,7 @@
     </footer>
 
   </div>
+  <script src="{{ asset('js/cart-auto-update.js') }}"></script>
 </body>
 
 </html>

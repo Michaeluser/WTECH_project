@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $category->name }} | TechnoDom</title>
+    <title>{{ $currentLineTitle ?? $category->name }} | TechnoDom</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/products.css') }}">
 </head>
@@ -84,19 +84,22 @@
                     <div class="breadcrumb">
                         <a href="{{ route('home') }}">Home</a>
                         <span>/</span>
-                        <span>{{ $category->name }}</span>
+                        <span>{{ $currentLineTitle ?? $category->name }}</span>
                     </div>
-                    <h1 class="catalog-title">{{ $category->name }}</h1>
-                    <p class="products-subtitle">{{ $category->description }}</p>
+                    <h1 class="catalog-title">{{ $currentLineTitle ?? $category->name }}</h1>
+                    <p class="products-subtitle">{{ $currentLineDescription }}</p>
                 </div>
             </div>
 
             <section class="products-toolbar">
                 <div class="toolbar-text">
-                    <p>Showing {{ $products->count() }} of {{ $products->total() }} products from the {{ $category->name }} category</p>
+                    <p>Showing {{ $products->count() }} of {{ $products->total() }} products from the {{ $currentLineTitle ?? $category->name }} category</p>
                 </div>
 
                 <form class="sort-form" method="GET" action="{{ route('categories.show', $category) }}">
+                    @if ($filters['line'])
+                        <input type="hidden" name="line" value="{{ $filters['line'] }}">
+                    @endif
                     <input type="hidden" name="price_from" value="{{ $filters['price_from'] }}">
                     <input type="hidden" name="price_to" value="{{ $filters['price_to'] }}">
 
@@ -124,6 +127,9 @@
             <section class="products-layout">
                 <aside class="filters-sidebar">
                     <form class="filters-card" method="GET" action="{{ route('categories.show', $category) }}">
+                        @if ($filters['line'])
+                            <input type="hidden" name="line" value="{{ $filters['line'] }}">
+                        @endif
                         <h2 class="filters-title">Filters</h2>
 
                         <div class="filter-group">
@@ -170,7 +176,7 @@
 
                         <div class="filter-actions">
                             <button type="submit" class="product-button filter-submit">Apply filters</button>
-                            <a href="{{ route('categories.show', $category) }}" class="filter-reset">Reset filters</a>
+                            <a href="{{ route('categories.show', array_filter(['category' => $category, 'line' => $filters['line']])) }}" class="filter-reset">Reset filters</a>
                         </div>
                     </form>
                 </aside>

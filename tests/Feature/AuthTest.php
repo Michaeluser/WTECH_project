@@ -16,6 +16,7 @@ class AuthTest extends TestCase
             'first_name' => 'Test',
             'last_name' => 'User',
             'email' => 'test@example.com',
+            'phone_number' => '+421900123456',
             'password' => 'password123',
             'password_confirmation' => 'password123',
         ]);
@@ -24,6 +25,7 @@ class AuthTest extends TestCase
         $this->assertAuthenticated();
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
+            'phone_number' => '+421900123456',
         ]);
     }
 

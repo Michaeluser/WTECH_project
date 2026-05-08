@@ -93,49 +93,74 @@
                 <div class="checkout-block">
                     <h2>Delivery Information</h2>
 
-                    <form class="details-form" action="{{ route('checkout.confirmation') }}" method="GET">
+                    <form class="details-form" action="{{ route('checkout.confirmation') }}" method="POST">
+                        @csrf
                         <input type="hidden" name="delivery_method" value="{{ $deliveryMethod }}">
                         <input type="hidden" name="payment_method" value="{{ $paymentMethod }}">
 
                         <div class="details-form-grid">
                             <div class="form-field">
                                 <label for="first_name">First Name</label>
-                                <input id="first_name" name="first_name" type="text" placeholder="Enter your first name">
+                                <input id="first_name" name="first_name" type="text" placeholder="Enter your first name" value="{{ old('first_name', auth()->check() ? auth()->user()->first_name : '') }}">
+                                @error('first_name')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field">
                                 <label for="last_name">Last Name</label>
-                                <input id="last_name" name="last_name" type="text" placeholder="Enter your last name">
+                                <input id="last_name" name="last_name" type="text" placeholder="Enter your last name" value="{{ old('last_name', auth()->check() ? auth()->user()->last_name : '') }}">
+                                @error('last_name')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field">
                                 <label for="email">Email</label>
-                                <input id="email" name="email" type="email" placeholder="Enter your email address">
+                                <input id="email" name="email" type="email" placeholder="Enter your email address" value="{{ old('email', auth()->check() ? auth()->user()->email : '') }}">
+                                @error('email')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field">
                                 <label for="phone_number">Phone Number</label>
-                                <input id="phone_number" name="phone_number" type="text" placeholder="Enter your phone number">
+                                <input id="phone_number" name="phone_number" type="text" placeholder="Enter your phone number" value="{{ old('phone_number', auth()->check() ? auth()->user()->phone_number : '') }}">
+                                @error('phone_number')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field">
                                 <label for="city">City</label>
-                                <input id="city" name="city" type="text" placeholder="Enter your city">
+                                <input id="city" name="city" type="text" placeholder="Enter your city" value="{{ old('city') }}">
+                                @error('city')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field">
                                 <label for="postal_code">Postal Code</label>
-                                <input id="postal_code" name="postal_code" type="text" placeholder="Enter your postal code">
+                                <input id="postal_code" name="postal_code" type="text" placeholder="Enter your postal code" value="{{ old('postal_code') }}">
+                                @error('postal_code')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field form-field-full">
                                 <label for="street_address">Street Address</label>
-                                <input id="street_address" name="street_address" type="text" placeholder="Enter your street address">
+                                <input id="street_address" name="street_address" type="text" placeholder="Enter your street address" value="{{ old('street_address') }}">
+                                @error('street_address')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="form-field form-field-full">
                                 <label for="notes">Order Notes</label>
-                                <textarea id="notes" name="notes" rows="4" placeholder="Add delivery instructions or extra information here"></textarea>
+                                <textarea id="notes" name="notes" rows="4" placeholder="Add delivery instructions or extra information here">{{ old('notes') }}</textarea>
+                                @error('notes')
+                                    <p class="cart-field-error">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
