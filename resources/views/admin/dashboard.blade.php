@@ -33,6 +33,22 @@
 
     <main class="admin-main admin-dashboard-main">
       <div class="admin-dashboard-layout">
+        @if (session('success'))
+          <div class="admin-auth-success">
+            {{ session('success') }}
+          </div>
+        @endif
+
+        @if ($errors->any())
+          <div class="admin-auth-error">
+            <ul class="admin-error-list">
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+
         <section class="admin-panel-card">
           <h2>Existing Products</h2>
           <div class="admin-products-list">
@@ -48,8 +64,12 @@
                 </div>
 
                 <div class="admin-product-actions">
-                  <a href="#edit-product" class="admin-link">Edit</a>
-                  <button type="button" class="admin-link admin-link-danger">Delete product</button>
+                  <a href="{{ route('admin.dashboard', ['product' => $product->id]) }}#edit-product" class="admin-link">Edit</a>
+                  <form method="POST" action="{{ route('admin.products.destroy', $product) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="admin-link admin-link-danger">Delete product</button>
+                  </form>
                 </div>
               </article>
             @empty
@@ -84,183 +104,250 @@
 
         <section class="admin-panel-card" id="create-product">
           <h2>Create New Product</h2>
-          <p class="admin-panel-text">Use this form to add a new product to the catalog. Save logic comes next.</p>
+          <p class="admin-panel-text">Use this form to add a new product to the catalog. Upload from 2 to 5 product photos.</p>
 
-          <form class="admin-form admin-product-form">
+          <form class="admin-form admin-product-form" method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+            @csrf
             <div class="admin-form-grid">
               <div class="form-field">
                 <label for="new-product-name">Name of the product</label>
-                <input id="new-product-name" type="text" placeholder="For example Lenovo IdeaPad Slim 5" required>
+                <input id="new-product-name" name="name" type="text" value="{{ old('name') }}" placeholder="For example Lenovo IdeaPad Slim 5" required>
               </div>
 
               <div class="form-field">
                 <label for="new-product-price">Price</label>
-                <input id="new-product-price" type="number" min="0" placeholder="899" required>
+                <input id="new-product-price" name="price" type="number" min="0" step="0.01" value="{{ old('price') }}" placeholder="899" required>
               </div>
 
               <div class="form-field">
                 <label for="new-product-amount">Amount</label>
-                <input id="new-product-amount" type="number" min="0" placeholder="7" required>
+                <input id="new-product-amount" name="stock" type="number" min="0" value="{{ old('stock') }}" placeholder="7" required>
               </div>
 
               <div class="form-field">
                 <label for="new-product-category">Category</label>
-                <select id="new-product-category" required>
+                <select id="new-product-category" name="category_id" data-category-select required>
                   <option value="">Select category</option>
                   @foreach ($categories as $category)
-                    <option>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" data-category-slug="{{ $category->slug }}" @selected((string) old('category_id') === (string) $category->id)>{{ $category->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="new-product-line">Subcategory</label>
+                <select id="new-product-line" name="line_key" data-line-select required>
+                  <option value="">Select subcategory</option>
+                  @foreach ($categories as $category)
+                    @if (isset($lineOptions[$category->slug]))
+                      @foreach ($lineOptions[$category->slug] as $lineKey => $lineLabel)
+                        <option value="{{ $lineKey }}" data-category-slug="{{ $category->slug }}" @selected(old('line_key') === $lineKey)>{{ $lineLabel }}</option>
+                      @endforeach
+                    @endif
                   @endforeach
                 </select>
               </div>
 
               <div class="form-field">
                 <label for="new-product-ram">RAM</label>
-                <select id="new-product-ram" required>
+                <select id="new-product-ram" name="ram_gb" required>
                   <option value="">Select RAM</option>
                   @foreach ($ramOptions as $ramOption)
-                    <option>{{ $ramOption }} GB</option>
+                    <option value="{{ $ramOption }}" @selected((string) old('ram_gb') === (string) $ramOption)>{{ $ramOption }} GB</option>
                   @endforeach
                 </select>
               </div>
 
               <div class="form-field">
                 <label for="new-product-color">Color</label>
-                <select id="new-product-color" required>
+                <select id="new-product-color" name="color" required>
                   <option value="">Select color</option>
                   @foreach ($colorOptions as $colorOption)
-                    <option>{{ $colorOption }}</option>
+                    <option value="{{ $colorOption }}" @selected(old('color') === $colorOption)>{{ $colorOption }}</option>
                   @endforeach
                 </select>
               </div>
 
               <div class="form-field">
                 <label for="new-product-brand">Brand</label>
-                <select id="new-product-brand" required>
+                <select id="new-product-brand" name="brand_id" required>
                   <option value="">Select brand</option>
                   @foreach ($brands as $brand)
-                    <option>{{ $brand->name }}</option>
+                    <option value="{{ $brand->id }}" @selected((string) old('brand_id') === (string) $brand->id)>{{ $brand->name }}</option>
                   @endforeach
                 </select>
               </div>
+
             </div>
 
             <div class="form-field">
               <label for="new-product-description">Short description</label>
-              <textarea id="new-product-description" rows="4" placeholder="Write a short product description." required></textarea>
+              <textarea id="new-product-description" name="description" rows="4" placeholder="Write a short product description." required>{{ old('description') }}</textarea>
             </div>
 
-            <div class="admin-form-grid">
-              <div class="form-field">
-                <label for="new-product-image-1">Photo 1</label>
-                <input id="new-product-image-1" type="file" accept="image/*" required>
+            <div class="admin-dynamic-upload" data-image-inputs data-max-images="5">
+              <div class="admin-form-grid" data-image-inputs-list>
+                <div class="form-field">
+                  <label for="new-product-image-1">Photo 1</label>
+                  <input id="new-product-image-1" name="images[]" type="file" accept="image/*" required>
+                </div>
+
+                <div class="form-field">
+                  <label for="new-product-image-2">Photo 2</label>
+                  <input id="new-product-image-2" name="images[]" type="file" accept="image/*" required>
+                </div>
               </div>
 
-              <div class="form-field">
-                <label for="new-product-image-2">Photo 2</label>
-                <input id="new-product-image-2" type="file" accept="image/*" required>
-              </div>
+              <button
+                type="button"
+                class="admin-link admin-add-photo-button"
+                data-add-image-input
+                data-input-prefix="new-product-image"
+              >
+                Add another photo
+              </button>
             </div>
 
             <div class="admin-form-actions">
-              <button type="button" class="admin-button">Save product</button>
+              <button type="submit" class="admin-button">Save product</button>
             </div>
           </form>
         </section>
 
         <section class="admin-panel-card" id="edit-product">
           <h2>Edit Existing Product</h2>
-          <p class="admin-panel-text">Update the selected product information using the form below. Update logic comes next.</p>
+          <p class="admin-panel-text">Update the selected product information below. To replace gallery photos, upload a new set from 2 to 5 images.</p>
 
           @if ($selectedProduct)
-            <form class="admin-form admin-product-form">
+            <form class="admin-form admin-product-form" method="POST" action="{{ route('admin.products.update', $selectedProduct) }}" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
               <div class="admin-form-grid">
                 <div class="form-field">
                   <label for="edit-product-name">Name of the product</label>
-                  <input id="edit-product-name" type="text" value="{{ $selectedProduct->name }}" required>
+                  <input id="edit-product-name" name="name" type="text" value="{{ old('name', $selectedProduct->name) }}" required>
                 </div>
 
                 <div class="form-field">
                   <label for="edit-product-price">Price</label>
-                  <input id="edit-product-price" type="number" min="0" value="{{ $selectedProduct->price }}" required>
+                  <input id="edit-product-price" name="price" type="number" min="0" step="0.01" value="{{ old('price', $selectedProduct->price) }}" required>
                 </div>
 
                 <div class="form-field">
                   <label for="edit-product-amount">Amount</label>
-                  <input id="edit-product-amount" type="number" min="0" value="{{ $selectedProduct->stock }}" required>
+                  <input id="edit-product-amount" name="stock" type="number" min="0" value="{{ old('stock', $selectedProduct->stock) }}" required>
                 </div>
 
                 <div class="form-field">
                   <label for="edit-product-category">Category</label>
-                  <select id="edit-product-category" required>
+                  <select id="edit-product-category" name="category_id" data-category-select required>
                     @foreach ($categories as $category)
-                      <option @selected($selectedProduct->category_id === $category->id)>{{ $category->name }}</option>
+                      <option value="{{ $category->id }}" data-category-slug="{{ $category->slug }}" @selected((string) old('category_id', $selectedProduct->category_id) === (string) $category->id)>{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="edit-product-line">Subcategory</label>
+                  <select id="edit-product-line" name="line_key" data-line-select required>
+                    <option value="">Select subcategory</option>
+                    @foreach ($categories as $category)
+                      @if (isset($lineOptions[$category->slug]))
+                        @foreach ($lineOptions[$category->slug] as $lineKey => $lineLabel)
+                          <option value="{{ $lineKey }}" data-category-slug="{{ $category->slug }}" @selected(old('line_key', $selectedProductLineKey) === $lineKey)>{{ $lineLabel }}</option>
+                        @endforeach
+                      @endif
                     @endforeach
                   </select>
                 </div>
 
                 <div class="form-field">
                   <label for="edit-product-ram">RAM</label>
-                  <select id="edit-product-ram" required>
+                  <select id="edit-product-ram" name="ram_gb" required>
                     @foreach ($ramOptions as $ramOption)
-                      <option @selected($selectedProduct->ram_gb === $ramOption)>{{ $ramOption }} GB</option>
+                      <option value="{{ $ramOption }}" @selected((string) old('ram_gb', $selectedProduct->ram_gb) === (string) $ramOption)>{{ $ramOption }} GB</option>
                     @endforeach
                   </select>
                 </div>
 
                 <div class="form-field">
                   <label for="edit-product-color">Color</label>
-                  <select id="edit-product-color" required>
+                  <select id="edit-product-color" name="color" required>
                     @foreach ($colorOptions as $colorOption)
-                      <option @selected($selectedProduct->color === $colorOption)>{{ $colorOption }}</option>
+                      <option value="{{ $colorOption }}" @selected(old('color', $selectedProduct->color) === $colorOption)>{{ $colorOption }}</option>
                     @endforeach
                   </select>
                 </div>
 
                 <div class="form-field">
                   <label for="edit-product-brand">Brand</label>
-                  <select id="edit-product-brand" required>
+                  <select id="edit-product-brand" name="brand_id" required>
                     @foreach ($brands as $brand)
-                      <option @selected($selectedProduct->brand_id === $brand->id)>{{ $brand->name }}</option>
+                      <option value="{{ $brand->id }}" @selected((string) old('brand_id', $selectedProduct->brand_id) === (string) $brand->id)>{{ $brand->name }}</option>
                     @endforeach
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="edit-product-featured">Featured on home page</label>
+                  <select id="edit-product-featured" name="is_featured" required>
+                    <option value="0" @selected((string) old('is_featured', (int) $selectedProduct->is_featured) === '0')>No</option>
+                    <option value="1" @selected((string) old('is_featured', (int) $selectedProduct->is_featured) === '1')>Yes</option>
                   </select>
                 </div>
               </div>
 
               <div class="form-field">
                 <label for="edit-product-description">Short description</label>
-                <textarea id="edit-product-description" rows="4" required>{{ $selectedProduct->description }}</textarea>
+                <textarea id="edit-product-description" name="description" rows="4" required>{{ old('description', $selectedProduct->description) }}</textarea>
               </div>
 
               <div class="admin-current-images">
                 <h3>Current Photos</h3>
 
                 <div class="admin-image-grid">
-                  <article class="admin-image-card">
-                    <img src="{{ asset($selectedProduct->image_path ?? 'images/product-1.jpg') }}" alt="Current product photo 1">
-                  </article>
-
-                  <article class="admin-image-card">
-                    <img src="{{ asset($selectedProduct->image_path ?? 'images/product-1.jpg') }}" alt="Current product photo 2">
-                  </article>
+                  @foreach ($selectedProduct->galleryImages() as $imagePath)
+                    <article class="admin-image-card">
+                      <img src="{{ asset($imagePath) }}" alt="Current product photo">
+                    </article>
+                  @endforeach
                 </div>
               </div>
 
-              <div class="admin-form-grid">
-                <div class="form-field">
-                  <label for="replace-image-1">Replace photo 1</label>
-                  <input id="replace-image-1" type="file" accept="image/*">
-                </div>
+              <div class="admin-dynamic-upload" data-image-inputs data-max-images="5" data-start-empty="true">
+                <div class="admin-form-grid" data-image-inputs-list></div>
 
-                <div class="form-field">
-                  <label for="replace-image-2">Replace photo 2</label>
-                  <input id="replace-image-2" type="file" accept="image/*">
+                <div class="admin-form-actions">
+                  <button
+                    type="button"
+                    class="admin-link"
+                    data-start-image-replace
+                    data-input-prefix="replace-image"
+                  >
+                    Replace current photos
+                  </button>
+
+                  <button
+                    type="button"
+                    class="admin-link admin-add-photo-button"
+                    data-add-image-input
+                    data-input-prefix="replace-image"
+                    hidden
+                  >
+                    Add another photo
+                  </button>
                 </div>
               </div>
 
               <div class="admin-form-actions">
-                <button type="button" class="admin-button">Update product</button>
-                <button type="button" class="admin-link admin-link-danger">Delete this product</button>
+                <button type="submit" class="admin-button">Update product</button>
               </div>
+            </form>
+
+            <form method="POST" action="{{ route('admin.products.destroy', $selectedProduct) }}" class="admin-standalone-danger-form">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="admin-link admin-link-danger">Delete this product</button>
             </form>
           @else
             <p>No product available for editing yet.</p>
@@ -273,6 +360,8 @@
       <p>Authorized staff only.</p>
     </footer>
   </div>
+
+  <script src="{{ asset('js/admin-product-images.js') }}"></script>
 </body>
 
 </html>

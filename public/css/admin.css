@@ -119,6 +119,21 @@
   font-size: 14px;
 }
 
+.admin-auth-success {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border: 1px solid #8fb38f;
+  border-radius: 10px;
+  background-color: #e0f1e0;
+  color: #1f5d1f;
+  font-size: 14px;
+}
+
+.admin-error-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
 .admin-dashboard-layout {
   display: flex;
   flex-direction: column;
@@ -319,6 +334,20 @@
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.admin-dynamic-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-add-photo-button {
+  align-self: flex-start;
+}
+
+.admin-standalone-danger-form {
+  margin-top: 12px;
 }
 
 .admin-current-images h3 {
