@@ -76,10 +76,10 @@
                     @foreach ($cartItems as $item)
                         <div class="summary-item">
                             <div class="summary-product">
-                                <img src="{{ asset($item->product->image_path ?? 'images/product-1.jpg') }}" alt="{{ $item->product->name }}">
-                                <span>{{ $item->product->name }} x{{ $item->quantity }}</span>
+                                <img src="{{ asset($item->product->image_path ?? 'images/default_laptop.png') }}" alt="{{ $item->product_name }}">
+                                <span>{{ $item->product_name }} x{{ $item->quantity }}</span>
                             </div>
-                            <span>{{ number_format((float) ($item->product->price * $item->quantity), 2, '.', ' ') }} EUR</span>
+                            <span>{{ number_format((float) ($item->product_price * $item->quantity), 2, '.', ' ') }} EUR</span>
                         </div>
                     @endforeach
 

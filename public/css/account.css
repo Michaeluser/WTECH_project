@@ -15,6 +15,21 @@ main {
     padding: 20px;
 }
 
+.orders-page-main .account-state {
+    grid-column: span 2;
+    grid-row: 1;
+}
+
+.orders-page-main .orders-info {
+    grid-column: span 2;
+    grid-row: 2;
+}
+
+.orders-page-main .link-layout {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
 .account-state {
     grid-column: span 2;
     grid-row: 1;
@@ -25,7 +40,7 @@ main {
     grid-row: 2;
 }
 
-.payment-info {
+.orders-info {
     grid-column: span 2;
     grid-row: 3;
 }
@@ -137,21 +152,80 @@ main {
 }
 
 
-.payment-info {
+.orders-info {
     background-color: #d9d9d9;
     border: 1px solid #999;
     padding: 20px;
     border-radius: 10px;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 
+.orders-title {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.orders-empty {
+    margin: 0;
+    font-size: 15px;
+    color: #555;
+}
+
+.orders-list {
     display: grid;
-    grid-template-columns: 150px 1fr;
-    grid-template-areas:
-        "ibanLabel    ibanData"
-        "bicLabel     bicData"
-        "acreditInfo  acreditInfo";
-    column-gap: 20px;
-    row-gap: 10px;
+    gap: 14px;
+}
+
+.order-card {
+    background-color: #bcbcbc;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.order-card-header h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #222;
+}
+
+.order-status {
+    background-color: #d9d9d9;
+    border: 1px solid #888;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.order-meta,
+.order-total {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.order-items-list {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 
@@ -261,6 +335,21 @@ h3[class$="-data"] {
         gap: 18px;
         padding: 16px;
     }
+
+    .orders-page-main .account-state {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .orders-page-main .orders-info {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .orders-page-main .link-layout {
+        grid-column: 1 / -1;
+        grid-row: 3;
+    }
  
     .account-state {
         grid-column: 1 / -1;
@@ -277,14 +366,11 @@ h3[class$="-data"] {
         column-gap: 14px;
         row-gap: 8px;
     }
- 
-    .payment-info {
+
+    .orders-info {
         grid-column: 1 / -1;
         grid-row: 3;
         padding: 14px;
-        grid-template-columns: 120px 1fr;
-        column-gap: 14px;
-        row-gap: 8px;
     }
  
     .identity-info-layout {
@@ -317,6 +403,21 @@ h3[class$="-data"] {
         gap: 14px;
         padding: 12px;
     }
+
+    .orders-page-main .account-state {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .orders-page-main .orders-info {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .orders-page-main .link-layout {
+        grid-column: 1;
+        grid-row: 3;
+    }
  
     .account-state {
         grid-column: 1;
@@ -333,14 +434,11 @@ h3[class$="-data"] {
         column-gap: 10px;
         row-gap: 6px;
     }
- 
-    .payment-info {
+
+    .orders-info {
         grid-column: 1;
         grid-row: 3;
         padding: 12px;
-        grid-template-columns: 100px 1fr;
-        column-gap: 10px;
-        row-gap: 6px;
     }
  
     .identity-info-layout {
@@ -466,12 +564,6 @@ h3[class$="-data"] {
 .country-data      { grid-area: countryData; }
 .city-data         { grid-area: cityData; }
 .post-index-data   { grid-area: postIndexData; }
-
-.iban-label        { grid-area: ibanLabel; }
-.bic-label         { grid-area: bicLabel; }
-.iban-data         { grid-area: ibanData; }
-.bic-data          { grid-area: bicData; }
-.acredit-info      { grid-area: acreditInfo; }
 
 .birthdate-label { grid-area: birthdateLabel;}
 .sex-label       { grid-area: sexLabel;}

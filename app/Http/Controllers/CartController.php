@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
@@ -182,16 +184,51 @@ class CartController extends Controller
 
         $subtotal = $this->calculateSubtotal($cartItems);
         $deliveryPrice = $this->getDeliveryPrice($deliveryMethod);
+        $total = $this->calculateTotal($subtotal, $deliveryPrice);
+        $orderNumber = $this->generateOrderNumber();
+
+        $order = Order::create([
+            'user_id' => auth()->id(),
+            'order_number' => $orderNumber,
+            'email' => $validated['email'],
+            'phone_number' => $validated['phone_number'],
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'city' => $validated['city'],
+            'postal_code' => $validated['postal_code'],
+            'street_address' => $validated['street_address'],
+            'notes' => $validated['notes'] ?? null,
+            'delivery_method' => $this->getDeliveryLabel($deliveryMethod),
+            'payment_method' => self::PAYMENT_METHODS[$paymentMethod],
+            'subtotal' => $subtotal,
+            'delivery_price' => $deliveryPrice,
+            'total' => $total,
+            'status' => 'created',
+        ]);
+
+        foreach ($cartItems as $cartItem) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id,
+                'product_name' => $cartItem->product->name,
+                'product_price' => $cartItem->product->price,
+                'quantity' => $cartItem->quantity,
+            ]);
+        }
+
+        foreach ($cartItems as $cartItem) {
+            $cartItem->delete();
+        }
 
         return view('payment.confirmation', [
             'categories' => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
-            'cartItems' => $cartItems,
+            'cartItems' => $order->items()->with('product')->get(),
             'subtotal' => $subtotal,
-            'total' => $this->calculateTotal($subtotal, $deliveryPrice),
+            'total' => $total,
             'deliveryMethodLabel' => $this->getDeliveryLabel($deliveryMethod),
             'deliveryPrice' => $deliveryPrice,
             'paymentMethodLabel' => self::PAYMENT_METHODS[$paymentMethod],
-            'orderNumber' => 'TD-' . strtoupper(substr(session()->getId(), 0, 8)),
+            'orderNumber' => $orderNumber,
             'customer' => $validated,
         ]);
     }
@@ -274,5 +311,10 @@ class CartController extends Controller
     private function calculateTotal(float $subtotal, float $deliveryPrice): float
     {
         return $subtotal + $deliveryPrice;
+    }
+
+    private function generateOrderNumber(): string
+    {
+        return 'TD-' . now()->format('YmdHis') . '-' . strtoupper(substr(session()->getId(), 0, 4));
     }
 }

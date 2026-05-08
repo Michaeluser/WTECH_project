@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account | TechnoDom</title>
+    <title>My Orders | TechnoDom</title>
     <link rel="stylesheet" href="{{ asset('css/account.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -27,7 +27,7 @@
         </header>
 
         <main>
-            <div class="site-main">
+            <div class="site-main orders-page-main">
                 <div class="account-state">
                     <div class="account-part">
                         <img src="{{ asset('images/user.png') }}" alt="User account image">
@@ -35,29 +35,44 @@
                     </div>
 
                     <div class="membership-part">
-                        <h4 class="membership-label">Account Status</h4>
+                        <h4 class="membership-label">Orders Overview</h4>
                         <div class="status-container">
                             <img src="{{ asset('images/black-check.png') }}" alt="icon">
-                            <h4 class="membership-status">Authorized</h4>
+                            <h4 class="membership-status">{{ $orders->count() }} orders</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="location-contact-info">
-                    <h3 class="mail-label">Mail:</h3>
-                    <h3 class="mail-data">{{ auth()->user()->email }}</h3>
+                <div class="orders-info">
+                    <h3 class="orders-title">My Orders</h3>
 
-                    <h3 class="number-label">User ID:</h3>
-                    <h3 class="number-data">{{ auth()->user()->id }}</h3>
+                    @if ($orders->isEmpty())
+                        <p class="orders-empty">You do not have any orders yet.</p>
+                    @else
+                        <div class="orders-list">
+                            @foreach ($orders as $order)
+                                <article class="order-card">
+                                    <div class="order-card-header">
+                                        <h4>{{ $order->order_number }}</h4>
+                                    </div>
 
-                    <h3 class="street-label">Created:</h3>
-                    <h3 class="street-data">{{ auth()->user()->created_at?->format('d.m.Y H:i') }}</h3>
+                                    <p class="order-meta">
+                                        {{ $order->created_at?->format('d.m.Y H:i') }} |
+                                        {{ $order->delivery_method }} |
+                                        {{ $order->payment_method }}
+                                    </p>
 
-                    <h3 class="country-label">Role:</h3>
-                    <h3 class="country-data">Customer</h3>
+                                    <ul class="order-items-list">
+                                        @foreach ($order->items as $item)
+                                            <li>{{ $item->product_name }} x{{ $item->quantity }}</li>
+                                        @endforeach
+                                    </ul>
 
-                    <h3 class="city-label">Email Verification:</h3>
-                    <h3 class="city-data">{{ auth()->user()->email_verified_at ? 'Verified' : 'Not verified' }}</h3>
+                                    <p class="order-total">Total: {{ number_format((float) $order->total, 2, '.', ' ') }} EUR</p>
+                                </article>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
 
                 <div class="link-layout">

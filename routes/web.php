@@ -50,6 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/account', function () {
         return view('account.account');
     })->name('account');
+    Route::get('/account/orders', function () {
+        return view('account.orders', [
+            'orders' => auth()->user()->orders()->with('items')->get(),
+        ]);
+    })->name('account.orders');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
