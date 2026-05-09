@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -26,6 +27,10 @@ class AuthTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => 'test@example.com',
             'phone_number' => '+421900123456',
+        ]);
+        $this->assertDatabaseHas('user_role', [
+            'user_id' => User::query()->where('email', 'test@example.com')->value('id'),
+            'role_id' => Role::query()->where('role', 'customer')->value('id'),
         ]);
     }
 

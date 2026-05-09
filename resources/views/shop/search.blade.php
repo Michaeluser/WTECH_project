@@ -31,7 +31,7 @@
             </form>
 
             @auth
-                @if (auth()->user()->is_staff)
+                @if (auth()->user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}" class="staff-dashboard-link">Back to Admin Dashboard</a>
                 @endif
             @endauth

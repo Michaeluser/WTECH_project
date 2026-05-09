@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const uploadSections = document.querySelectorAll('[data-image-inputs]');
     const categorySelects = document.querySelectorAll('[data-category-select]');
+    const removeImageForm = document.getElementById('admin-remove-image-form');
+    const removeImageButtons = document.querySelectorAll('[data-remove-product-image]');
 
     uploadSections.forEach((section) => {
         const list = section.querySelector('[data-image-inputs-list]');
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputPrefix = addButton.dataset.inputPrefix || 'product-image';
         const startsEmpty = section.dataset.startEmpty === 'true';
 
-        const createField = (number) => {
+        const createField = (number, required = false) => {
             const field = document.createElement('div');
             field.className = 'form-field';
 
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             input.name = 'images[]';
             input.type = 'file';
             input.accept = 'image/*';
+            input.required = required;
 
             field.appendChild(label);
             field.appendChild(input);
@@ -55,8 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (startReplaceButton) {
             startReplaceButton.addEventListener('click', () => {
                 if (list.querySelectorAll('input[type="file"]').length === 0) {
-                    list.appendChild(createField(1));
-                    list.appendChild(createField(2));
+                    list.appendChild(createField(1, true));
                 }
 
                 startReplaceButton.hidden = true;
@@ -103,4 +105,19 @@ document.addEventListener('DOMContentLoaded', () => {
         categorySelect.addEventListener('change', syncLineOptions);
         syncLineOptions();
     });
+
+    if (removeImageForm) {
+        const imagePathInput = removeImageForm.querySelector('input[name="image_path"]');
+
+        removeImageButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                if (!imagePathInput) {
+                    return;
+                }
+
+                imagePathInput.value = button.dataset.imagePath || '';
+                removeImageForm.submit();
+            });
+        });
+    }
 });

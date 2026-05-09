@@ -104,7 +104,7 @@
 
         <section class="admin-panel-card" id="create-product">
           <h2>Create New Product</h2>
-          <p class="admin-panel-text">Use this form to add a new product to the catalog. Upload from 2 to 5 product photos.</p>
+          <p class="admin-panel-text">Use this form to add a new product to the catalog. Upload from 1 to 5 product photos.</p>
 
           <form class="admin-form admin-product-form" method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
             @csrf
@@ -191,11 +191,6 @@
                   <label for="new-product-image-1">Photo 1</label>
                   <input id="new-product-image-1" name="images[]" type="file" accept="image/*" required>
                 </div>
-
-                <div class="form-field">
-                  <label for="new-product-image-2">Photo 2</label>
-                  <input id="new-product-image-2" name="images[]" type="file" accept="image/*" required>
-                </div>
               </div>
 
               <button
@@ -216,7 +211,7 @@
 
         <section class="admin-panel-card" id="edit-product">
           <h2>Edit Existing Product</h2>
-          <p class="admin-panel-text">Update the selected product information below. To replace gallery photos, upload a new set from 2 to 5 images.</p>
+          <p class="admin-panel-text">Update the selected product information below. To replace gallery photos, upload a new set from 1 to 5 images.</p>
 
           @if ($selectedProduct)
             <form class="admin-form admin-product-form" method="POST" action="{{ route('admin.products.update', $selectedProduct) }}" enctype="multipart/form-data">
@@ -309,6 +304,21 @@
                   @foreach ($selectedProduct->galleryImages() as $imagePath)
                     <article class="admin-image-card">
                       <img src="{{ asset($imagePath) }}" alt="Current product photo">
+
+                      <div class="admin-image-card-actions">
+                        @if (count($selectedProduct->galleryImages()) > 1)
+                          <button
+                            type="button"
+                            class="admin-link admin-link-danger"
+                            data-remove-product-image
+                            data-image-path="{{ $imagePath }}"
+                          >
+                            Remove photo
+                          </button>
+                        @else
+                          <p class="admin-image-note">At least 1 photo must remain.</p>
+                        @endif
+                      </div>
                     </article>
                   @endforeach
                 </div>
@@ -349,6 +359,17 @@
               @method('DELETE')
               <button type="submit" class="admin-link admin-link-danger">Delete this product</button>
             </form>
+
+            <form
+              method="POST"
+              action="{{ route('admin.products.images.destroy', $selectedProduct) }}"
+              id="admin-remove-image-form"
+              hidden
+            >
+              @csrf
+              @method('DELETE')
+              <input type="hidden" name="image_path" value="">
+            </form>
           @else
             <p>No product available for editing yet.</p>
           @endif
@@ -357,7 +378,7 @@
     </main>
 
     <footer class="admin-footer">
-      <p>Authorized staff only.</p>
+      <p>Authorized admin users only.</p>
     </footer>
   </div>
 

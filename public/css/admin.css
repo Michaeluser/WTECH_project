@@ -367,6 +367,25 @@
   border-radius: 10px;
 }
 
+.admin-image-card-actions {
+  margin-top: 12px;
+}
+
+.admin-image-card-actions .admin-link,
+.admin-image-card-actions form {
+  width: 100%;
+}
+
+.admin-image-card-actions form {
+  display: flex;
+}
+
+.admin-image-note {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

@@ -269,6 +269,23 @@ class CartController extends Controller
         return back()->with('success', "{$productName} removed from cart!");
     }
 
+    public function clear(): RedirectResponse
+    {
+        $cartItems = $this->getCurrentCartItems();
+
+        if ($cartItems->isEmpty()) {
+            return back()->withErrors([
+                'cart' => 'Your cart is already empty.',
+            ]);
+        }
+
+        foreach ($cartItems as $cartItem) {
+            $cartItem->delete();
+        }
+
+        return back()->with('success', 'All products were removed from your cart.');
+    }
+
     private function authorizeCartItem(CartItem $cartItem): bool
     {
         if (auth()->check()) {

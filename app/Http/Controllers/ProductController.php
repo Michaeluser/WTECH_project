@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CartItem;
 use App\Models\Favourite;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
@@ -172,11 +173,22 @@ class ProductController extends Controller
     {
         $product->load(['brand', 'category', 'images']);
 
+        $currentCartItem = auth()->check()
+            ? CartItem::query()
+                ->where('user_id', auth()->id())
+                ->where('product_id', $product->id)
+                ->first()
+            : CartItem::query()
+                ->where('session_id', session()->getId())
+                ->where('product_id', $product->id)
+                ->first();
+
         return view('shop.product', [
             'product'      => $product,
             'categories'   => Category::query()->orderBy('nav_order')->orderBy('id')->get(),
             'favouriteIds' => Favourite::getIds(),
             'galleryImages' => $product->galleryImages(),
+            'currentCartItem' => $currentCartItem,
         ]);
     }
 

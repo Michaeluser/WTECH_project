@@ -24,7 +24,7 @@
         </form>
 
         @auth
-          @if (auth()->user()->is_staff)
+          @if (auth()->user()->isAdmin())
             <a href="{{ route('admin.dashboard') }}" class="staff-dashboard-link">Back to Admin Dashboard</a>
           @endif
         @endauth
@@ -68,7 +68,13 @@
             </ul>
           </div>
 
-          <a href="{{ route('home') }}" class="empty-cart-button">Shop</a>
+          @if (!$cartItems->isEmpty())
+            <form action="{{ route('cart.clear') }}" method="POST" onsubmit="return confirm('Remove all products from cart?');">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="empty-cart-button">Remove all</button>
+            </form>
+          @endif
         </div>
 
         @if(session('success'))

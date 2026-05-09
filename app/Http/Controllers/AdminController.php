@@ -32,19 +32,19 @@ class AdminController extends Controller
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()
-                ->withErrors(['email' => 'Incorrect staff email or password.'])
+                ->withErrors(['email' => 'Incorrect admin email or password.'])
                 ->onlyInput('email');
         }
 
         $request->session()->regenerate();
 
-        if (! $this->isStaff()) {
+        if (! $this->isAdmin()) {
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
             return back()
-                ->withErrors(['email' => 'This account does not have staff access.'])
+                ->withErrors(['email' => 'This account does not have admin access.'])
                 ->onlyInput('email');
         }
 
@@ -53,7 +53,7 @@ class AdminController extends Controller
 
     public function dashboard(Request $request): View
     {
-        $this->authorizeStaff();
+        $this->authorizeAdmin();
 
         $products = Product::query()
             ->with(['category', 'brand', 'images'])
@@ -77,7 +77,7 @@ class AdminController extends Controller
 
     public function storeProduct(Request $request): RedirectResponse
     {
-        $this->authorizeStaff();
+        $this->authorizeAdmin();
 
         $validated = $this->validateProduct($request, true);
 
@@ -104,7 +104,7 @@ class AdminController extends Controller
 
     public function updateProduct(Request $request, Product $product): RedirectResponse
     {
-        $this->authorizeStaff();
+        $this->authorizeAdmin();
 
         $validated = $this->validateProduct($request, false);
 
@@ -135,13 +135,60 @@ class AdminController extends Controller
 
     public function destroyProduct(Product $product): RedirectResponse
     {
-        $this->authorizeStaff();
+        $this->authorizeAdmin();
 
+        $this->deleteUploadedProductImages($product);
         $product->delete();
 
         return redirect()
             ->route('admin.dashboard')
             ->with('success', 'Product deleted successfully.');
+    }
+
+    public function destroyProductImage(Request $request, Product $product): RedirectResponse
+    {
+        $this->authorizeAdmin();
+
+        $imagePath = $request->validate([
+            'image_path' => ['required', 'string'],
+        ])['image_path'];
+
+        $product->load('images');
+        $galleryImages = $product->galleryImages();
+
+        if (! in_array($imagePath, $galleryImages, true)) {
+            abort(404);
+        }
+
+        if (count($galleryImages) <= 1) {
+            throw ValidationException::withMessages([
+                'images' => 'A product must keep at least 1 image.',
+            ]);
+        }
+
+        $remainingImagePaths = array_values(array_filter(
+            $galleryImages,
+            fn (string $currentImagePath) => $currentImagePath !== $imagePath
+        ));
+
+        $this->deleteUploadedFile($imagePath);
+        $product->images()->where('image_path', $imagePath)->delete();
+
+        $product->images()->delete();
+
+        foreach ($remainingImagePaths as $remainingImagePath) {
+            $product->images()->create([
+                'image_path' => $remainingImagePath,
+            ]);
+        }
+
+        $product->update([
+            'image_path' => $remainingImagePaths[0] ?? null,
+        ]);
+
+        return redirect()
+            ->route('admin.dashboard', ['product' => $product->id])
+            ->with('success', 'Image removed successfully.');
     }
 
     public function logout(Request $request): RedirectResponse
@@ -154,14 +201,14 @@ class AdminController extends Controller
         return redirect()->route('admin.login');
     }
 
-    private function authorizeStaff(): void
+    private function authorizeAdmin(): void
     {
-        abort_unless($this->isStaff(), 403, 'Staff access only.');
+        abort_unless($this->isAdmin(), 403, 'Admin access only.');
     }
 
-    private function isStaff(): bool
+    private function isAdmin(): bool
     {
-        return auth()->check() && auth()->user()->is_staff;
+        return auth()->check() && auth()->user()->isAdmin();
     }
 
     private function resolveSelectedProduct(Request $request, LengthAwarePaginator $products): ?Product
@@ -225,9 +272,9 @@ class AdminController extends Controller
         $uploadedImages = array_values(array_filter($images));
         $imageCount = count($uploadedImages);
 
-        if ($isCreate && $imageCount < 2) {
+        if ($isCreate && $imageCount < 1) {
             throw ValidationException::withMessages([
-                'images' => 'Please upload at least 2 images.',
+                'images' => 'Please upload at least 1 image.',
             ]);
         }
 
@@ -237,11 +284,6 @@ class AdminController extends Controller
             ]);
         }
 
-        if (! $isCreate && $imageCount > 0 && $imageCount < 2) {
-            throw ValidationException::withMessages([
-                'images' => 'Please upload at least 2 images when replacing photos.',
-            ]);
-        }
     }
 
     private function generateUniqueSlug(string $name, ?int $ignoreProductId = null): string
@@ -294,6 +336,7 @@ class AdminController extends Controller
             return;
         }
 
+        $this->deleteUploadedProductImages($product);
         $product->images()->delete();
 
         foreach ($imagePaths as $imagePath) {
@@ -315,5 +358,34 @@ class AdminController extends Controller
     private function brands()
     {
         return Brand::query()->orderBy('name')->get();
+    }
+
+    private function deleteUploadedProductImages(Product $product): void
+    {
+        $product->loadMissing('images');
+
+        $paths = $product->images
+            ->pluck('image_path')
+            ->push($product->image_path)
+            ->filter()
+            ->unique()
+            ->values();
+
+        foreach ($paths as $path) {
+            $this->deleteUploadedFile($path);
+        }
+    }
+
+    private function deleteUploadedFile(mixed $path): void
+    {
+        if (! is_string($path) || ! str_starts_with($path, 'images/uploads/')) {
+            return;
+        }
+
+        $absolutePath = public_path($path);
+
+        if (is_file($absolutePath)) {
+            unlink($absolutePath);
+        }
     }
 }

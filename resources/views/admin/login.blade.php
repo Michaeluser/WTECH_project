@@ -53,7 +53,7 @@
     </main>
 
     <footer class="admin-footer">
-      <p>Authorized staff only.</p>
+      <p>Authorized admin users only.</p>
     </footer>
   </div>
 </body>

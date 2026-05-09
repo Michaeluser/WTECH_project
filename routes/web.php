@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/products', [AdminController::class, 'storeProduct'])->name('admin.products.store');
     Route::put('/admin/products/{product}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
     Route::delete('/admin/products/{product}', [AdminController::class, 'destroyProduct'])->name('admin.products.destroy');
+    Route::delete('/admin/products/{product}/images', [AdminController::class, 'destroyProductImage'])->name('admin.products.images.destroy');
     Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 });
@@ -73,6 +74,7 @@ Route::delete('/favourites/{product}', [FavouriteController::class, 'destroy'])-
 // Cart routes (accessible to both authenticated and guest users)
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout.show');
 Route::get('/checkout/details', [CartController::class, 'details'])->name('checkout.details');
 Route::post('/checkout/confirmation', [CartController::class, 'confirmation'])->name('checkout.confirmation');

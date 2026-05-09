@@ -20,7 +20,7 @@
             </form>
 
             @auth
-                @if (auth()->user()->is_staff)
+                @if (auth()->user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}" class="staff-dashboard-link">Back to Admin Dashboard</a>
                 @endif
             @endauth
@@ -162,6 +162,18 @@
 
                             <button type="submit" class="product-button">Add to cart</button>
                         </form>
+
+                        @if ($currentCartItem)
+                            <div class="detail-message detail-message-success detail-message-inline">
+                                Already in cart: {{ $currentCartItem->quantity }}
+                            </div>
+
+                            <form action="{{ route('cart.remove', $currentCartItem) }}" method="POST" class="product-detail-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="product-button">Remove from cart</button>
+                            </form>
+                        @endif
                     @else
                         <p class="detail-message detail-message-error">This product is currently out of stock.</p>
                     @endif

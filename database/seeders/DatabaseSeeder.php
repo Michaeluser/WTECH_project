@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\CatalogItem;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,25 +21,63 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $roles = $this->createRoles();
+
         User::query()->updateOrCreate(['email' => 'admin@technodom.sk'], User::factory()->raw([
             'first_name' => 'Admin',
             'last_name' => 'Staff',
             'email' => 'admin@technodom.sk',
-            'is_staff' => true,
         ]));
 
         User::query()->updateOrCreate(['email' => 'test@example.com'], User::factory()->raw([
             'first_name' => 'Test',
             'last_name' => 'User',
             'email' => 'test@example.com',
-            'is_staff' => false,
         ]));
+
+        $this->assignUserRoles($roles);
 
         $categories = $this->createCategories();
         $brands = $this->createBrands();
 
         $this->createProducts($categories, $brands);
         $this->createCatalogItems($categories);
+    }
+
+    private function createRoles(): array
+    {
+        $roles = [];
+
+        foreach ([
+            'admin' => 'Administrator with access to the admin dashboard.',
+            'customer' => 'Regular customer account.',
+        ] as $roleName => $description) {
+            $role = Role::query()->updateOrCreate(
+                ['role' => $roleName],
+                ['description' => $description]
+            );
+
+            $roles[$roleName] = $role;
+        }
+
+        return $roles;
+    }
+
+    private function assignUserRoles(array $roles): void
+    {
+        $adminUser = User::query()->where('email', 'admin@technodom.sk')->first();
+        $testUser = User::query()->where('email', 'test@example.com')->first();
+
+        if ($adminUser !== null) {
+            $adminUser->roles()->sync([
+                $roles['customer']->id,
+                $roles['admin']->id,
+            ]);
+        }
+
+        if ($testUser !== null) {
+            $testUser->roles()->sync([$roles['customer']->id]);
+        }
     }
 
     private function createCategories(): array

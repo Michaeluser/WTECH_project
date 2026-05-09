@@ -5,9 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -26,7 +26,6 @@ class User extends Authenticatable
         'birthday',
         'bic_card',
         'swift_card',
-        'is_staff',
     ];
 
     // Аксессор: $user->name возвращает "Имя Фамилия"
@@ -44,7 +43,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'is_staff' => 'boolean',
     ];
 
     public function cart(): HasOne
@@ -60,6 +58,20 @@ class User extends Authenticatable
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_role');
+    }
+
+    public function hasRole(string $role): bool
+    {
+        if ($this->relationLoaded('roles')) {
+            return $this->roles->contains(fn (Role $userRole) => $userRole->role === $role);
+        }
+
+        return $this->roles()->where('role', $role)->exists();
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
     }
     
     public function addresses(): HasMany
