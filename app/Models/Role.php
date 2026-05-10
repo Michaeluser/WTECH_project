@@ -12,7 +12,7 @@ class Role extends Model
 {
     
     use HasFactory;
-    public $timestamps = false; // в таблице нет колонок created_at / updated_at
+    public $timestamps = false;
 
     protected $fillable = [
         'role',

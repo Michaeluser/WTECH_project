@@ -19,7 +19,7 @@ Route::get('/', function () {
             ->latest('id')
             ->take(5)
             ->get(),
-        'favouriteIds'     => Favourite::getIds(), // id товаров в избранном текущего юзера/гостя
+        'favouriteIds'     => Favourite::getIds(),
     ]);
 })->name('home');
 
@@ -66,7 +66,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
-// Избранное — доступно всем (и залогиненным и гостям)
 Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites');
 Route::post('/favourites/{product}', [FavouriteController::class, 'store'])->name('favourites.store');
 Route::delete('/favourites/{product}', [FavouriteController::class, 'destroy'])->name('favourites.destroy');

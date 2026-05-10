@@ -10,21 +10,18 @@ use Illuminate\View\View;
 
 class FavouriteController extends Controller
 {
-    // Определяем кто делает запрос — залогинен или гость
-    // Возвращает массив с нужным идентификатором для запросов к БД
     private function identifier(): array
     {
         if (auth()->check()) {
-            return ['user_id' => auth()->id()];      // залогинен → используем user_id
+            return ['user_id' => auth()->id()];
         }
-        return ['session_id' => session()->getId()]; // гость → используем session_id
+        return ['session_id' => session()->getId()];
     }
 
-    // Показать страницу избранного
     public function index(): View
     {
         $favourites = Favourite::where($this->identifier())
-            ->with('product')   // подгружаем данные товара к каждой записи
+            ->with('product')
             ->get();
 
         return view('account.favourites', [
@@ -33,11 +30,8 @@ class FavouriteController extends Controller
         ]);
     }
 
-    // Добавить товар в избранное
     public function store(Product $product): RedirectResponse
     {
-        // Объединяем идентификатор (user_id или session_id) с id товара
-        // firstOrCreate — не создаст дубликат если товар уже в избранном
         Favourite::firstOrCreate(
             array_merge($this->identifier(), ['product_id' => $product->id])
         );
@@ -45,7 +39,6 @@ class FavouriteController extends Controller
         return back();
     }
 
-    // Убрать товар из избранного
     public function destroy(Product $product): RedirectResponse
     {
         Favourite::where($this->identifier())

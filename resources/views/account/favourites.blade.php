@@ -84,16 +84,13 @@
 
         <div class="products-grid">
 
-          {{-- Если список пустой — показываем сообщение --}}
           @if ($favourites->isEmpty())
             <p>You have no favourites yet.</p>
 
           @else
-            {{-- Перебираем каждую запись из таблицы favourites --}}
             @foreach ($favourites as $favourite)
               <article class="product-card">
 
-                {{-- $favourite->product — это связанный товар через belongsTo --}}
                 <a href="{{ route('products.show', $favourite->product) }}" class="product-image-link">
                   <img src="{{ asset($favourite->product->image_path) }}" alt="{{ $favourite->product->name }}">
                 </a>
@@ -105,10 +102,9 @@
                   View product
                 </a>
 
-                {{-- Форма для удаления из избранного --}}
                 <form action="{{ route('favourites.destroy', $favourite->product) }}" method="POST">
-                  @csrf              {{-- защита от CSRF атак --}}
-                  @method('DELETE')  {{-- HTML не умеет DELETE, Laravel подменяет метод --}}
+                  @csrf
+                  @method('DELETE')
                   <button type="submit" class="remove-favourite">Remove</button>
                 </form>
 

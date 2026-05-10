@@ -28,8 +28,6 @@ class User extends Authenticatable
         'swift_card',
     ];
 
-    // Аксессор: $user->name возвращает "Имя Фамилия"
-    // Нужен потому что шаблоны используют auth()->user()->name
     public function getNameAttribute(): string
     {
         return $this->first_name . ' ' . $this->last_name;
